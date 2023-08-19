@@ -1,17 +1,33 @@
 package resources;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import models.cadastro.Cadastro;
+import repositorys.CadastroRepository;
 
 import java.util.List;
 
 @Path("/cadastro")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class CadastroResource {
+    @Inject
+    CadastroRepository repository;
+
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Cadastro> estados(){
-        return Cadastro.listAll();
+    public List<Cadastro> findAll(){
+        return repository.listAll();
+    }
+
+    @GET
+    @Path("/{id}")
+    public Cadastro findById(@PathParam("id") Long id){
+        return repository.findById(id);
+    }
+
+    @GET
+    @Path("/search/nome/{nome}")
+    public List<Cadastro> findByName(@PathParam("nome") String nome){
+        return repository.findByNome(nome);
     }
 }

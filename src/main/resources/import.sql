@@ -5,19 +5,19 @@
 -- insert into myentity (id, field) values(3, 'field-3');
 -- alter sequence myentity_seq restart with 4;
 
-INSERT INTO cadastro(id, nome, nickname, email) VALUES(1, 'Joao Victor Povoa', 'JoaoIto', 'joaovictorpfr@gmail.com');
+INSERT INTO cadastro(nome, nickname, email) VALUES('Joao Victor Povoa', 'JoaoIto', 'joaovictorpfr@gmail.com');
 
-INSERT INTO cadastro(id, nome, nickname, email)
-VALUES(2, 'Maria Silva', 'MariaS', 'maria.silva@example.com');
+INSERT INTO cadastro(nome, nickname, email)
+VALUES('Maria Silva', 'MariaS', 'maria.silva@example.com');
 
-INSERT INTO cadastro(id, nome, nickname, email)
-VALUES(3, 'Pedro Oliveira', 'PedroO', 'pedro.oliveira@example.com');
+INSERT INTO cadastro(nome, nickname, email)
+VALUES('Pedro Oliveira', 'PedroO', 'pedro.oliveira@example.com');
 
-INSERT INTO cadastro(id, nome, nickname, email)
-VALUES(4, 'Ana Santos', 'AnaS', 'ana.santos@example.com');
+INSERT INTO cadastro(nome, nickname, email)
+VALUES('Ana Santos', 'AnaS', 'ana.santos@example.com');
 
-INSERT INTO cadastro(id, nome, nickname, email)
-VALUES(5, 'Rafaela Almeida', 'RafaelaA', 'rafaela.almeida@example.com');
+INSERT INTO cadastro(nome, nickname, email)
+VALUES('Rafaela Almeida', 'RafaelaA', 'rafaela.almeida@example.com');
 
-INSERT INTO cadastro(id, nome, nickname, email)
-VALUES(6, 'Lucas Ferreira', 'LucasF', 'lucas.ferreira@example.com');
+INSERT INTO cadastro(nome, nickname, email)
+VALUES('Lucas Ferreira', 'LucasF', 'lucas.ferreira@example.com');
