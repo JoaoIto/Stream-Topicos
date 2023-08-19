@@ -21,6 +21,7 @@ public class CadastroResource {
         Cadastro novoCadastro = new Cadastro();
         novoCadastro.setNome(cadastro.getNome());
         novoCadastro.setEmail(cadastro.getEmail());
+        novoCadastro.setNickname(cadastro.getNickname());
 
         repository.persist(novoCadastro);
         return novoCadastro;
