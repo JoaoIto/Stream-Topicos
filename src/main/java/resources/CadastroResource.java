@@ -1,5 +1,6 @@
 package resources;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import models.cadastro.Cadastro;
@@ -13,6 +14,17 @@ import java.util.List;
 public class CadastroResource {
     @Inject
     CadastroRepository repository;
+
+    @POST
+    @Transactional
+    public Cadastro insert(Cadastro cadastro){
+        Cadastro novoCadastro = new Cadastro();
+        novoCadastro.setNome(cadastro.getNome());
+        novoCadastro.setEmail(cadastro.getEmail());
+
+        repository.persist(novoCadastro);
+        return novoCadastro;
+    }
 
     @GET
     public List<Cadastro> findAll(){
