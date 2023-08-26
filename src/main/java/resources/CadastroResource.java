@@ -39,9 +39,9 @@ public class CadastroResource {
     }
 
     @GET
-    @Path("/search/nome/{nome}")
-    public List<Cadastro> findByName(@PathParam("nome") String nome){
-        return repository.findByNome(nome);
+    @Path("/search/nickname/{nickname}")
+    public List<Cadastro> findByNick(@PathParam("nickname") String nickname){
+        return repository.findByNick(nickname);
     }
 
     @PUT
