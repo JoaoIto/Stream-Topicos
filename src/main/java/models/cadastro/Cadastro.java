@@ -1,16 +1,19 @@
 package models.cadastro;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Cadastro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(length = 60)
     private String nome;
+
+    @Column(length = 100)
     private String email;
+
+    @Column(length = 30)
     private String nickname;
 
     public String getNickname() {
