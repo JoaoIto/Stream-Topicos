@@ -43,4 +43,34 @@ public class CadastroResource {
     public List<Cadastro> findByName(@PathParam("nome") String nome){
         return repository.findByNome(nome);
     }
+
+    @PUT
+    @Path("/{id}")
+    @Transactional
+    public Cadastro update(@PathParam("id") Long id, Cadastro cadastroAtualizado) {
+        Cadastro cadastro = repository.findById(id);
+        if (cadastro == null) {
+            throw new NotFoundException("Cadastro não encontrado com ID: " + id);
+        }
+
+        cadastro.setNome(cadastroAtualizado.getNome());
+        cadastro.setEmail(cadastroAtualizado.getEmail());
+        cadastro.setNickname(cadastroAtualizado.getNickname());
+
+        return cadastro;
+    }
+
+    @DELETE
+    @Path("/{id}")
+    @Transactional
+    public List<Cadastro> delete(@PathParam("id") Long id) {
+        Cadastro cadastro = repository.findById(id);
+        if (cadastro == null) {
+            throw new NotFoundException("Cadastro não encontrado com ID: " + id);
+        }
+
+        repository.delete(cadastro);
+        return findAll();
+    }
+
 }
