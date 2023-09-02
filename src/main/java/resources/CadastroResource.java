@@ -1,4 +1,6 @@
 package resources;
+import dto.CadastroDto;
+import dto.CadastroResponseDTO;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
@@ -17,14 +19,16 @@ public class CadastroResource {
 
     @POST
     @Transactional
-    public Cadastro insert(Cadastro cadastro){
+    public CadastroResponseDTO insert(CadastroDto dto){
         Cadastro novoCadastro = new Cadastro();
-        novoCadastro.setNome(cadastro.getNome());
-        novoCadastro.setEmail(cadastro.getEmail());
-        novoCadastro.setNickname(cadastro.getNickname());
+        novoCadastro.setNome(dto.getNome());
+        novoCadastro.setEmail(dto.getEmail());
+        novoCadastro.setNickname(dto.getNickname());
 
         repository.persist(novoCadastro);
-        return novoCadastro;
+        CadastroResponseDTO rDto = new CadastroResponseDTO(novoCadastro.getId(), novoCadastro.getNome(), novoCadastro.getEmail(), novoCadastro.getNickname());
+
+        return rDto;
     }
 
     @GET
