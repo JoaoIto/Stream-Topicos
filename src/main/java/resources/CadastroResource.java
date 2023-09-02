@@ -42,8 +42,8 @@ public class CadastroResource {
 
     @GET
     @Path("/search/nickname/{nickname}")
-    public List<Cadastro> findByNick(@PathParam("nickname") String nickname){
-        return repository.findByNick(nickname);
+    public List<CadastroResponseDTO> findByNick(@PathParam("nickname") String nickname){
+        return repository.findByNick(nickname).stream().map(CadastroResponseDTO::valueOf).toList();
     }
 
     @PUT
@@ -65,14 +65,13 @@ public class CadastroResource {
     @DELETE
     @Path("/{id}")
     @Transactional
-    public List<Cadastro> delete(@PathParam("id") Long id) {
+    public void delete(@PathParam("id") Long id) {
         Cadastro cadastro = repository.findById(id);
         if (cadastro == null) {
             throw new NotFoundException("Cadastro não encontrado com ID: " + id);
         }
 
         repository.delete(cadastro);
-        return findAll();
     }
 
 }
