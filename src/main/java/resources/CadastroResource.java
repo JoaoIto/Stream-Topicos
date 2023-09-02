@@ -26,14 +26,12 @@ public class CadastroResource {
         novoCadastro.setNickname(dto.getNickname());
 
         repository.persist(novoCadastro);
-        CadastroResponseDTO rDto = new CadastroResponseDTO(novoCadastro.getId(), novoCadastro.getNome(), novoCadastro.getEmail(), novoCadastro.getNickname());
-
-        return rDto;
+        return CadastroResponseDTO.valueOf(novoCadastro);
     }
 
     @GET
-    public List<Cadastro> findAll(){
-        return repository.listAll();
+    public List<CadastroResponseDTO> findAll(){
+        return repository.listAll().stream().map(e -> CadastroResponseDTO.valueOf(e)).toList();
     }
 
     @GET
