@@ -7,6 +7,10 @@ public class Cadastro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "id_login")
+    private Login login;
+
     @Column(length = 60)
     private String nome;
 
@@ -15,6 +19,22 @@ public class Cadastro {
 
     @Column(length = 30)
     private String nickname;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Login getLogin() {
+        return login;
+    }
+
+    public void setLogin(Login login) {
+        this.login = login;
+    }
 
     public String getNickname() {
         return nickname;

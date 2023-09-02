@@ -21,3 +21,21 @@ VALUES('Rafaela Almeida', 'RafaelaA', 'rafaela.almeida@example.com');
 
 INSERT INTO cadastro(nome, nickname, email)
 VALUES('Lucas Ferreira', 'LucasF', 'lucas.ferreira@example.com');
+
+INSERT INTO login(nickname, senha)
+VALUES('JoaoIto', '2308');
+
+INSERT INTO login(nickname, senha)
+VALUES('MariaS', '1111');
+
+INSERT INTO login(nickname, senha)
+VALUES('PedroO', '2222');
+
+INSERT INTO login(nickname, senha)
+VALUES('AnaS', '3333');
+
+INSERT INTO login(nickname, senha)
+VALUES('RafaelaA', '4444');
+
+INSERT INTO login(nickname, senha)
+VALUES('LucasF', '5555');
