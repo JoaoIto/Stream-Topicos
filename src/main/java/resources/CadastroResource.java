@@ -31,7 +31,7 @@ public class CadastroResource {
 
     @GET
     public List<CadastroResponseDTO> findAll(){
-        return repository.listAll().stream().map(e -> CadastroResponseDTO.valueOf(e)).toList();
+        return repository.listAll().stream().map(CadastroResponseDTO::valueOf).toList();
     }
 
     @GET
