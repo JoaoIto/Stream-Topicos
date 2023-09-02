@@ -49,17 +49,17 @@ public class CadastroResource {
     @PUT
     @Path("/{id}")
     @Transactional
-    public Cadastro update(@PathParam("id") Long id, Cadastro cadastroAtualizado) {
+    public CadastroResponseDTO update(Cadastro dto, @PathParam("id") Long id, Cadastro cadastroAtualizado) {
         Cadastro cadastro = repository.findById(id);
         if (cadastro == null) {
             throw new NotFoundException("Cadastro não encontrado com ID: " + id);
         }
 
-        cadastro.setNome(cadastroAtualizado.getNome());
-        cadastro.setEmail(cadastroAtualizado.getEmail());
-        cadastro.setNickname(cadastroAtualizado.getNickname());
+        cadastro.setNome(dto.getNome());
+        cadastro.setEmail(dto.getEmail());
+        cadastro.setNickname(dto.getNickname());
 
-        return cadastro;
+        return CadastroResponseDTO.valueOf(cadastro);
     }
 
     @DELETE
