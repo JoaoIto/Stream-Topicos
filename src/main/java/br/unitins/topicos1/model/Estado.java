@@ -1,5 +1,9 @@
 package br.unitins.topicos1.model;
 
+import java.time.LocalDate;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +22,8 @@ public class Estado {
 
     @Column(length = 2)
     private String sigla;
+
+    private LocalDate dataCadastro;
 
     public String getNome() {
         return nome;
@@ -42,5 +48,15 @@ public class Estado {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public LocalDate getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(LocalDate dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+
+    
 
 }

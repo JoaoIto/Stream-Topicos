@@ -2,13 +2,19 @@ package br.unitins.topicos1.resource;
 
 import java.util.List;
 
+import br.unitins.topicos1.dto.EstadoDTO;
+import br.unitins.topicos1.dto.EstadoResponseDTO;
 import br.unitins.topicos1.model.Estado;
 import br.unitins.topicos1.repository.EstadoRepository;
+import br.unitins.topicos1.service.EstadoService;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
@@ -20,34 +26,41 @@ import jakarta.ws.rs.core.MediaType;
 public class EstadoResource {
 
     @Inject
-    EstadoRepository repository;
+    EstadoService service;
 
     @POST
+    public EstadoResponseDTO insert(EstadoDTO dto) {
+        return service.insert(dto);
+    }
+
+    @PUT
     @Transactional
-    public Estado insert(Estado estado) {
-        Estado novoEstado = new Estado();
-        novoEstado.setNome(estado.getNome());
-        novoEstado.setSigla(estado.getSigla());
+    @Path("/{id}")
+    public EstadoResponseDTO update(EstadoDTO dto, @PathParam("id") Long id) {
+        return service.update(dto, id);
+    }
 
-        repository.persist(novoEstado);
-
-        return novoEstado;
+    @DELETE
+    @Transactional
+    @Path("/{id}")
+    public void delete(@PathParam("id") Long id) {
+        service.delete(id);
     }
 
     @GET
-    public List<Estado> findAll() {
-        return repository.listAll();
+    public List<EstadoResponseDTO> findAll() {
+        return service.findByAll();
     }
 
     @GET
     @Path("/{id}")
-    public Estado findById(@PathParam("id") Long id) {
-        return repository.findById(id);
+    public EstadoResponseDTO findById(@PathParam("id") Long id) {
+        return service.findById(id);
     }
     
     @GET
     @Path("/search/nome/{nome}")
-    public List<Estado> findByNome(@PathParam("nome") String nome) {
-        return repository.findByNome(nome);
+    public List<EstadoResponseDTO> findByNome(@PathParam("nome") String nome) {
+        return service.findByNome(nome);
     }
 }
