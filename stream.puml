@@ -1,7 +1,7 @@
 @startuml
 
 class Usuario {
-  - id: Long
+  - id:Long
   - nome: String
   - nickName: String
   - email: String
@@ -10,23 +10,25 @@ class Usuario {
 }
 
 class UsuarioAdministrador {
-  - criarNovoStream(nome: String): void
-  - editarStream(stream: Stream): void
-  - criarNovoStream(stream: Stream): void
+  + criarNovoStream(nome: String): void
+  + editarStream(stre am: Stream): void
+  + criarNovoStream(stream: Stream): void
 }
 
 class UsuarioStreamer {
   - saldo: Double
   - filaAssinantes: UsuarioAssinante
-  - iniciarLive(): void
-  - conferirPagamento(assinante: UsuarioAssinante): void
-  - banirParticipante(assinante: UsuarioAssinante): void
+  + iniciarLive(): void
+  + conferirPagamento(assinante: UsuarioAssinante): void
+  + banirParticipante(assinante: UsuarioAssinante): void
+  -- NossaLive : Faz
 }
 
 class UsuarioAssinante {
   + saldo: Double
-  - entrarLive(): void
-  - sairLive(): void
+  + entrarLive(): void
+  + sairLive(): void
+  -- NossaLive : Assiste
 }
 
 class NossaLive {
@@ -69,14 +71,17 @@ enum CategoriaLive {
   E_SPORTS
 }
 
-Usuario "0" --|> "1" UsuarioAdministrador
-Usuario "0" --|> "1" UsuarioStreamer
-Usuario "0" --|> "1" UsuarioAssinante
+Usuario --|> UsuarioAdministrador
+Usuario --|> UsuarioStreamer
+Usuario --|> UsuarioAssinante
 RegistroVendas -- FormaPagamento
 RegistroVendas -- StatusPagamento
-RegistroVendas "1" *-down-> "1" UsuarioAssinante
+RegistroVendas "*" *-down-> "1" UsuarioAssinante
 UsuarioAssinante "1" *-down-> "1" CatalogoLives
 CatalogoLives "1" *-down-> "*" NossaLive
-NossaLive "1" *-down-> "1" CategoriaLive
-
+NossaLive "1" *-down-> "*" CategoriaLive
+UsuarioAdministrador "1" *-down-> "1" CatalogoLives
+UsuarioAdministrador "1" *-down-> "1" NossaLive
+UsuarioStreamer "1" *-down-> "1" NossaLive
+Usuario "1" *-down-> "1" CatalogoLives
 @enduml
