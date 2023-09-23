@@ -3,6 +3,7 @@ import dto.CadastroDto;
 import dto.CadastroResponseDTO;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import models.cadastro.Cadastro;
@@ -20,7 +21,7 @@ public class CadastroResource {
 
     @POST
     @Transactional
-    public CadastroResponseDTO insert(CadastroDto dto){
+    public CadastroResponseDTO insert(@Valid CadastroDto dto){
         return service.insert(dto);
     }
 
