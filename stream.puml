@@ -1,0 +1,82 @@
+@startuml
+
+class Usuario {
+  - id: Long
+  - nome: String
+  - nickName: String
+  - email: String
+  - senha: Password
+  - nivelPermissao: Integer
+}
+
+class UsuarioAdministrador {
+  - criarNovoStream(nome: String): void
+  - editarStream(stream: Stream): void
+  - criarNovoStream(stream: Stream): void
+}
+
+class UsuarioStreamer {
+  - saldo: Double
+  - filaAssinantes: UsuarioAssinante
+  - iniciarLive(): void
+  - conferirPagamento(assinante: UsuarioAssinante): void
+  - banirParticipante(assinante: UsuarioAssinante): void
+}
+
+class UsuarioAssinante {
+  + saldo: Double
+  - entrarLive(): void
+  - sairLive(): void
+}
+
+class NossaLive {
+  - id: Long
+  - nome: String
+  - preco: Double
+  - descricao: String
+}
+
+class CatalogoLives {
+  - lives: List<NossaLive>
+}
+
+class RegistroVendas {
+  - id: Long
+  - idAssinante: Long
+  - idStreamer: Long
+  - data: LocalDate
+  - hora: LocalDateTime
+  - valorVenda: Double
+}
+
+enum FormaPagamento {
+  CREDITO
+  DEBITO
+  PIX
+}
+
+enum StatusPagamento {
+  PAGAMENTO_CONCLUIDO
+  PAGAMENTO_NAO_EFETUADO
+}
+
+enum CategoriaLive {
+  ACAO
+  AVENTURA
+  ESTRATEGIA
+  RPG
+  MOBA
+  E_SPORTS
+}
+
+Usuario "0" --|> "1" UsuarioAdministrador
+Usuario "0" --|> "1" UsuarioStreamer
+Usuario "0" --|> "1" UsuarioAssinante
+RegistroVendas -- FormaPagamento
+RegistroVendas -- StatusPagamento
+RegistroVendas "1" *-down-> "1" UsuarioAssinante
+UsuarioAssinante "1" *-down-> "1" CatalogoLives
+CatalogoLives "1" *-down-> "*" NossaLive
+NossaLive "1" *-down-> "1" CategoriaLive
+
+@enduml
