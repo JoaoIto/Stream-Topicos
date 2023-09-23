@@ -28,20 +28,20 @@ public class CadastroResource {
     }
 
     @GET
-    public List<CadastroResponseDTO> findAll(){
-        return service.findAll();
+    public Response findAll(){
+        return Response.ok(service.findAll()).build();
     }
 
     @GET
     @Path("/{id}")
-    public Cadastro findById(@PathParam("id") Long id){
-        return service.findById(id);
+    public Response findById(@PathParam("id") Long id){
+        return Response.ok(service.findById(id)).build();
     }
 
     @GET
     @Path("/search/nickname/{nickname}")
-    public List<CadastroResponseDTO> findByNick(@PathParam("nickname") String nickname){
-        return service.findByNick(nickname);
+    public Response findByNick(@PathParam("nickname") String nickname){
+        return Response.ok(service.findByNick(nickname)).build();
     }
 
     @PUT
