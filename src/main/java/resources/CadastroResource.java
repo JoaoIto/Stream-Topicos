@@ -6,8 +6,8 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import models.cadastro.Cadastro;
-import repositorys.CadastroRepository;
 import service.CadastroService;
 
 import java.util.List;
@@ -21,8 +21,9 @@ public class CadastroResource {
 
     @POST
     @Transactional
-    public CadastroResponseDTO insert(@Valid CadastroDto dto){
-        return service.insert(dto);
+    public Response insert(@Valid CadastroDto dto){
+        CadastroResponseDTO retorno = service.insert(dto);
+        return Response.status(Response.Status.CREATED).entity(retorno).build();
     }
 
     @GET
