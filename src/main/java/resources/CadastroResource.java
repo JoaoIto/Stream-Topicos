@@ -23,7 +23,7 @@ public class CadastroResource {
     @Transactional
     public Response insert(@Valid CadastroDto dto){
         CadastroResponseDTO retorno = service.insert(dto);
-        return Response.status(Response.Status.CREATED).entity(retorno).build();
+        return Response.status(Response.Status.fromStatusCode(200)).entity(retorno).build();
     }
 
     @GET
