@@ -1,5 +1,7 @@
 package dto;
 
+import java.util.Objects;
+
 public class CadastroDto {
     private final String nome;
     private final String email;
@@ -21,5 +23,18 @@ public class CadastroDto {
 
     public String getEmail() {
         return email;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CadastroDto that = (CadastroDto) o;
+        return Objects.equals(nome, that.nome) && Objects.equals(email, that.email) && Objects.equals(nickname, that.nickname);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, email, nickname);
     }
 }
