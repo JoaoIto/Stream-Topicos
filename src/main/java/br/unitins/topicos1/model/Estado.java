@@ -2,8 +2,12 @@ package br.unitins.topicos1.model;
 
 import java.time.LocalDate;
 
+import io.smallrye.common.constraint.NotNull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Estado extends DefaultEntity {
