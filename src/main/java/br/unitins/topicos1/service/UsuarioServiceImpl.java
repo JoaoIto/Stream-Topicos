@@ -46,8 +46,15 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     @Transactional
     public UsuarioResponseDTO update(UsuarioDTO dto, Long id) {
-        return null;
+        Usuario usuario = repository.findById(id);
+        usuario.setLogin(dto.login());
+        usuario.setNome(dto.nome());
+        usuario.setSenha(dto.senha());
 
+        // falta a implementacao dos telefones
+        // vcs (ALUNOS) devem implementar!!!!!
+        
+        return UsuarioResponseDTO.valueOf(usuario);
     }
 
     @Override

@@ -16,3 +16,16 @@ insert into cidade (nome, id_estado) values('Porto Nacional', 1);
 insert into cidade (nome, id_estado) values('Goiania', 2);
 insert into cidade (nome, id_estado) values('Rio de Janeiro', 3);
 insert into cidade (nome, id_estado) values('São Paulo', 4);
+
+insert into usuario (nome, login, senha) values('Elon Musk', 'musk', '111');
+insert into usuario (nome, login, senha) values('Bill Gates', 'gates', '222');
+
+insert into telefone (codigoArea, numero) values('63', '9999-9999');
+insert into telefone (codigoArea, numero) values('62', '8888-8888');
+insert into telefone (codigoArea, numero) values('61', '7777-7777');
+insert into telefone (codigoArea, numero) values('55', '6666-6666');
+
+insert into usuario_telefone (id_usuario, id_telefone) values(1, 1);
+insert into usuario_telefone (id_usuario, id_telefone) values(1, 2);
+insert into usuario_telefone (id_usuario, id_telefone) values(2, 3);
+insert into usuario_telefone (id_usuario, id_telefone) values(2, 4);
