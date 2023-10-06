@@ -1,6 +1,5 @@
 package models;
 import jakarta.persistence.*;
-import models.Login;
 
 @Entity
 public class Cadastro {
