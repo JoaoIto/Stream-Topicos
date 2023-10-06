@@ -1,27 +1,27 @@
 package resources;
-import dto.CadastroDTO;
-import dto.CadastroResponseDTO;
+import dto.LoginDTO;
+import dto.LoginResponseDTO;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import models.Cadastro;
-import service.CadastroService;
+import models.Login;
+import service.LoginService;
 
-@Path("/cadastro")
+@Path("/login")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 
-public class CadastroResource {
+public class LoginResource {
     @Inject
-    CadastroService service;
+    LoginService service;
 
     @POST
     @Transactional
-    public Response insert(@Valid CadastroDTO dto){
-        CadastroResponseDTO retorno = service.insert(dto);
+    public Response insert(@Valid LoginDTO dto){
+        LoginResponseDTO retorno = service.insert(dto);
         //return Response.status(Response.Status.fromStatusCode(200)).entity(retorno).build();
         return Response.status(Response.Status.CREATED).entity(retorno).build();
     }
@@ -46,7 +46,7 @@ public class CadastroResource {
     @PUT
     @Path("/{id}")
     @Transactional
-    public CadastroResponseDTO update(CadastroDTO dto, @PathParam("id") Long id, Cadastro cadastroAtualizado) {
+    public LoginResponseDTO update(LoginDTO dto, @PathParam("id") Long id, Login loginAtualizado) {
         return service.update(dto, id);
     }
 
@@ -56,5 +56,4 @@ public class CadastroResource {
     public void delete(@PathParam("id") Long id) {
         service.delete(id);
     }
-
 }

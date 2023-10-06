@@ -1,6 +1,6 @@
 package dto;
 
-import models.cadastro.Cadastro;
+import models.Cadastro;
 
 public record CadastroResponseDTO(
         Long id,

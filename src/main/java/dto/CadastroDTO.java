@@ -2,12 +2,12 @@ package dto;
 
 import java.util.Objects;
 
-public class CadastroDto {
+public class CadastroDTO {
     private final String nome;
     private final String email;
     private final String nickname;
 
-    public CadastroDto(String nome, String email, String nickname) {
+    public CadastroDTO(String nome, String email, String nickname) {
         this.nome = nome;
         this.email = email;
         this.nickname = nickname;
@@ -29,7 +29,7 @@ public class CadastroDto {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CadastroDto that = (CadastroDto) o;
+        CadastroDTO that = (CadastroDTO) o;
         return Objects.equals(nome, that.nome) && Objects.equals(email, that.email) && Objects.equals(nickname, that.nickname);
     }
 

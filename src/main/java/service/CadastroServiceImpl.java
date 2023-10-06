@@ -1,13 +1,12 @@
 package service;
 
-import dto.CadastroDto;
+import dto.CadastroDTO;
 import dto.CadastroResponseDTO;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.GET;
 import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.PathParam;
-import models.cadastro.Cadastro;
+import models.Cadastro;
 import repositorys.CadastroRepository;
 
 import java.util.List;
@@ -18,7 +17,7 @@ public class CadastroServiceImpl implements CadastroService{
     CadastroRepository repository;
 
     @Override
-    public CadastroResponseDTO insert(CadastroDto dto) {
+    public CadastroResponseDTO insert(CadastroDTO dto) {
         Cadastro novoCadastro = new Cadastro();
         novoCadastro.setNome(dto.getNome());
         novoCadastro.setEmail(dto.getEmail());
@@ -43,7 +42,7 @@ public class CadastroServiceImpl implements CadastroService{
     }
 
     @Override
-    public CadastroResponseDTO update(CadastroDto dto, Long id) {
+    public CadastroResponseDTO update(CadastroDTO dto, Long id) {
         Cadastro cadastro = repository.findById(id);
         if (cadastro == null) {
             throw new NotFoundException("Cadastro não encontrado com ID: " + id);

@@ -1,16 +1,16 @@
 package service;
 
-import dto.CadastroDto;
+import dto.CadastroDTO;
 import dto.CadastroResponseDTO;
 import jakarta.ws.rs.PathParam;
-import models.cadastro.Cadastro;
+import models.Cadastro;
 
 import java.util.List;
 
 public interface CadastroService {
-    public CadastroResponseDTO insert(CadastroDto dto);
+    public CadastroResponseDTO insert(CadastroDTO dto);
 
-    public CadastroResponseDTO update(CadastroDto dto, Long id);
+    public CadastroResponseDTO update(CadastroDTO dto, Long id);
 
     public void delete(Long id);
 

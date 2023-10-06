@@ -1,4 +1,4 @@
-package models.cadastro;
+package models;
 
 import jakarta.persistence.*;
 
