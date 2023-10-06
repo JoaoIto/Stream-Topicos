@@ -1,6 +1,7 @@
 package resources;
 import dto.CadastroDTO;
 import dto.CadastroResponseDTO;
+import dto.LoginDTO;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -10,13 +11,13 @@ import jakarta.ws.rs.core.Response;
 import models.Cadastro;
 import service.CadastroService;
 
-@Path("/cadastro")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
+    @Path("/cadastro")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
 
-public class CadastroResource {
-    @Inject
-    CadastroService service;
+    public class CadastroResource {
+        @Inject
+        CadastroService service;
 
     @POST
     @Transactional

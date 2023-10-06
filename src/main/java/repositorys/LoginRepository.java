@@ -8,7 +8,7 @@ import java.util.List;
 
 @ApplicationScoped
 public class LoginRepository implements PanacheRepository<Login> {
-    public List<Login> findByNick(String nickname){
-        return find("nickname LIKE ?1", "%"+nickname+"%").list();
+    public List<Login> findByCadastro(String nickname) {
+        return list("login.cadastro.nickname", nickname);
     }
 }

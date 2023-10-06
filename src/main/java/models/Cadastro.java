@@ -9,7 +9,7 @@ public class Cadastro {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_login")
+    @JoinColumn(name = "id_cadastro")
     private Login login;
 
     @Column(length = 60)
@@ -27,14 +27,6 @@ public class Cadastro {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Login getLogin() {
-        return login;
-    }
-
-    public void setLogin(Login login) {
-        this.login = login;
     }
 
     public String getNickname() {
@@ -59,5 +51,13 @@ public class Cadastro {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Login getLogin() {
+        return login;
+    }
+
+    public void setLogin(Login login) {
+        this.login = login;
     }
 }

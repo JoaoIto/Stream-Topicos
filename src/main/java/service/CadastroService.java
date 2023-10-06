@@ -2,6 +2,7 @@ package service;
 
 import dto.CadastroDTO;
 import dto.CadastroResponseDTO;
+import dto.LoginDTO;
 import jakarta.ws.rs.PathParam;
 import models.Cadastro;
 

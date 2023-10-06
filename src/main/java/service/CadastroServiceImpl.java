@@ -2,11 +2,13 @@ package service;
 
 import dto.CadastroDTO;
 import dto.CadastroResponseDTO;
+import dto.LoginDTO;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.PathParam;
 import models.Cadastro;
+import models.Login;
 import repositorys.CadastroRepository;
 
 import java.util.List;
@@ -15,6 +17,8 @@ import java.util.List;
 public class CadastroServiceImpl implements CadastroService{
     @Inject
     CadastroRepository repository;
+    LoginService loginService;
+
 
     @Override
     public CadastroResponseDTO insert(CadastroDTO dto) {

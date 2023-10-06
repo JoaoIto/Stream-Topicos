@@ -10,9 +10,6 @@ public class Login {
             GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 30)
-    private String nickname;
-
     @Column(length = 100)
     private String senha;
 
@@ -22,14 +19,6 @@ public class Login {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
     }
 
     public String getSenha() {

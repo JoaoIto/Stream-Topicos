@@ -9,6 +9,7 @@ import jakarta.ws.rs.PathParam;
 import models.Login;
 import repositorys.LoginRepository;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class LoginServiceImpl implements LoginService {
@@ -19,7 +20,6 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public LoginResponseDTO insert(LoginDTO dto){
         Login novoLogin = new Login();
-        novoLogin.setNickname(dto.getNickname());
         novoLogin.setSenha(dto.getSenha());
 
         repository.persist(novoLogin);
@@ -33,7 +33,6 @@ public class LoginServiceImpl implements LoginService {
             throw new NotFoundException("Login não encontrado!");
         }
 
-        login.setNickname(dto.getNickname());
         login.setSenha(dto.getSenha());
 
         return LoginResponseDTO.valueOf(login);
@@ -61,7 +60,10 @@ public class LoginServiceImpl implements LoginService {
 
 
     @Override
-    public List<LoginResponseDTO> findByNick(@PathParam("nickname") String nickname){
-        return repository.findByNick(nickname).stream().map(LoginResponseDTO::valueOf).toList();
+    public List<LoginResponseDTO> findByNick(String nickname) {
+        List<Login> logins = repository.find("login.cadastro.nickname", nickname).list();
+        return logins.stream()
+                .map(login -> new LoginResponseDTO(login.getId(), login.getSenha()))
+                .collect(Collectors.toList());
     }
 }
