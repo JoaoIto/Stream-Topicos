@@ -5,7 +5,11 @@ import models.Cadastro;
 import java.util.Objects;
 
 public class LoginDTO {
-    private final String senha;
+    private String senha;
+
+    public LoginDTO() {
+        // Construtor vazio
+    }
     public LoginDTO(String senha) {
         this.senha = senha;
     }
