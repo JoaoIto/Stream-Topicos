@@ -11,10 +11,7 @@ import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import service.StreamService;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import java.util.List;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasItem;
 
 @QuarkusTest
