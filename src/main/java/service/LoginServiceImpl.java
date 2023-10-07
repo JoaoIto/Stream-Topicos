@@ -23,7 +23,7 @@ public class LoginServiceImpl implements LoginService {
         novoLogin.setSenha(dto.getSenha());
 
         repository.persist(novoLogin);
-        return  LoginResponseDTO.valueOf(novoLogin);
+        return LoginResponseDTO.valueOf(novoLogin);
     }
 
     @Override

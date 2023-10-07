@@ -38,11 +38,19 @@ public class CadastroResourceTest {
 
     @Test
     public void testFindAll() {
-        // Inserir dados de teste antes de chamar o método findAll
+        // Crie um objeto CadastroDTO que inclua informações de Login
         LoginDTO loginDTO = new LoginDTO("123teste");
         CadastroDTO cadastroDTO = new CadastroDTO("Nome Teste", "Email Teste", "Nickname Teste", loginDTO);
-        cadastroService.insert(cadastroDTO);
 
+        // Insira os dados de teste
+        given()
+                .contentType(ContentType.JSON)
+                .body(cadastroDTO)
+                .when().post("/cadastro")
+                .then()
+                .statusCode(201);
+
+        // Agora você pode testar o método findAll
         given()
                 .when().get("/cadastro")
                 .then()
