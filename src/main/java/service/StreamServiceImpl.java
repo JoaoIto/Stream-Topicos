@@ -10,6 +10,7 @@ import repositorys.StreamRepository;
 import resources.StreamResource;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class StreamServiceImpl implements StreamService {
@@ -46,5 +47,20 @@ public class StreamServiceImpl implements StreamService {
         return repository.findById(id);
     }
 
+    @Override
+    public List<StreamResponseDTO> findByNome(String nome) {
+        List<Stream> streams = repository.find("nome", nome).list();
+        return streams.stream()
+                .map(StreamResponseDTO::valueOf)
+                .collect(Collectors.toList());
+    }
 
+    @Override
+    public List<StreamResponseDTO> findByCusto(Float custo) {
+        List<Stream> streams = repository.find("custoStream", custo).list();
+        return streams.stream()
+                .map(StreamResponseDTO::valueOf)
+                .collect(Collectors.toList());
+    }
 }
+

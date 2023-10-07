@@ -30,4 +30,16 @@ public class StreamResource {
     public Response findAll(){
         return Response.ok(service.findAll()).build();
     }
+
+    @GET
+    @Path("/search/custoStream/{custoStream}")
+    public Response findByCustoStream(@PathParam("custoStream") Float custoStream) {
+        return Response.ok(service.findByCusto(custoStream)).build();
+    }
+
+    @GET
+    @Path("/search/nome/{nome}")
+    public Response findByNome(@PathParam("nome") String nome) {
+        return Response.ok(service.findByNome(nome)).build();
+    }
 }

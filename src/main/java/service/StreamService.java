@@ -22,4 +22,8 @@ public interface StreamService {
 
 
     public Stream findById(@PathParam("id") Long id);
+
+    public List<StreamResponseDTO> findByNome(String nome);
+
+    public List<StreamResponseDTO> findByCusto(Float custo);
 }
