@@ -8,9 +8,8 @@ import io.restassured.response.Response;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
 import service.StreamService;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
@@ -21,6 +20,31 @@ public class StreamResourceTest {
 
     @Inject
     StreamService streamService;
+
+    @Test
+    public void testInsert() {
+        // Crie um objeto StreamDTO para inserção de teste
+        StreamDTO streamDTO = new StreamDTO("Stream Teste", "Usuario Teste", 10.0f);
+
+        // Insira o objeto de teste
+        Response response = given()
+                .contentType(ContentType.JSON)
+                .body(streamDTO)
+                .when()
+                .post("/streams");
+
+        // Verifique se a inserção foi bem-sucedida (código de status 201 para criação)
+        response.then()
+                .statusCode(201);
+
+        // Extraia o StreamResponseDTO da resposta
+        StreamResponseDTO streamResponseDTO = response.as(StreamResponseDTO.class);
+
+        // Verifique se os campos foram corretamente inseridos
+        assertEquals("Stream Teste", streamResponseDTO.nome());
+        assertEquals("Usuario Teste", streamResponseDTO.nomeUsuario());
+        assertEquals(10.0f, streamResponseDTO.custoStream(), 0.01); // Use um valor de tolerância para comparação de números decimais
+    }
 
     @Test
     public void testFindByNome() {
