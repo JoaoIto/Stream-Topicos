@@ -99,29 +99,6 @@ public class LoginResourceTest {
         }
     }
 
-
-//    @Test
-//    public void testFindByNick() {
-//        LoginDTO loginDTO = new LoginDTO("123teste");
-//        Response insertResponse = given()
-//                .contentType(ContentType.JSON)
-//                .body(loginDTO)
-//                .when()
-//                .post("/login");
-//
-//        insertResponse.then()
-//                .statusCode(201);
-//
-//        String senha = "123teste"; // Você mencionou "senha", mas talvez queira usar "nickname" aqui
-//
-//        given()
-//                .when()
-//                .get("/login/search/nickname/" + senha) // Corrija a URL para "nickname" ao invés de "senha"
-//                .then()
-//                .statusCode(200)
-//                .body("senha", hasItem(senha)); // Se você quiser verificar a senha, use "senha" em vez de "nickname"
-//    }
-
     @Test
     public void testUpdate() {
         LoginDTO loginDTO = new LoginDTO("123teste");

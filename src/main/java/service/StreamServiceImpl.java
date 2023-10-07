@@ -4,6 +4,8 @@ import dto.StreamDTO;
 import dto.StreamResponseDTO;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
+import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.core.Response;
 import models.Stream;
 import repositorys.StreamRepository;
@@ -28,13 +30,38 @@ public class StreamServiceImpl implements StreamService {
     }
 
     @Override
+    @Transactional
     public StreamResponseDTO update(StreamDTO dto, Long id) {
-        return null;
+        Stream stream = repository.findById(id);
+        if (stream == null) {
+            // Lidar com o caso em que o Stream não foi encontrado, por exemplo, lançar uma exceção
+            // ou retornar uma resposta apropriada.
+        }
+
+        // Atualize os campos do Stream com base nos dados do DTO
+        stream.setNome(dto.getNome());
+        stream.setNomeUsuario(dto.getNomeUsuario());
+        stream.setCustoStream(dto.getCustoStream());
+        // Outros campos a serem atualizados
+
+        // Salve as alterações no repositório
+        repository.persist(stream);
+
+        // Crie um StreamResponseDTO a partir do Stream atualizado
+        StreamResponseDTO responseDTO = new StreamResponseDTO(stream.getId(), stream.getNome(), stream.getNomeUsuario(), stream.getCustoStream());
+        return responseDTO;
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
-
+        Stream stream = repository.findById(id);
+        if (stream != null) {
+            // Remova o Stream do repositório
+            repository.delete(stream);
+        } else {
+            throw new NotFoundException("Stream não encontrado!");
+        }
     }
 
     @Override

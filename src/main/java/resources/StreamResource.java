@@ -42,4 +42,20 @@ public class StreamResource {
     public Response findByNome(@PathParam("nome") String nome) {
         return Response.ok(service.findByNome(nome)).build();
     }
+
+    @PUT
+    @Path("/{id}")
+    @Transactional
+    public Response update(@PathParam("id") Long id, @Valid StreamDTO dto) {
+        StreamResponseDTO responseDTO = service.update(dto, id);
+        return Response.ok(responseDTO).build();
+    }
+
+    @DELETE
+    @Path("/{id}")
+    @Transactional
+    public Response delete(@PathParam("id") Long id) {
+        service.delete(id);
+        return Response.status(Response.Status.NO_CONTENT).build();
+    }
 }

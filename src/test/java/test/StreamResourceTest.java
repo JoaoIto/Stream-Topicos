@@ -3,9 +3,11 @@ package test;
 import dto.StreamDTO;
 import dto.StreamResponseDTO;
 import io.quarkus.test.junit.QuarkusTest;
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import service.StreamService;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -44,6 +46,73 @@ public class StreamResourceTest {
         assertEquals("Stream Teste", streamResponseDTO.nome());
         assertEquals("Usuario Teste", streamResponseDTO.nomeUsuario());
         assertEquals(10.0f, streamResponseDTO.custoStream(), 0.01); // Use um valor de tolerância para comparação de números decimais
+    }
+
+    @Test
+    public void testUpdateStream() {
+        // Crie um objeto StreamDTO para inserção de teste
+        StreamDTO streamDTO = new StreamDTO("Stream Teste", "Usuario Teste", 10.0f);
+
+        // Insira o objeto de teste
+        StreamResponseDTO responseDTO = RestAssured
+                .given()
+                .contentType(ContentType.JSON)
+                .body(streamDTO)
+                .when()
+                .post("/streams")
+                .then()
+                .statusCode(201)
+                .extract()
+                .as(StreamResponseDTO.class);
+
+        // Agora, atualize os campos e faça a chamada de atualização
+        StreamDTO updatedDTO = new StreamDTO("Novo Nome", "Usuario Teste", 15.0f);
+
+        // Atualize o Stream
+        Response updateResponse = RestAssured
+                .given()
+                .contentType(ContentType.JSON)
+                .body(updatedDTO)
+                .when()
+                .put("/streams/{id}", responseDTO.id()) // Substitua {id} pelo ID correto
+                .then()
+                .statusCode(200)
+                .extract()
+                .response();
+
+        // Verifique se a atualização foi bem-sucedida
+        StreamResponseDTO updatedResponse = updateResponse.as(StreamResponseDTO.class);
+        assertEquals("Novo Nome", updatedResponse.nome());
+        assertEquals("Usuario Teste", updatedResponse.nomeUsuario()); // Preservado a partir da inserção original
+        assertEquals(15.0f, updatedResponse.custoStream(), 0.01); // Use um valor de tolerância para comparação de números decimais
+    }
+
+    @Test
+    @Transactional
+    public void testDeleteStream() {
+        // Crie um objeto StreamDTO para inserção de teste
+        StreamDTO streamDTO = new StreamDTO("Stream Teste", "Usuario Teste", 10.0f);
+
+        // Insira o objeto de teste
+        StreamResponseDTO responseDTO = given()
+                .contentType(ContentType.JSON)
+                .body(streamDTO)
+                .when()
+                .post("/streams")
+                .then()
+                .statusCode(201)
+                .extract()
+                .as(StreamResponseDTO.class);
+
+        // Obtenha o ID do Stream inserido
+        Long streamId = responseDTO.id();
+
+        // Faça a chamada para deletar o Stream
+        given()
+                .when()
+                .delete("/streams/{id}", streamId)
+                .then()
+                .statusCode(204);
     }
 
     @Test
