@@ -9,9 +9,9 @@ public class CadastroDTO {
     private final String email;
     private final String nickname;
 
-    private final Login login;
+    private final LoginDTO login;
 
-    public CadastroDTO(String nome, String email, String nickname, Login login) {
+    public CadastroDTO(String nome, String email, String nickname, LoginDTO login) {
         this.nome = nome;
         this.email = email;
         this.nickname = nickname;
@@ -30,7 +30,7 @@ public class CadastroDTO {
         return email;
     }
 
-    public Login getLogin() {
+    public LoginDTO getLogin() {
         return login;
     }
 
