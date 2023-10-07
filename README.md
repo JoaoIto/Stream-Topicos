@@ -1,6 +1,6 @@
 # Stream Tópicos - Plataforma de Streaming com Quarkus
 
-- Aluno: João Victor Póvoa França, Brener Silva Marinho
+- Aluno: João Victor Póvoa França
 
 Bem-vindo ao repositório do backend da Stream Tópicos, uma plataforma de streaming desenvolvida como parte do projeto da disciplina de Tópicos Especiais em Informática. Este projeto utiliza o framework Quarkus para criar um backend eficiente e escalável para a nossa plataforma de streaming.
 
