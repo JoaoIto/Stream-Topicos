@@ -6,13 +6,9 @@ import dto.LoginDTO;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import io.restassured.specification.Argument;
 import jakarta.inject.Inject;
 import org.junit.Test;
 import service.CadastroService;
-
-import java.util.List;
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -29,7 +25,7 @@ public class CadastroResourceTest {
     @Test
     public void testInsert() {
         LoginDTO loginDTO = new LoginDTO("123teste");
-        CadastroDTO cadastroDTO = new CadastroDTO("Nome Teste", "Email Teste", "Nickname Teste", loginDTO);
+        CadastroDTO cadastroDTO = new CadastroDTO("Nome Teste", "email@teste.com", "Nickname Teste", loginDTO);
         given()
                 .contentType(ContentType.JSON)
                 .body(cadastroDTO)
@@ -39,18 +35,29 @@ public class CadastroResourceTest {
                 .body(
                         "id", notNullValue(),
                         "nome", is("Nome Teste"),
-                        "email", is("Email Teste"),
+                        "email", is("email@teste.com"),
                         "nickname", is("Nickname Teste")
                 );
     }
 
     @Test
-    public void testFindAll() {
-        // Crie um objeto CadastroDTO que inclua informações de Login
+    public void testInvalidInsert() {
+        // Tente inserir um cadastro com dados inválidos que não atendem às validações
         LoginDTO loginDTO = new LoginDTO("123teste");
-        CadastroDTO cadastroDTO = new CadastroDTO("Nome Teste", "Email Teste", "Nickname Teste", loginDTO);
+        CadastroDTO cadastroDTO = new CadastroDTO("Nome Inválido", "emailinvalido", "Nickname Teste", loginDTO);
+        given()
+                .contentType(ContentType.JSON)
+                .body(cadastroDTO)
+                .when().post("/cadastro")
+                .then()
+                .statusCode(400); // Deve retornar um status 400 devido a dados inválidos
+    }
+    @Test
+    public void testFindAll() {
+        // Insira alguns registros para testar o findAll
+        LoginDTO loginDTO = new LoginDTO("123teste1");
+        CadastroDTO cadastroDTO = new CadastroDTO("Nome Teste 1", "email1@teste.com", "Nickname Teste 1", loginDTO);
 
-        // Insira os dados de teste
         given()
                 .contentType(ContentType.JSON)
                 .body(cadastroDTO)
@@ -58,7 +65,7 @@ public class CadastroResourceTest {
                 .then()
                 .statusCode(201);
 
-        // Agora você pode testar o método findAll
+        // Agora teste o método findAll
         given()
                 .when().get("/cadastro")
                 .then()
@@ -67,121 +74,113 @@ public class CadastroResourceTest {
 
     @Test
     public void testFindById() {
-        // Crie um objeto CadastroDTO que inclua informações de Login
+        // Insira um registro de teste para testar o findById
         LoginDTO loginDTO = new LoginDTO("123teste");
-        CadastroDTO cadastroDTO = new CadastroDTO("Nome Teste", "Email Teste", "Nickname Teste", loginDTO);
+        CadastroDTO cadastroDTO = new CadastroDTO("Nome Teste", "email@teste.com", "Nickname Teste", loginDTO);
 
-        // Insira os dados de teste e obtenha o ID
         Response insertResponse = given()
                 .contentType(ContentType.JSON)
                 .body(cadastroDTO)
                 .when().post("/cadastro");
 
-        // Verifique se a inserção foi bem-sucedida e obtenha o ID
         insertResponse.then()
                 .statusCode(201);
         Long id = insertResponse.jsonPath().getLong("id");
 
-        // Testando o método findById
+        // Agora teste o método findById
         given()
                 .when()
                 .get("/cadastro/" + id)
                 .then()
                 .statusCode(200)
-                .body("id", equalTo(id.intValue())); // Compare como um inteiro
+                .body("id", equalTo(id.intValue()));
     }
 
     @Test
     public void testFindByNick() {
-        // Crie um objeto CadastroDTO que inclua informações de Login
+        // Insira um registro de teste para testar o findByNick
         LoginDTO loginDTO = new LoginDTO("123teste");
-        CadastroDTO cadastroDTO = new CadastroDTO("Nome Teste", "Email Teste", "Nickname Teste", loginDTO);
+        CadastroDTO cadastroDTO = new CadastroDTO("Nome Teste", "email@teste.com", "Nickname Teste", loginDTO);
 
-        // Insira os dados de teste
         Response insertResponse = given()
                 .contentType(ContentType.JSON)
                 .body(cadastroDTO)
                 .when().post("/cadastro");
 
-        // Verifique se a inserção foi bem-sucedida
         insertResponse.then()
                 .statusCode(201);
 
-        // Obtenha o nickname do cadastro inserido
         String nickname = "Nickname Teste"; // Defina o nickname com base no valor usado na inserção
 
-        // Teste o método findByNick com o nickname inserido
+        // Agora teste o método findByNick
         given()
                 .when()
                 .get("/cadastro/search/nickname/" + nickname)
                 .then()
                 .statusCode(200)
-                .body("nickname", hasItem(nickname)); // Verifique se o nickname está presente na resposta
+                .body("nickname", hasItem(nickname));
     }
 
     @Test
     public void testUpdate() {
-        // Insira um cadastro de teste antes de atualizar
+        // Insira um registro de teste antes de atualizar
         LoginDTO loginDTO = new LoginDTO("Senha Teste");
-        CadastroDTO cadastroDTO = new CadastroDTO("Nome Teste", "Email Teste", "Nickname Teste", loginDTO);
+        CadastroDTO cadastroDTO = new CadastroDTO("Nome Teste", "email@teste.com", "Nickname Teste", loginDTO);
 
-        // Insira o cadastro e obtenha o ID
         Response insertResponse = given()
                 .contentType(ContentType.JSON)
                 .body(cadastroDTO)
                 .when()
                 .post("/cadastro");
 
-        // Verifique se a inserção foi bem-sucedida
         insertResponse.then()
                 .statusCode(201);
 
         Long id = insertResponse.jsonPath().getLong("id");
 
         // Crie um objeto de atualização
-        CadastroDTO updatedDTO = new CadastroDTO("Nome Atualizado", "Email Atualizado", "Nickname Atualizado", new LoginDTO("Senha Atualizada"));
+        CadastroDTO updatedDTO = new CadastroDTO("Nome Atualizado", "email@teste.com", "Nickname Atualizado", new LoginDTO("Senha Atualizada"));
 
-        // Atualize o cadastro com base no ID
-        Response updateResponse = given()
+        // Agora teste o método de atualização
+        given()
                 .contentType(ContentType.JSON)
                 .body(updatedDTO)
                 .when()
-                .put("/cadastro/" + id);
-
-        // Verifique se a atualização foi bem-sucedida
-        updateResponse.then()
+                .put("/cadastro/" + id)
+                .then()
                 .statusCode(200);
 
         // Obtenha o objeto CadastroResponseDTO da resposta
-        CadastroResponseDTO updatedResponseDTO = updateResponse.as(CadastroResponseDTO.class);
+        CadastroResponseDTO updatedResponseDTO = given()
+                .when()
+                .get("/cadastro/" + id)
+                .as(CadastroResponseDTO.class);
 
         // Verifique se os campos foram atualizados corretamente
         assertEquals("Nome Atualizado", updatedResponseDTO.nome());
-        assertEquals("Email Atualizado", updatedResponseDTO.email());
+        assertEquals("email@teste.com", updatedResponseDTO.email());
         assertEquals("Nickname Atualizado", updatedResponseDTO.nickname());
     }
 
 
     @Test
     public void testDelete() {
-        // Insira um cadastro de teste antes de deletar
+        // Insira um registro de teste antes de deletar
         LoginDTO loginDTO = new LoginDTO("123teste");
-        CadastroDTO cadastroDTO = new CadastroDTO("Nome Teste", "Email Teste", "Nickname Teste", loginDTO);
+        CadastroDTO cadastroDTO = new CadastroDTO("Nome Teste", "email@teste.com", "Nickname Teste", loginDTO);
 
-        // Insira o cadastro e obtenha o ID
         Response insertResponse = given()
                 .contentType(ContentType.JSON)
                 .body(cadastroDTO)
                 .when()
                 .post("/cadastro");
 
-        // Verifique se a inserção foi bem-sucedida
         insertResponse.then()
                 .statusCode(201);
 
         Long id = insertResponse.jsonPath().getLong("id");
 
-        // Deleta o cadastro com base no ID
+        // Agora teste o método de exclusão
         given()
                 .when()
                 .delete("/cadastro/" + id)

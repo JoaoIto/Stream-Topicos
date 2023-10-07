@@ -10,6 +10,9 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import service.StreamService;
+
+import static net.bytebuddy.matcher.ElementMatchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.hasItem;

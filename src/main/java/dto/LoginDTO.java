@@ -1,10 +1,12 @@
 package dto;
 
+import jakarta.validation.constraints.NotBlank;
 import models.Cadastro;
 
 import java.util.Objects;
 
 public class LoginDTO {
+    @NotBlank
     private String senha;
 
     public LoginDTO() {

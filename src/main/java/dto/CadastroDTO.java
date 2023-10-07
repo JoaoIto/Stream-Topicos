@@ -1,13 +1,22 @@
 package dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import models.Login;
 
 import java.util.Objects;
 
 public class CadastroDTO {
+    @NotBlank
     private final String nome;
+    @NotBlank
+    @Email
     private final String email;
+
+    @NotBlank
     private final String nickname;
+    @NotNull
 
     private final LoginDTO login;
 
