@@ -3,7 +3,6 @@ package br.unitins.topicos1.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.unitins.topicos1.dto.EstadoResponseDTO;
 import br.unitins.topicos1.dto.TelefoneDTO;
 import br.unitins.topicos1.dto.UsuarioDTO;
 import br.unitins.topicos1.dto.UsuarioResponseDTO;
@@ -22,11 +21,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     @Transactional
-    public UsuarioResponseDTO insert(UsuarioDTO dto) throws Exception {
+    public UsuarioResponseDTO insert(UsuarioDTO dto) {
 
-       if (repository.findByLogin(dto.login()) != null) {
-            throw new Exception("Login já existe.");
-       }
+    //    if (repository.findByLogin(dto.login()) != null) {
+    //         throw new Exception("Login já existe.");
+    //    }
 
         Usuario novoUsuario = new Usuario();
         novoUsuario.setNome(dto.nome());
