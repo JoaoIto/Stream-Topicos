@@ -4,10 +4,11 @@ import java.util.List;
 
 import br.unitins.topicos1.dto.EstadoDTO;
 import br.unitins.topicos1.dto.EstadoResponseDTO;
+import jakarta.validation.Valid;
 
 public interface EstadoService {
 
-    public EstadoResponseDTO insert(EstadoDTO dto);
+    public EstadoResponseDTO insert(@Valid EstadoDTO dto);
 
     public EstadoResponseDTO update(EstadoDTO dto, Long id);
 

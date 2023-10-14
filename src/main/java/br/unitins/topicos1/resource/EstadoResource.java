@@ -27,7 +27,7 @@ public class EstadoResource {
     EstadoService service;
 
     @POST
-    public Response insert(@Valid EstadoDTO dto) {
+    public Response insert(EstadoDTO dto) {
         EstadoResponseDTO retorno = service.insert(dto);
         //return Response.status(Status.CREATED).entity(retorno).build();
         return Response.status(201).entity(retorno).build();

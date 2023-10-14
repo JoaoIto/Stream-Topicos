@@ -2,6 +2,12 @@ package br.unitins.topicos1.resource;
 
 import br.unitins.topicos1.dto.UsuarioDTO;
 import br.unitins.topicos1.service.UsuarioService;
+import br.unitins.topicos1.service.UsuarioServiceImpl;
+
+import javax.crypto.spec.RC2ParameterSpec;
+
+import br.unitins.topicos1.application.Error;
+
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
@@ -16,6 +22,8 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
 
+
+
 @Path("/usuarios")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -26,7 +34,7 @@ public class UsuarioResource {
 
     @POST
     public Response insert(UsuarioDTO dto) {
-       return Response.status(Status.CREATED).entity(service.insert(dto)).build();
+        return Response.status(Status.CREATED).entity(service.insert(dto)).build();
     }
 
     @PUT
@@ -55,7 +63,7 @@ public class UsuarioResource {
     public Response findById(@PathParam("id") Long id) {
         return Response.ok(service.findById(id)).build();
     }
-    
+
     @GET
     @Path("/search/nome/{nome}")
     public Response findByNome(@PathParam("nome") String nome) {
