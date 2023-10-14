@@ -1,8 +1,6 @@
 package br.unitins.topicos1.validation;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.ConstraintViolationException;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
 import jakarta.ws.rs.ext.ExceptionMapper;

@@ -2,12 +2,6 @@ package br.unitins.topicos1.resource;
 
 import br.unitins.topicos1.dto.UsuarioDTO;
 import br.unitins.topicos1.service.UsuarioService;
-import br.unitins.topicos1.service.UsuarioServiceImpl;
-
-import javax.crypto.spec.RC2ParameterSpec;
-
-import br.unitins.topicos1.application.Error;
-
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
