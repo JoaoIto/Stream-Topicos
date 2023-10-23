@@ -17,8 +17,8 @@ insert into cidade (nome, id_estado) values('Goiania', 2);
 insert into cidade (nome, id_estado) values('Rio de Janeiro', 3);
 insert into cidade (nome, id_estado) values('São Paulo', 4);
 
-insert into usuario (nome, login, senha) values('Elon Musk', 'musk', '111');
-insert into usuario (nome, login, senha) values('Bill Gates', 'gates', '222');
+insert into usuario (nome, login, senha) values('Elon Musk', 'musk', 'yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q==');
+insert into usuario (nome, login, senha) values('Bill Gates', 'gates', 'yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q==');
 
 insert into telefone (codigoArea, numero) values('63', '9999-9999');
 insert into telefone (codigoArea, numero) values('62', '8888-8888');
