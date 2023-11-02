@@ -6,9 +6,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.validation.ValidationException;
 import jakarta.ws.rs.NotFoundException;
-import jakarta.ws.rs.PathParam;
 import models.Login;
-import repositorys.LoginRepository;
+import repository.LoginRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 

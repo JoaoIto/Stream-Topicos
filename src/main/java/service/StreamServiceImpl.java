@@ -6,10 +6,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
-import jakarta.ws.rs.core.Response;
 import models.Stream;
-import repositorys.StreamRepository;
-import resources.StreamResource;
+import repository.StreamRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;

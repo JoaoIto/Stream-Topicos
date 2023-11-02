@@ -18,7 +18,8 @@ public interface LoginService {
     public List<LoginResponseDTO> findByNick(String nickname);
 
 
-    public LoginResponseDTO findByLoginAndSenha(LoginDTO dto);
 
     public Login findById(@PathParam("id") Long id);
+
+    LoginResponseDTO findByLoginAndSenha(String login, String senha);
 }

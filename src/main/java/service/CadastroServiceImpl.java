@@ -10,7 +10,7 @@ import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.PathParam;
 import models.Cadastro;
 import models.Login;
-import repositorys.CadastroRepository;
+import repository.CadastroRepository;
 
 import java.util.List;
 
