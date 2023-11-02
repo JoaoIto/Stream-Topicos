@@ -27,9 +27,9 @@ public class CadastroServiceImpl implements CadastroService{
     public CadastroResponseDTO insert(CadastroDTO dto) {
         Cadastro novoCadastro = new Cadastro();
 
-        novoCadastro.setNome(dto.getNome());
-        novoCadastro.setEmail(dto.getEmail());
-        novoCadastro.setNickname(dto.getNickname());
+        novoCadastro.setNome(dto.nome());
+        novoCadastro.setEmail(dto.email());
+        novoCadastro.setNickname(dto.nickname());
 
         // Use o LoginService para criar o Login
         LoginDTO loginDTO = dto.getLogin();

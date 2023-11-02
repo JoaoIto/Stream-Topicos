@@ -13,5 +13,8 @@ public record CadastroDTO(
 
         @NotBlank(message = "O campo não pode ser nulo!")
         @Email(message = "O email tem que ser válido!")
-        String email
+        String email,
+
+        @NotBlank(message = "O campo não pode ser nulo!")
+        String nickname
 ) {}
