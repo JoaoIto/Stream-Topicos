@@ -4,6 +4,7 @@ import dto.LoginDTO;
 import dto.LoginResponseDTO;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.validation.ValidationException;
 import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.PathParam;
 import models.Login;
@@ -65,5 +66,14 @@ public class LoginServiceImpl implements LoginService {
         return logins.stream()
                 .map(login -> new LoginResponseDTO(login.getId(), login.getSenha()))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public LoginResponseDTO findByLoginAndSenha(LoginDTO dto) {
+        LoginResponseDTO login = repository.findByLoginAndSenha(dto.getSenha(), senha);
+        if (login == null)
+            throw new ValidationException("login", "Login ou senha inválido");
+
+        return LoginResponseDTO.valueOf(login);
     }
 }

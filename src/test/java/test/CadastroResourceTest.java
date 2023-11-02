@@ -162,7 +162,6 @@ public class CadastroResourceTest {
         assertEquals("Nickname Atualizado", updatedResponseDTO.nickname());
     }
 
-
     @Test
     public void testDelete() {
         // Insira um registro de teste antes de deletar
