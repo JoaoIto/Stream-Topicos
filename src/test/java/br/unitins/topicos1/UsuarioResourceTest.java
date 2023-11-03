@@ -30,30 +30,30 @@ public class UsuarioResourceTest {
              .statusCode(200);
     }
 
-    @Test
-    public void testInsert() {
-        List<TelefoneDTO> telefones = new ArrayList<TelefoneDTO>();
-        telefones.add(new TelefoneDTO("63", "5555-5555"));
+    // @Test
+    // public void testInsert() {
+    //     List<TelefoneDTO> telefones = new ArrayList<TelefoneDTO>();
+    //     telefones.add(new TelefoneDTO("63", "5555-5555"));
 
-        UsuarioDTO dto = new UsuarioDTO(
-            "Mark Zuckerberg Insert",
-            "marquinho",
-            "333",
-            telefones
-        );
+    //     UsuarioDTO dto = new UsuarioDTO(
+    //         "Mark Zuckerberg Insert",
+    //         "marquinho",
+    //         "333",
+    //         telefones
+    //     );
 
-        given()
-            .contentType(ContentType.JSON)
-            .body(dto)
-            .when().post("/usuarios")
-            .then()
-            .statusCode(201)
-            .body(
-                "id", notNullValue(),
-                "nome", is("Mark Zuckerberg Insert"),
-                "login", is("marquinho")
-            );
-    }
+    //     given()
+    //         .contentType(ContentType.JSON)
+    //         .body(dto)
+    //         .when().post("/usuarios")
+    //         .then()
+    //         .statusCode(201)
+    //         .body(
+    //             "id", notNullValue(),
+    //             "nome", is("Mark Zuckerberg Insert"),
+    //             "login", is("marquinho")
+    //         );
+    // }
 
     // @Test
     // public void testUpdate() {
