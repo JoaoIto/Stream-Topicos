@@ -20,9 +20,9 @@ public class StreamServiceImpl implements StreamService {
     @Override
     public StreamResponseDTO insert(StreamDTO dto) {
         Stream stream = new Stream();
-        stream.setNome(dto.getNome());
-        stream.setNomeUsuario(dto.getNomeUsuario());
-        stream.setCustoStream(dto.getCustoStream());
+        stream.setNome(dto.nome());
+        stream.setNomeUsuario(dto.nomeUsuario());
+        stream.setCustoStream(dto.custoStream());
         repository.persist(stream);
         return StreamResponseDTO.valueOf(stream);
     }
@@ -37,9 +37,9 @@ public class StreamServiceImpl implements StreamService {
         }
 
         // Atualize os campos do Stream com base nos dados do DTO
-        stream.setNome(dto.getNome());
-        stream.setNomeUsuario(dto.getNomeUsuario());
-        stream.setCustoStream(dto.getCustoStream());
+        stream.setNome(dto.nome());
+        stream.setNomeUsuario(dto.nomeUsuario());
+        stream.setCustoStream(dto.custoStream());
         // Outros campos a serem atualizados
 
         // Salve as alterações no repositório

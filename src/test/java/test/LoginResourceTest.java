@@ -35,7 +35,7 @@ public class LoginResourceTest {
 
     @Test
     public void testInsert() {
-        LoginDTO loginDTO = new LoginDTO("123teste");
+        LoginDTO loginDTO = new LoginDTO("123teste", "123");
         given()
                 .contentType(ContentType.JSON)
                 .body(loginDTO)
@@ -45,13 +45,13 @@ public class LoginResourceTest {
                 .statusCode(201)
                 .body(
                         "id", notNullValue(),
-                        "senha", is("123teste")
+                        "senha", is("123")
                 );
     }
 
     @Test
     public void testFindAll() {
-        LoginDTO loginDTO = new LoginDTO("123teste");
+        LoginDTO loginDTO = new LoginDTO("123teste", "123");
         given()
                 .contentType(ContentType.JSON)
                 .body(loginDTO)
@@ -68,7 +68,7 @@ public class LoginResourceTest {
 
     @Test
     public void testFindById() {
-        LoginDTO loginDTO = new LoginDTO("123teste");
+        LoginDTO loginDTO = new LoginDTO("123teste", "123");
         Response insertResponse = given()
                 .contentType(ContentType.JSON)
                 .body(loginDTO)
@@ -101,7 +101,7 @@ public class LoginResourceTest {
 
     @Test
     public void testUpdate() {
-        LoginDTO loginDTO = new LoginDTO("123teste");
+        LoginDTO loginDTO = new LoginDTO("123teste", "123");
         Response insertResponse = given()
                 .contentType(ContentType.JSON)
                 .body(loginDTO)
@@ -112,7 +112,7 @@ public class LoginResourceTest {
                 .statusCode(201);
         Long id = insertResponse.jsonPath().getLong("id");
 
-        LoginDTO updatedDTO = new LoginDTO("SenhaAtualizada");
+        LoginDTO updatedDTO = new LoginDTO("SenhaAtualizada", "senha");
 
         Response updateResponse = given()
                 .contentType(ContentType.JSON)
@@ -124,12 +124,12 @@ public class LoginResourceTest {
                 .statusCode(200);
 
         LoginResponseDTO updatedResponseDTO = updateResponse.as(LoginResponseDTO.class);
-        assertEquals("SenhaAtualizada", updatedResponseDTO.senha());
+        assertEquals("senha", updatedResponseDTO.senha());
     }
 
     @Test
     public void testDelete() {
-        LoginDTO loginDTO = new LoginDTO("123teste");
+        LoginDTO loginDTO = new LoginDTO("123teste", "123");
         Response insertResponse = given()
                 .contentType(ContentType.JSON)
                 .body(loginDTO)

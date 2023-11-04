@@ -20,7 +20,7 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public LoginResponseDTO insert(LoginDTO dto){
         Login novoLogin = new Login();
-        novoLogin.setSenha(dto.getSenha());
+        novoLogin.setSenha(dto.senha());
 
         repository.persist(novoLogin);
         return LoginResponseDTO.valueOf(novoLogin);
@@ -33,7 +33,7 @@ public class LoginServiceImpl implements LoginService {
             throw new NotFoundException("Login não encontrado!");
         }
 
-        login.setSenha(dto.getSenha());
+        login.setSenha(dto.senha());
 
         return LoginResponseDTO.valueOf(login);
     }
@@ -50,14 +50,13 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public List<LoginResponseDTO> findAll(){
-        return repository.listAll().stream().map(LoginResponseDTO::valueOf).toList();
+        return repository.listAll().stream().map(LoginResponseDTO::valueOf).collect(Collectors.toList());
     }
 
     @Override
     public Login findById(Long id) {
         return repository.findById(id);
     }
-
 
     @Override
     public List<LoginResponseDTO> findByNick(String nickname) {
@@ -68,11 +67,23 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public LoginResponseDTO findByLoginAndSenha(LoginDTO dto) {
-        LoginResponseDTO login = repository.findByLoginAndSenha(dto.getSenha(), senha);
+    public LoginResponseDTO findByLoginCadastro(LoginDTO dto) {
+        // Implemente a lógica correta para buscar os dados com base no DTO.
+        // Por exemplo, você pode usar o repositório para buscar dados relacionados ao login.
+        // O código abaixo é apenas um exemplo fictício:
+        List<Login> login = repository.findByCadastro(dto.senha());
         if (login == null)
-            throw new ValidationException("login", "Login ou senha inválido");
+            throw new ValidationException("login");
 
-        return LoginResponseDTO.valueOf(login);
+        return LoginResponseDTO.valueOf((Login) login);
+    }
+
+    @Override
+    public LoginResponseDTO findByLoginAndSenha(String login, String senha) {
+        Login loginEntity = repository.findByLoginAndSenha(login, senha); // Implemente esse método no seu repositório
+        if (loginEntity == null) {
+            throw new NotFoundException("Login não encontrado!");
+        }
+        return LoginResponseDTO.valueOf(loginEntity);
     }
 }

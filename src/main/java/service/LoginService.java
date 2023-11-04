@@ -21,5 +21,7 @@ public interface LoginService {
 
     public Login findById(@PathParam("id") Long id);
 
+    LoginResponseDTO findByLoginCadastro(LoginDTO dto);
+
     LoginResponseDTO findByLoginAndSenha(String login, String senha);
 }

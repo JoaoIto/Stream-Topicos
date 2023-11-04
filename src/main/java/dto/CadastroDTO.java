@@ -16,5 +16,8 @@ public record CadastroDTO(
         String email,
 
         @NotBlank(message = "O campo não pode ser nulo!")
-        String nickname
+        String nickname,
+
+
+        LoginDTO login
 ) {}

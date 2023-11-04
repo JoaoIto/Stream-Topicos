@@ -32,7 +32,7 @@ public class CadastroServiceImpl implements CadastroService{
         novoCadastro.setNickname(dto.nickname());
 
         // Use o LoginService para criar o Login
-        LoginDTO loginDTO = dto.getLogin();
+        LoginDTO loginDTO = dto.login();
         LoginResponseDTO novoLogin = loginService.insert(loginDTO);
         Login login = loginService.findById(novoLogin.id());
 
@@ -64,9 +64,9 @@ public class CadastroServiceImpl implements CadastroService{
             throw new NotFoundException("Cadastro não encontrado com ID: " + id);
         }
 
-        cadastro.setNome(dto.getNome());
-        cadastro.setEmail(dto.getEmail());
-        cadastro.setNickname(dto.getNickname());
+        cadastro.setNome(dto.nome());
+        cadastro.setEmail(dto.email());
+        cadastro.setNickname(dto.nickname());
 
         return CadastroResponseDTO.valueOf(cadastro);
     }
