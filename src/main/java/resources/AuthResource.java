@@ -9,6 +9,8 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import service.HashService;
+import service.JwtService;
 import service.LoginService;
 
 
@@ -20,9 +22,15 @@ public class AuthResource {
     @Inject
     LoginService service;
 
+    @Inject
+    HashService hashService;
+
+    @Inject
+    JwtService jwtService;
+
     @POST
     public Response login(@Valid LoginDTO dto) {
-
+        String hashSenha = hashService.getHashSenha(dto.senha());
         LoginResponseDTO result = service.findByLoginAndSenha(dto.login(), dto.senha());
 
         return Response.ok().entity(result).build();
