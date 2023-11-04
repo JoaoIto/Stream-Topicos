@@ -1,0 +1,30 @@
+class Faixa {
+    - id: Long
+    - nome: String
+    - descricao: String
+    - preco: Double
+    - estoque: Integer
+}
+
+class Pedido {
+    id: Long
+    data: LocalDateTime
+}
+
+class ItemPedido {
+    id: Long
+    quantidade: Integer
+    preco: Double
+}
+
+class Usuario {
+    id: Long
+    login: String
+    senha: String
+}
+
+
+Pedido "*" --> "1" Usuario
+Pedido "1" *--> "*" ItemPedido
+
+ItemPedido "*" --> "1" Faixa

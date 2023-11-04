@@ -17,8 +17,8 @@ insert into cidade (nome, id_estado) values('Goiania', 2);
 insert into cidade (nome, id_estado) values('Rio de Janeiro', 3);
 insert into cidade (nome, id_estado) values('São Paulo', 4);
 
-insert into usuario (nome, login, senha) values('Elon Musk', 'musk', 'yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q==');
-insert into usuario (nome, login, senha) values('Bill Gates', 'gates', 'yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q==');
+insert into usuario (nome, login, senha, perfil) values('Elon Musk', 'musk', 'yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q==', 1);
+insert into usuario (nome, login, senha, perfil) values('Bill Gates', 'gates', 'yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q==', 2);
 
 insert into telefone (codigoArea, numero) values('63', '9999-9999');
 insert into telefone (codigoArea, numero) values('62', '8888-8888');
@@ -29,3 +29,7 @@ insert into usuario_telefone (id_usuario, id_telefone) values(1, 1);
 insert into usuario_telefone (id_usuario, id_telefone) values(1, 2);
 insert into usuario_telefone (id_usuario, id_telefone) values(2, 3);
 insert into usuario_telefone (id_usuario, id_telefone) values(2, 4);
+
+insert into faixa (nome, descricao, preco, estoque) values('Faixa Preta', 'Faixa preta de jiu', 100.0, 10);
+insert into faixa (nome, descricao, preco, estoque) values('Faixa Marrom', 'Faixa marrom de jiu', 90.0, 15);
+insert into faixa (nome, descricao, preco, estoque) values('Faixa Azul', 'Faixa Azul de jiu', 80.0, 5);
