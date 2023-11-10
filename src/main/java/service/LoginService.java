@@ -23,5 +23,5 @@ public interface LoginService {
 
     LoginResponseDTO findByLoginCadastro(LoginDTO dto);
 
-    LoginResponseDTO findByLoginAndSenha(String login, String senha);
+    LoginResponseDTO findByLoginAndSenha(String senha);
 }

@@ -14,7 +14,7 @@ public class LoginRepository implements PanacheRepository<Login> {
     }
 
 
-    public Login findByLoginAndSenha(String login, String senha) {
-        return find("login = ?1 and senha = ?2", login, senha).firstResult();
+    public Login findByLoginAndSenha(String senha) {
+        return find("senha = ?1", senha).firstResult();
     }
 }

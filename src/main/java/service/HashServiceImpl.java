@@ -22,7 +22,6 @@ public class HashServiceImpl implements HashService {
 
     @Override
     public String getHashSenha(String senha) {
-
         try {
             byte[] result =  SecretKeyFactory.getInstance("PBKDF2WithHmacSHA512")
                     .generateSecret( new PBEKeySpec(senha.toCharArray(),

@@ -17,10 +17,18 @@ public class LoginServiceImpl implements LoginService {
     @Inject
     LoginRepository repository;
 
+    @Inject
+    HashService hashService;
+
     @Override
     public LoginResponseDTO insert(LoginDTO dto){
+
+        if(repository.findByLoginAndSenha(dto.senha()) != null){
+            throw new ValidationException("senha já existente");
+        }
+
         Login novoLogin = new Login();
-        novoLogin.setSenha(dto.senha());
+        novoLogin.setSenha(hashService.getHashSenha(dto.senha()));
 
         repository.persist(novoLogin);
         return LoginResponseDTO.valueOf(novoLogin);
@@ -79,8 +87,8 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public LoginResponseDTO findByLoginAndSenha(String login, String senha) {
-        Login loginEntity = repository.findByLoginAndSenha(login, senha); // Implemente esse método no seu repositório
+    public LoginResponseDTO findByLoginAndSenha(String senha) {
+        Login loginEntity = repository.findByLoginAndSenha(senha); // Implemente esse método no seu repositório
         if (loginEntity == null) {
             throw new NotFoundException("Login não encontrado!");
         }

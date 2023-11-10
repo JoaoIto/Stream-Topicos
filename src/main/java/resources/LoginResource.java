@@ -22,7 +22,6 @@ public class LoginResource {
     @Transactional
     public Response insert(@Valid LoginDTO dto){
         LoginResponseDTO retorno = service.insert(dto);
-        //return Response.status(Response.Status.fromStatusCode(200)).entity(retorno).build();
         return Response.status(Response.Status.CREATED).entity(retorno).build();
     }
 
