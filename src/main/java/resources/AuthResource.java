@@ -32,7 +32,7 @@ public class AuthResource {
     public Response login(@Valid LoginDTO dto) {
         String hashSenha = hashService.getHashSenha(dto.senha());
 
-        LoginResponseDTO result = service.findByLoginAndSenha(dto.senha());
+        LoginResponseDTO result = service.findByLoginAndSenha(hashSenha);
         String token = jwtService.generateJwt(result);
         return Response.ok().header("Authorization", token).build();
     }
