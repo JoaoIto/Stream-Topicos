@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)//Configura o sistema de forma que o perfil seja em um formato de objeto
 public enum Perfil {
 
-    USER(1, "User"),
-    ADMIN(2, "Admin"),
-    STREAMER(3, "Streamer");
+    USER(1, "user"),
+    ADMIN(2, "admin"),
+    STREAMER(3, "streamer");
 
     private final Integer id;
     private final String label;

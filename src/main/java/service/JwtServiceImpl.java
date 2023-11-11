@@ -23,7 +23,7 @@ public class JwtServiceImpl implements JwtService {
 
         // exemplo para teste
         Set<String> roles = new HashSet<String>();
-        roles.add("User");
+        roles.add(dto.perfil().getLabel());
         // Momento da criação do TOKEN configurado em application.properties
         return Jwt.issuer("unitins-jwt")
                 .subject(dto.id().toString()) //Algo unico para que o usuario possa fazer login

@@ -5,8 +5,9 @@
 -- insert into myentity (id, field) values(3, 'field-3');
 -- alter sequence myentity_seq restart with 4;
 
-INSERT INTO public.login (senha) VALUES ('senha1');
-INSERT INTO public.login (senha) VALUES ('senha2');
+INSERT INTO public.login (senha, perfil) VALUES ('senha1', 1);
+INSERT INTO public.login (senha, perfil) VALUES ('senha2', 2);
+INSERT INTO public.login (senha, perfil) VALUES ('senha3', 3);
 
 INSERT INTO public.stream (custostream, nome, nomeusuario) VALUES (10.0, 'Stream1', 'Usuario1');
 INSERT INTO public.stream (custostream, nome, nomeusuario) VALUES (15.0, 'Stream2', 'Usuario2');

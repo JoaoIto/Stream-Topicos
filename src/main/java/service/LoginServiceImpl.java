@@ -70,7 +70,7 @@ public class LoginServiceImpl implements LoginService {
     public List<LoginResponseDTO> findByNick(String nickname) {
         List<Login> logins = repository.find("login.cadastro.nickname", nickname).list();
         return logins.stream()
-                .map(login -> new LoginResponseDTO(login.getId(), login.getSenha()))
+                .map(login -> new LoginResponseDTO(login.getId(), login.getSenha(), login.getPerfil()))
                 .collect(Collectors.toList());
     }
 
