@@ -24,7 +24,7 @@ public class LoginLog {
     LoginService service;
 
     @GET
-    @RolesAllowed({"admin"})
+    @RolesAllowed({"admin", "user", "streamer"})
     public Response getLogin() {
         // obtendo o login pelo token jwt
         String login = jwt.getSubject();
