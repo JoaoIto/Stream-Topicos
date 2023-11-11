@@ -19,5 +19,7 @@ public record CadastroDTO(
         String nickname,
 
 
-        LoginDTO login
+        LoginDTO login,
+
+        Integer idPerfil
 ) {}

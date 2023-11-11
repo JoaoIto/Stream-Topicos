@@ -2,6 +2,7 @@ package dto;
 
 import models.Cadastro;
 import models.Login;
+import models.Perfil;
 
 public record CadastroResponseDTO(
         Long id,
@@ -9,7 +10,9 @@ public record CadastroResponseDTO(
         String email,
         String nickname,
 
-        Login login
+        Login login,
+
+        Perfil perfil
 ) {
     public static CadastroResponseDTO valueOf(Cadastro cadastro){
         return new CadastroResponseDTO(
@@ -17,7 +20,8 @@ public record CadastroResponseDTO(
                 cadastro.getNome(),
                 cadastro.getEmail(),
                 cadastro.getNickname(),
-                cadastro.getLogin()
+                cadastro.getLogin(),
+                cadastro.getLogin().getPerfil()
         );
     }
 

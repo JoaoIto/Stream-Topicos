@@ -9,6 +9,5 @@ import java.util.Objects;
 
 public record LoginDTO (
         @NotEmpty(message = "O campo nome não pode ser nulo.")
-        String senha,
-        Integer idPerfil
+        String senha
 ){}

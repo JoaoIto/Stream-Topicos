@@ -1,4 +1,5 @@
 package resources;
+import dto.CadastroResponseDTO;
 import dto.LoginDTO;
 import dto.LoginResponseDTO;
 import jakarta.inject.Inject;
@@ -31,7 +32,6 @@ public class AuthResource {
     @POST
     public Response login(@Valid LoginDTO dto) {
         String hashSenha = hashService.getHashSenha(dto.senha());
-
         LoginResponseDTO result = service.findByLoginAndSenha(hashSenha);
         String token = jwtService.generateJwt(result);
         return Response.ok().header("Authorization", token).build();

@@ -2,6 +2,7 @@ package resources;
 import dto.CadastroDTO;
 import dto.CadastroResponseDTO;
 import dto.LoginDTO;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -21,6 +22,7 @@ import service.CadastroService;
 
     @POST
     @Transactional
+    @RolesAllowed({"admin", "user"})
     public Response insert(@Valid CadastroDTO dto){
         CadastroResponseDTO retorno = service.insert(dto);
         //return Response.status(Response.Status.fromStatusCode(200)).entity(retorno).build();
@@ -28,11 +30,13 @@ import service.CadastroService;
     }
 
     @GET
+    @RolesAllowed({"admin"})
     public Response findAll(){
         return Response.ok(service.findAll()).build();
     }
 
     @GET
+    @RolesAllowed({"admin"})
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id){
         return Response.ok(service.findById(id)).build();
@@ -46,6 +50,7 @@ import service.CadastroService;
 
     @PUT
     @Path("/{id}")
+    @RolesAllowed({"admin", "user"})
     @Transactional
     public CadastroResponseDTO update(CadastroDTO dto, @PathParam("id") Long id, Cadastro cadastroAtualizado) {
         return service.update(dto, id);
@@ -53,6 +58,7 @@ import service.CadastroService;
 
     @DELETE
     @Path("/{id}")
+    @RolesAllowed({"admin"})
     @Transactional
     public void delete(@PathParam("id") Long id) {
         service.delete(id);

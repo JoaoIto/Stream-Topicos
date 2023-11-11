@@ -1,5 +1,6 @@
 package service;
 
+import dto.CadastroResponseDTO;
 import dto.LoginResponseDTO;
 
 public interface JwtService {

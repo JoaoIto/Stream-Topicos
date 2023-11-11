@@ -6,6 +6,7 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -23,12 +24,12 @@ public class LoginLog {
     LoginService service;
 
     @GET
-    @RolesAllowed({"Admin"})
+    @RolesAllowed({"admin"})
     public Response getLogin() {
         // obtendo o login pelo token jwt
         String login = jwt.getSubject();
-
-        return Response.ok(service.findByLoginAndSenha(login)).build();
+        Long loginLong = Long.parseLong(login);
+        return Response.ok(service.findById(loginLong)).build();
     }
 
 }
