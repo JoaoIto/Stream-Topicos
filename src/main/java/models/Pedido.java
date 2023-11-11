@@ -14,6 +14,18 @@ public class Pedido {
 
     private LocalDateTime dataHora;
 
+    public Long getId() {
+        return id;
+    }
+
+    public List<ItemPedido> getGames() {
+        return games;
+    }
+
+    public void setGames(List<ItemPedido> games) {
+        this.games = games;
+    }
+
     @ManyToOne
     @JoinColumn(name = "id_usuario")
     private Cadastro usuario;
@@ -54,5 +66,4 @@ public class Pedido {
     public void setTotalPedido(Double totalPedido) {
         this.totalPedido = totalPedido;
     }
-
 }

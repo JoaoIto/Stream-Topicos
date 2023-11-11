@@ -36,11 +36,11 @@ public class ItemPedido {
         this.preco = preco;
     }
 
-    public Duo getFaixa() {
+    public Duo getDuo() {
         return duo;
     }
 
-    public void setFaixa(Duo faixa) {
+    public void setDuo(Duo faixa) {
         this.duo = faixa;
     }
 
