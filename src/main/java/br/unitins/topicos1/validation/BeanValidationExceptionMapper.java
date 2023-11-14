@@ -25,7 +25,7 @@ public class BeanValidationExceptionMapper implements ExceptionMapper<Constraint
 
             validationError.addFieldError(fieldName, message);
         }
-
+        
         return Response.status(Status.BAD_REQUEST).entity(validationError).build();
 
     }

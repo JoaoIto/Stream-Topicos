@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Version;
 
 @Entity
 public class Estado extends DefaultEntity {
@@ -13,6 +14,9 @@ public class Estado extends DefaultEntity {
 
     @Column(length = 2)
     private String sigla;
+
+    @Version
+    private int version;
 
     private LocalDate dataCadastro;
 
@@ -40,6 +44,12 @@ public class Estado extends DefaultEntity {
         this.dataCadastro = dataCadastro;
     }
 
-    
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
 
 }

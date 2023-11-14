@@ -1,5 +1,7 @@
 package br.unitins.topicos1.resource;
 
+import org.jboss.logging.Logger;
+
 import br.unitins.topicos1.dto.EstadoDTO;
 import br.unitins.topicos1.dto.EstadoResponseDTO;
 import br.unitins.topicos1.service.EstadoService;
@@ -25,6 +27,8 @@ public class EstadoResource {
 
     @Inject
     EstadoService service;
+
+    private static final Logger LOG = Logger.getLogger(EstadoResource.class);
 
     @POST
     public Response insert(EstadoDTO dto) {
