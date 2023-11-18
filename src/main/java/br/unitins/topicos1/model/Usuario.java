@@ -18,6 +18,9 @@ public class Usuario extends DefaultEntity {
     //@Enumerated(EnumType.ORDINAL)
     private Perfil perfil;
 
+    private String nomeImagem;
+
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinTable(name = "usuario_telefone", joinColumns = @JoinColumn(name = "id_usuario"), inverseJoinColumns = @JoinColumn(name = "id_telefone"))
     private List<Telefone> listaTelefone;
@@ -61,5 +64,14 @@ public class Usuario extends DefaultEntity {
     public void setPerfil(Perfil perfil) {
         this.perfil = perfil;
     }
+
+    public String getNomeImagem() {
+        return nomeImagem;
+    }
+
+    public void setNomeImagem(String nomeImagem) {
+        this.nomeImagem = nomeImagem;
+    }
+
 
 }
