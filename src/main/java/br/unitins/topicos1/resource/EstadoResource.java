@@ -55,6 +55,7 @@ public class EstadoResource {
 
     @GET
     public Response findAll() {
+        LOG.debug("Exemplo de debug.");
         return Response.ok(service.findByAll()).build();
     }
 
