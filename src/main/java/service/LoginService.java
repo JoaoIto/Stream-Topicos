@@ -24,4 +24,6 @@ public interface LoginService {
     LoginResponseDTO findByLoginCadastro(LoginDTO dto);
 
     LoginResponseDTO findByLoginAndSenha(String senha);
+
+    public LoginResponseDTO findByLogin(String login);
 }

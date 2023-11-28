@@ -12,4 +12,6 @@ INSERT INTO public.login (senha, perfil) VALUES ('Hn7YKvnjPMNo0LcGojCX7nYnvaddtC
 INSERT INTO public.stream (custostream, nome, nomeusuario) VALUES (10.0, 'Stream1', 'Usuario1');
 INSERT INTO public.stream (custostream, nome, nomeusuario) VALUES (15.0, 'Stream2', 'Usuario2');
 
+INSERT INTO public.duo (horasGame, preco, annotation, status) VALUES (2000.0, 200.0, 'Bora duo carai', true);
+
 INSERT INTO public.cadastro (id_cadastro, nickname, nome, email) VALUES (1, 'Nickname1', 'name', 'email1@example.com');

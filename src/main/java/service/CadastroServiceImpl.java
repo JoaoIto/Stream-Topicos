@@ -6,6 +6,7 @@ import dto.LoginDTO;
 import dto.LoginResponseDTO;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.validation.ValidationException;
 import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.PathParam;
 import models.Cadastro;
@@ -43,6 +44,7 @@ public class CadastroServiceImpl implements CadastroService{
         return CadastroResponseDTO.valueOf(novoCadastro);
     }
 
+
     @Override
     public List<CadastroResponseDTO> findAll(){
         return repository.listAll().stream().map(CadastroResponseDTO::valueOf).toList();
@@ -50,6 +52,15 @@ public class CadastroServiceImpl implements CadastroService{
 
     public Cadastro findById(@PathParam("id") Long id){
         return repository.findById(id);
+    }
+
+    @Override
+    public CadastroResponseDTO findByLogin(String login) {
+        Cadastro usuario = repository.findByLogin(login);
+        if (usuario == null)
+            throw new ValidationException("login");
+
+        return CadastroResponseDTO.valueOf(usuario);
     }
 
     @Override

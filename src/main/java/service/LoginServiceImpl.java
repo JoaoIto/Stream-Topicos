@@ -1,11 +1,13 @@
 package service;
 
+import dto.CadastroResponseDTO;
 import dto.LoginDTO;
 import dto.LoginResponseDTO;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.validation.ValidationException;
 import jakarta.ws.rs.NotFoundException;
+import models.Cadastro;
 import models.Login;
 import repository.LoginRepository;
 import java.util.List;
@@ -32,6 +34,15 @@ public class LoginServiceImpl implements LoginService {
 
         repository.persist(novoLogin);
         return LoginResponseDTO.valueOf(novoLogin);
+    }
+
+    @Override
+    public LoginResponseDTO findByLogin(String login) {
+        Login loginLog = repository.findByLogin(login);
+        if (loginLog == null)
+            throw new ValidationException("login");
+
+        return LoginResponseDTO.valueOf(loginLog);
     }
 
     @Override

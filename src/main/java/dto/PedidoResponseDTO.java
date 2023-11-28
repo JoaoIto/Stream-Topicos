@@ -1,5 +1,6 @@
 package dto;
 
+import models.Cadastro;
 import models.ItemPedido;
 import models.Pedido;
 
@@ -10,14 +11,16 @@ import java.util.List;
 public record PedidoResponseDTO(
         Long id,
         LocalDateTime dataHora,
-        List<ItemPedido> games
+        CadastroResponseDTO cadastro,
+        List<ItemPedidoResponseDTO> games
 ) {
     public static PedidoResponseDTO valueOf(Pedido pedido) {
 
         return new PedidoResponseDTO(
                 pedido.getId(),
                 pedido.getDataHora(),
-                pedido.getGames()
+                CadastroResponseDTO.valueOf(pedido.getUsuario()),
+                ItemPedidoResponseDTO.valueOf(pedido.getGames())
         );
     }
 }

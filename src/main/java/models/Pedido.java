@@ -12,7 +12,12 @@ public class Pedido {
             GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private Cadastro usuario;
     private LocalDateTime dataHora;
+
+    private Double totalPedido;
 
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "pedido")
     private List<ItemPedido> games;
@@ -39,5 +44,21 @@ public class Pedido {
 
     public void setGames(List<ItemPedido> games) {
         this.games = games;
+    }
+
+    public void setTotalPedido(Double totalPedido) {
+        this.totalPedido = totalPedido;
+    }
+
+    public Double getTotalPedido() {
+        return totalPedido;
+    }
+
+    public Cadastro getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Cadastro usuario) {
+        this.usuario = usuario;
     }
 }
