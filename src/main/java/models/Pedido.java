@@ -14,26 +14,16 @@ public class Pedido {
 
     private LocalDateTime dataHora;
 
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "pedido")
+    private List<ItemPedido> games;
+
     public Long getId() {
         return id;
     }
 
-    public List<ItemPedido> getGames() {
-        return games;
+    public void setId(Long id) {
+        this.id = id;
     }
-
-    public void setGames(List<ItemPedido> games) {
-        this.games = games;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "id_usuario")
-    private Cadastro usuario;
-
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "games")
-    private List<ItemPedido> games;
-
-    private Double totalPedido;
 
     public LocalDateTime getDataHora() {
         return dataHora;
@@ -43,27 +33,11 @@ public class Pedido {
         this.dataHora = dataHora;
     }
 
-    public Cadastro getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Cadastro usuario) {
-        this.usuario = usuario;
-    }
-
-    public List<ItemPedido> getItens() {
+    public List<ItemPedido> getGames() {
         return games;
     }
 
-    public void setItens(List<ItemPedido> itens) {
-        this.games = itens;
-    }
-
-    public Double getTotalPedido() {
-        return totalPedido;
-    }
-
-    public void setTotalPedido(Double totalPedido) {
-        this.totalPedido = totalPedido;
+    public void setGames(List<ItemPedido> games) {
+        this.games = games;
     }
 }
