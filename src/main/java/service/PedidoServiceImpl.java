@@ -2,9 +2,11 @@ package service;
 
 import dto.PedidoDTO;
 import dto.PedidoResponseDTO;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.List;
 
+@ApplicationScoped
 public class PedidoServiceImpl implements PedidoService {
 
     @Override
