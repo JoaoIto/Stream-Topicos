@@ -13,7 +13,6 @@ import service.PedidoService;
     @Path("/pedido")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-
     public class PedidoResource {
         @Inject
         PedidoService service;

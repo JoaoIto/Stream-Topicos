@@ -1,7 +1,6 @@
 package resources;
 import dto.CadastroDTO;
 import dto.CadastroResponseDTO;
-import dto.LoginDTO;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
