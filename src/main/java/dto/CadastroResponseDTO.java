@@ -11,6 +11,7 @@ public record CadastroResponseDTO(
         String nickname,
 
         Login login,
+        String nomeImagem,
 
         Perfil perfil
 ) {
@@ -21,6 +22,7 @@ public record CadastroResponseDTO(
                 cadastro.getEmail(),
                 cadastro.getNickname(),
                 cadastro.getLogin(),
+                cadastro.getNomeImagem(),
                 cadastro.getLogin().getPerfil()
         );
     }

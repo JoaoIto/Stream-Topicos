@@ -6,6 +6,7 @@ import dto.LoginDTO;
 import dto.LoginResponseDTO;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.PathParam;
 import models.Cadastro;
@@ -68,6 +69,14 @@ public class CadastroServiceImpl implements CadastroService{
         cadastro.setEmail(dto.email());
         cadastro.setNickname(dto.nickname());
 
+        return CadastroResponseDTO.valueOf(cadastro);
+    }
+
+    @Override
+    @Transactional
+    public  CadastroResponseDTO updateNomeImagem(Long id, String nomeImagem) {
+        Cadastro cadastro = repository.findById(id);
+        cadastro.setNomeImagem(nomeImagem);
         return CadastroResponseDTO.valueOf(cadastro);
     }
 

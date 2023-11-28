@@ -20,6 +20,9 @@ public class Cadastro {
     @Column(length = 30)
     private String nickname;
 
+    @Column(length = 30)  
+    private String nomeImagem;
+
     public Long getId() {
         return id;
     }
@@ -59,5 +62,13 @@ public class Cadastro {
 
     public void setLogin(Login login) {
         this.login = login;
+    }
+
+    public String getNomeImagem() {
+        return nomeImagem;
+    }
+
+    public void setNomeImagem(String nomeImagem) {
+        this.nomeImagem = nomeImagem;
     }
 }
