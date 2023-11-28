@@ -9,6 +9,7 @@ import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 import service.PedidoService;
     @Path("/pedido")
     @Produces(MediaType.APPLICATION_JSON)
@@ -17,11 +18,15 @@ import service.PedidoService;
         @Inject
         PedidoService service;
 
+        @Inject
+        JsonWebToken jwt;
+
         @POST
         @Transactional
         @RolesAllowed({"admin", "user"})
         public Response insert(@Valid PedidoDTO dto) {
-            PedidoResponseDTO retorno = service.insert(dto);
+            String login = jwt.getSubject();
+            PedidoResponseDTO retorno = service.insert(dto, login);
             //return Response.status(Response.Status.fromStatusCode(200)).entity(retorno).build();
             return Response.status(Response.Status.CREATED).entity(retorno).build();
         }
