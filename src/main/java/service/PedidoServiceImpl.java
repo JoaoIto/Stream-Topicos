@@ -1,13 +1,25 @@
 package service;
 
+import dto.CadastroResponseDTO;
+import dto.LoginResponseDTO;
 import dto.PedidoDTO;
 import dto.PedidoResponseDTO;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import repository.PedidoRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class PedidoServiceImpl implements PedidoService {
+
+    @Inject
+    PedidoRepository repository;
+
+    @Inject
+    HashService hashService;
+
 
     @Override
     public PedidoResponseDTO insert(PedidoDTO dto) {
@@ -16,8 +28,7 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
-    public List<PedidoResponseDTO> findAll() {
-        // Implemente a lógica para buscar todos os pedidos e retornar uma lista de PedidoResponseDTO
-        return null; // Substitua pelo código real
+    public List<PedidoResponseDTO> findAll(){
+        return repository.listAll().stream().map(PedidoResponseDTO::valueOf).toList();
     }
 }
