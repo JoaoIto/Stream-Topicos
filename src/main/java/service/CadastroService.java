@@ -22,4 +22,5 @@ public interface CadastroService {
     public List<CadastroResponseDTO> findByNick(@PathParam("nickname") String nickname);
 
     public Cadastro findById(@PathParam("id") String login);
+
 }

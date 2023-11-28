@@ -39,6 +39,9 @@ public class LoginLogResource {
     LoginService service;
 
     @Inject
+    CadastroService cadastroService;
+
+    @Inject
     CadastroFileService fileService;
 
     @GET
@@ -65,7 +68,7 @@ public class LoginLogResource {
         }
 
         String login = jwt.getSubject();
-        CadastroResponseDTO cadastroDTO = CadastroService.findByLogin(login);
+        CadastroResponseDTO cadastroDTO = cadastroService.findByLogin(login);
         cadastroDTO = cadastroService.updateNomeImagem(cadastroDTO.id(), nomeImagem);
 
         return Response.ok(cadastroDTO).build();
