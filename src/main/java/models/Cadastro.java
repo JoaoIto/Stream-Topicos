@@ -31,6 +31,7 @@ public class Cadastro {
     public String getNickname() {
         return nickname;
     }
+    //blz
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
