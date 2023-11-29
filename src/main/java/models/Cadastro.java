@@ -7,7 +7,7 @@ public class Cadastro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "id_cadastro")
     private Login login;
 

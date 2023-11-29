@@ -40,7 +40,7 @@ public class LoginServiceImpl implements LoginService {
     public LoginResponseDTO findByLogin(String login) {
         Login loginLog = repository.findByLogin(login);
         if (loginLog == null)
-            throw new ValidationException("login");
+            throw new ValidationException("login não encontrado!");
 
         return LoginResponseDTO.valueOf(loginLog);
     }
@@ -87,9 +87,6 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public LoginResponseDTO findByLoginCadastro(LoginDTO dto) {
-        // Implemente a lógica correta para buscar os dados com base no DTO.
-        // Por exemplo, você pode usar o repositório para buscar dados relacionados ao login.
-        // O código abaixo é apenas um exemplo fictício:
         List<Login> login = repository.findByCadastro(dto.senha());
         if (login == null)
             throw new ValidationException("login");

@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
-
 import application.Error;
 import dto.CadastroResponseDTO;
 import form.CadastroImageForm;
@@ -54,25 +53,20 @@ public class LoginLogResource {
     }
 
     @PATCH
-    @Path("/upload/imagem")
-    @RolesAllowed({"admin", "user", "streamer"})
+    @Path("/upload/imagem/{cadastroId}")
+    @RolesAllowed({"admin", "streamer"})
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public Response salvarImagem(@MultipartForm CadastroImageForm form){
+    public Response salvarImagem(@MultipartForm CadastroImageForm form, @PathParam("cadastroId") Long cadastroId){
         String nomeImagem;
         try {
             nomeImagem = fileService.salvar(form.getNomeImagem(), form.getImagem());
+            CadastroResponseDTO cadastroDTO = cadastroService.updateNomeImagem(cadastroId, nomeImagem);
+            return Response.ok(cadastroDTO).build();
         } catch (IOException e) {
             e.printStackTrace();
             Error error = new Error("409", e.getMessage());
             return Response.status(Status.CONFLICT).entity(error).build();
         }
-
-        String login = jwt.getSubject();
-        CadastroResponseDTO cadastroDTO = cadastroService.findByLogin(login);
-        cadastroDTO = cadastroService.updateNomeImagem(cadastroDTO.id(), nomeImagem);
-
-        return Response.ok(cadastroDTO).build();
-
     }
 
     @GET

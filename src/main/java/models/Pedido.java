@@ -13,7 +13,7 @@ public class Pedido {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_usuario")
+    @JoinColumn(name = "id_cadastro")
     private Cadastro usuario;
     private LocalDateTime dataHora;
 

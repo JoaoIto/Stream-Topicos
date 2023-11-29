@@ -53,7 +53,7 @@ public class PedidoServiceImpl implements PedidoService {
             item.setPreco(itemDto.preco());
             item.setQuantidade(itemDto.quantidade());
             item.setPedido(pedido);
-            Duo duo = duoRepository.findById(itemDto.idPedido());
+            Duo duo = duoRepository.findById(itemDto.idProduto());
             item.setDuo(duo);
 
             pedido.getGames().add(item);

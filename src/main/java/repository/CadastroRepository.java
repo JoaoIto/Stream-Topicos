@@ -15,7 +15,7 @@ public class CadastroRepository implements PanacheRepository<Cadastro> {
 
     public Cadastro findByLogin(String login) {
         try {
-            return find("login = ?1 ", login ).singleResult();
+            return find("login.senha = ?1 ", login).singleResult();
         } catch (NoResultException e) {
             e.printStackTrace();
             return null;

@@ -6,13 +6,11 @@ import dto.LoginDTO;
 import dto.LoginResponseDTO;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-<<<<<<< HEAD
 import jakarta.transaction.Transactional;
-=======
 import jakarta.validation.ValidationException;
->>>>>>> 350981a4756b424740c49552a9b27abf34241618
 import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.core.Response;
 import models.Cadastro;
 import models.Login;
 import repository.CadastroRepository;
@@ -88,10 +86,16 @@ public class CadastroServiceImpl implements CadastroService{
 
     @Override
     @Transactional
-    public  CadastroResponseDTO updateNomeImagem(Long id, String nomeImagem) {
+    public CadastroResponseDTO updateNomeImagem(Long id, String nomeImagem) {
         Cadastro cadastro = repository.findById(id);
-        cadastro.setNomeImagem(nomeImagem);
-        return CadastroResponseDTO.valueOf(cadastro);
+
+        if (cadastro != null) {
+            cadastro.setNomeImagem(nomeImagem);
+            return CadastroResponseDTO.valueOf(cadastro);
+        } else {
+            throw new Error("Cadastro não encontrado para o ID: " + id);
+
+        }
     }
 
     @Override
