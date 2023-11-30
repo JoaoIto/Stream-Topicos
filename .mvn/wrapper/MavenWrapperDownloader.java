@@ -54,7 +54,7 @@ public final class MavenWrapperDownloader
         }
         catch ( IOException e )
         {
-            System.err.println( "- Error downloading: " + e.getMessage() );
+            System.err.println( "- application.Error downloading: " + e.getMessage() );
             if ( VERBOSE )
             {
                 e.printStackTrace();

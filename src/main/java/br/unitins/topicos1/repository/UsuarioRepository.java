@@ -20,7 +20,6 @@ public class UsuarioRepository implements PanacheRepository<Usuario>{
             e.printStackTrace();
             return null;
         }
-        
     }
 
     public Usuario findByLoginAndSenha(String login, String senha) {
@@ -30,6 +29,5 @@ public class UsuarioRepository implements PanacheRepository<Usuario>{
             e.printStackTrace();
             return null;
         }
-        
     }
 }

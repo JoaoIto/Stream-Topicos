@@ -35,7 +35,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         Usuario novoUsuario = new Usuario();
         novoUsuario.setNome(dto.nome());
-        novoUsuario.setLogin(dto.login());
 
         novoUsuario.setSenha(hashService.getHashSenha(dto.senha()));
 
@@ -61,7 +60,6 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Transactional
     public UsuarioResponseDTO update(UsuarioDTO dto, Long id) {
         Usuario usuario = repository.findById(id);
-        usuario.setLogin(dto.login());
         usuario.setNome(dto.nome());
         usuario.setSenha(dto.senha());
 
@@ -102,12 +100,18 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public UsuarioResponseDTO findByLoginAndSenha(String login, String senha) {
-        Usuario usuario = repository.findByLoginAndSenha(login, senha);
-        if (usuario == null) 
-            throw new ValidationException("login", "Login ou senha inválido");
-        
-        return UsuarioResponseDTO.valueOf(usuario);
+        try {
+            Usuario usuario = repository.findByLoginAndSenha(login, senha);
+            if (usuario == null) {
+                throw new ValidationException("login", "Login ou senha inválido");
+            }
+            return UsuarioResponseDTO.valueOf(usuario);
+        } catch (Exception e) {
+            e.printStackTrace(); // Adicione esta linha para imprimir a pilha de exceção no console
+            throw new ValidationException("login", "Ocorreu um erro durante a autenticação. Consulte os logs para obter mais informações.");
+        }
     }
+
 
     @Override
     public UsuarioResponseDTO findByLogin(String login) {

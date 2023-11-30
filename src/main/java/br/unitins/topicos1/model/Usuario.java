@@ -3,7 +3,10 @@ package br.unitins.topicos1.model;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -19,7 +22,6 @@ public class Usuario extends DefaultEntity {
     private Perfil perfil;
 
     private String nomeImagem;
-
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinTable(name = "usuario_telefone", joinColumns = @JoinColumn(name = "id_usuario"), inverseJoinColumns = @JoinColumn(name = "id_telefone"))
@@ -72,6 +74,5 @@ public class Usuario extends DefaultEntity {
     public void setNomeImagem(String nomeImagem) {
         this.nomeImagem = nomeImagem;
     }
-
 
 }

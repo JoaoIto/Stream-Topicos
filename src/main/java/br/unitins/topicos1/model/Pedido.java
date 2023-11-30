@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -19,10 +20,17 @@ public class Pedido extends DefaultEntity {
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "pedido", fetch = FetchType.LAZY)
-    private List<ItemPedido> itens;
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<Duo> duo;
 
-    private Double totalPedido;
+    @Column(length = 10)
+    private Integer horasJogadas;
+
+    @Column(length = 20)
+    private Double valorHoras;
+
+    @Column(length = 10)
+    private Double valorTotal;
 
     public LocalDateTime getDataHora() {
         return dataHora;
@@ -40,20 +48,35 @@ public class Pedido extends DefaultEntity {
         this.usuario = usuario;
     }
 
-    public List<ItemPedido> getItens() {
-        return itens;
+    public List<Duo> getDuo() {
+        return duo;
     }
 
-    public void setItens(List<ItemPedido> itens) {
-        this.itens = itens;
+    public void setDuo(List<Duo> duo) {
+        this.duo = duo;
     }
 
-    public Double getTotalPedido() {
-        return totalPedido;
+    public Integer getHorasJogadas() {
+        return horasJogadas;
     }
 
-    public void setTotalPedido(Double totalPedido) {
-        this.totalPedido = totalPedido;
+    public void setHorasJogadas(Integer horasJogadas) {
+        this.horasJogadas = horasJogadas;
     }
 
+    public Double getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(Double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public Double getValorHoras() {
+        return valorHoras;
+    }
+
+    public void setValorHoras(Double valorHoras) {
+        this.valorHoras = valorHoras;
+    }
 }
