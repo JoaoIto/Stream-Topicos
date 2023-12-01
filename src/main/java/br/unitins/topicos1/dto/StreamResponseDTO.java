@@ -1,18 +1,18 @@
 package br.unitins.topicos1.dto;
 
 import br.unitins.topicos1.model.Stream;
-import br.unitins.topicos1.model.Usuario;
 
 public record StreamResponseDTO(
         Long id,
         String nome,
-        Usuario nomeUsuario
+        UsuarioResponseDTO nomeUsuario
 ) {
-    public static StreamResponseDTO valueOf(Stream stream){
+    public static StreamResponseDTO valueOf(Stream stream) {
         return new StreamResponseDTO(
                 stream.getId(),
                 stream.getNome(),
-                stream.getNomeUsuario()
+                UsuarioResponseDTO.valueOf(stream.getNomeUsuario())
         );
     }
+
 }

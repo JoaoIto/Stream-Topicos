@@ -1,6 +1,7 @@
 package br.unitins.topicos1.dto;
 
 import java.util.List;
+import java.util.Optional;
 
 import br.unitins.topicos1.model.Perfil;
 import br.unitins.topicos1.model.Usuario;
@@ -21,9 +22,9 @@ public record UsuarioResponseDTO(
             usuario.getLogin(),
             usuario.getPerfil(),
             usuario.getNomeImagem(),
-            usuario.getListaTelefone()
-                .stream()
-                .map(t -> TelefoneDTO.valueOf(t)).toList()
+                Optional.ofNullable(usuario.getListaTelefone())
+                        .map(telefones -> telefones.stream().map(TelefoneDTO::valueOf).toList())
+                        .orElse(null)
         );
     }
 }

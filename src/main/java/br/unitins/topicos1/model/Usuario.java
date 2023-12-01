@@ -27,6 +27,9 @@ public class Usuario extends DefaultEntity {
     @JoinTable(name = "usuario_telefone", joinColumns = @JoinColumn(name = "id_usuario"), inverseJoinColumns = @JoinColumn(name = "id_telefone"))
     private List<Telefone> listaTelefone;
 
+    @OneToMany(mappedBy = "nomeUsuario", fetch = FetchType.LAZY)
+    private List<Stream> streams;
+
     public String getNome() {
         return nome;
     }
@@ -41,6 +44,14 @@ public class Usuario extends DefaultEntity {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public List<Stream> getStreams() {
+        return streams;
+    }
+
+    public void setStreams(List<Stream> streams) {
+        this.streams = streams;
     }
 
     public String getSenha() {

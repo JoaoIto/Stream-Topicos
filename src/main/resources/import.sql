@@ -25,8 +25,13 @@ insert into telefone (codigoArea, numero) values('63', '9999-9999');
 insert into telefone (codigoArea, numero) values('62', '8888-8888');
 insert into telefone (codigoArea, numero) values('61', '7777-7777');
 insert into telefone (codigoArea, numero) values('55', '6666-6666');
+insert into telefone (codigoArea, numero) values('55', '4444-4444');
 
 insert into usuario_telefone (id_usuario, id_telefone) values(1, 1);
 insert into usuario_telefone (id_usuario, id_telefone) values(1, 2);
 insert into usuario_telefone (id_usuario, id_telefone) values(2, 3);
 insert into usuario_telefone (id_usuario, id_telefone) values(2, 4);
+insert into usuario_telefone (id_usuario, id_telefone) values(3, 5);
+
+insert into stream (nome, id_usuario) values ('Stream 1', 1);
+insert into stream (nome, id_usuario) values ('Stream 2', 2);

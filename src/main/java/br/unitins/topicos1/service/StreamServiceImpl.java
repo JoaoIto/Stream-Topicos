@@ -3,6 +3,7 @@ package br.unitins.topicos1.service;
 import br.unitins.topicos1.dto.StreamDTO;
 import br.unitins.topicos1.dto.StreamResponseDTO;
 import br.unitins.topicos1.model.Stream;
+import br.unitins.topicos1.model.Usuario;
 import br.unitins.topicos1.repository.StreamRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -22,7 +23,13 @@ public class StreamServiceImpl implements StreamService {
     public StreamResponseDTO insert(StreamDTO dto) {
         Stream stream = new Stream();
         stream.setNome(dto.getNome());
-        stream.setNomeUsuario(dto.getNomeUsuario());
+        // Verifique se o id do usuário foi fornecido
+        if (dto.getIdUsuario() != null) {
+            // Crie uma instância parcial de Usuario com apenas o id
+            Usuario usuario = new Usuario();
+            usuario.setId(dto.getIdUsuario());
+            stream.setNomeUsuario(usuario);
+        }
         repository.persist(stream);
         return StreamResponseDTO.valueOf(stream);
     }
@@ -38,7 +45,12 @@ public class StreamServiceImpl implements StreamService {
 
         // Atualize os campos do Stream com base nos dados do DTO
         stream.setNome(dto.getNome());
-        stream.setNomeUsuario(dto.getNomeUsuario());
+        if (dto.getIdUsuario() != null) {
+            // Crie uma instância parcial de Usuario com apenas o id
+            Usuario usuario = new Usuario();
+            usuario.setId(dto.getIdUsuario());
+            stream.setNomeUsuario(usuario);
+        }
         // Outros campos a serem atualizados
 
         // Salve as alterações no repositório
@@ -65,12 +77,15 @@ public class StreamServiceImpl implements StreamService {
     public StreamResponseDTO findById(Long id) {
         Stream stream = repository.findById(id);
         if (stream != null) {
+            // Carregue o usuário associado à stream
+            Usuario usuario = stream.getNomeUsuario();
+            // Certifique-se de que o usuário seja carregado antes de criar o StreamResponseDTO
+            usuario.getListaTelefone();
             return StreamResponseDTO.valueOf(stream);
         }
-        // Lidar com o caso em que o Stream não foi encontrado, por exemplo, lançar uma exceção
-        // ou retornar uma resposta apropriada.
         return null;
     }
+
 
     @Override
     public List<StreamResponseDTO> findByNome(String nome) {
