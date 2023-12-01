@@ -1,26 +1,21 @@
 package br.unitins.topicos1.model;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity  // Adiciona esta anotação para indicar que é uma entidade JPA
-public class Game extends DefaultEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Game {
+        @Id
+    @GeneratedValue(strategy =
+            GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 20)
+    @Column(length = 250)
     private String nome;
 
-    @Column(length = 20)
+    @Column()
     private String categoria;
-
-    @Column(length = 20)
-    private String modalidade; // cooperativo ou online
 
     public Long getId() {
         return id;
@@ -46,12 +41,6 @@ public class Game extends DefaultEntity {
         this.categoria = categoria;
     }
 
-    public String getModalidade() {
-        return modalidade;
-    }
-
-    public void setModalidade(String modalidade) {
-        this.modalidade = modalidade;
-    }
-
+    
+    
 }

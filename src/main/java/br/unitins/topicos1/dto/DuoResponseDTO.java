@@ -1,34 +1,22 @@
 package br.unitins.topicos1.dto;
+import java.util.List;
 
 import br.unitins.topicos1.model.Duo;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import br.unitins.topicos1.model.Game;
 
 public record DuoResponseDTO(
-        Long id,
-        StreamResponseDTO stream,
-        Double valorHoras,
-        GameDTO gameDTO,
-        String descricao,
-        Boolean status
+    Long id,
+    List<Game> listaGame,
+ 
+    StreamDTO stream
+
 ) {
-    public static DuoResponseDTO valueOf(Duo duo) {
-        GameDTO firstGameDTO = duo.getListaGame().isEmpty() ? null : GameDTO.valueOf(duo.getListaGame().get(0));
+    public static DuoResponseDTO valueOf(Duo duo){
         return new DuoResponseDTO(
                 duo.getId(),
-                StreamResponseDTO.valueOf(duo.getStream()),
-                duo.getValorHoras(),
-                firstGameDTO,
-                duo.getDescricao(),
-                duo.getStatus()
+                duo.getListaGame(),
+                duo.getStream()
         );
-    }
-
-    public static List<DuoResponseDTO> valueOfList(List<Duo> duoList) {
-        return duoList.stream()
-                .map(DuoResponseDTO::valueOf)
-                .collect(Collectors.toList());
     }
 
 }

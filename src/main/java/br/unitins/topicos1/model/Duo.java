@@ -10,24 +10,16 @@ import org.hibernate.annotations.Check;
 public class Duo extends DefaultEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy =
+            GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_stream")
+    @Column(length = 250)
     private Stream stream;
 
-    @Column(length = 20)
-    private Double valorHoras;
-
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JoinTable(name = "duo_game", joinColumns = @JoinColumn(name = "id_duo"), inverseJoinColumns = @JoinColumn(name = "id_game"))
+    @JoinTable(name = "stream_game", joinColumns = @JoinColumn(name = "id_stream"), inverseJoinColumns = @JoinColumn(name = "id_game"))
     private List<Game> listaGame;
-
-    @Column(length = 100)
-    private String descricao;
-
-    private Boolean status;
 
     public Long getId() {
         return id;
@@ -45,14 +37,6 @@ public class Duo extends DefaultEntity {
         this.stream = stream;
     }
 
-    public Double getValorHoras() {
-        return valorHoras;
-    }
-
-    public void setValorHoras(Double valorHoras) {
-        this.valorHoras = valorHoras;
-    }
-
     public List<Game> getListaGame() {
         return listaGame;
     }
@@ -60,20 +44,5 @@ public class Duo extends DefaultEntity {
     public void setListaGame(List<Game> listaGame) {
         this.listaGame = listaGame;
     }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
+    
 }
