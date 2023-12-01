@@ -20,7 +20,6 @@ public interface StreamService {
 
     public List<StreamResponseDTO> findAll();
 
-
     public Stream findById(@PathParam("id") Long id);
 
     public List<StreamResponseDTO> findByNome(String nome);

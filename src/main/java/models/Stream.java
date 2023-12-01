@@ -42,6 +42,7 @@ public class Stream {
         this.nomeUsuario = nomeUsuario;
     }
 
+    
     public Float getCustoStream() {
         return custoStream;
     }
@@ -49,4 +50,5 @@ public class Stream {
     public void setCustoStream(Float custoStream) {
         this.custoStream = custoStream;
     }
+    
 }

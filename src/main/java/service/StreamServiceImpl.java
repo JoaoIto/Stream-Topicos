@@ -22,6 +22,7 @@ public class StreamServiceImpl implements StreamService {
     @Override
     public StreamResponseDTO insert(StreamDTO dto) {
         Stream stream = new Stream();
+        
         stream.setNome(dto.getNome());
         stream.setNomeUsuario(dto.getNomeUsuario());
         stream.setCustoStream(dto.getCustoStream());
