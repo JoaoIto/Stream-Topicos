@@ -1,58 +1,56 @@
 package br.unitins.topicos1.dto;
 import java.util.List;
+import java.util.Objects;
+
 import br.unitins.topicos1.model.Game;
 import jakarta.validation.constraints.NotBlank;
 
 
 public class DuoDTO {
     @NotBlank
-    private final StreamDTO stream;
+    private final Long idStream;
     @NotBlank
-    private final List<Game> listaGame;
+    private List<Long> idGames;
+
+    @NotBlank
+    private Integer quantidadeHoras;
 
     
-    public DuoDTO(@NotBlank StreamDTO stream, @NotBlank List<Game> listaGame) {
-        this.stream = stream;
-        this.listaGame = listaGame;
+    public DuoDTO(@NotBlank Long idStream, @NotBlank List<Long> idGames) {
+        this.idStream = idStream;
+        this.idGames = idGames;
     }
 
-    public StreamDTO getStream() {
-        return stream;
+    public Long getIdStream() {
+        return idStream;
     }
 
-    public List<Game> getListaGame() {
-        return listaGame;
+    public Integer getQuantidadeHoras() {
+        return quantidadeHoras;
+    }
+
+    public void setQuantidadeHoras(int quantidadeHoras) {
+        this.quantidadeHoras = quantidadeHoras;
+    }
+
+    public List<Long> getIdGames() {
+        return idGames;
+    }
+
+    public void setQuantidadeHoras(Integer quantidadeHoras) {
+        this.quantidadeHoras = quantidadeHoras;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DuoDTO duoDTO = (DuoDTO) o;
+        return Objects.equals(idStream, duoDTO.idStream) && Objects.equals(idGames, duoDTO.idGames) && Objects.equals(quantidadeHoras, duoDTO.quantidadeHoras);
     }
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((stream == null) ? 0 : stream.hashCode());
-        result = prime * result + ((listaGame == null) ? 0 : listaGame.hashCode());
-        return result;
+        return Objects.hash(idStream, idGames, quantidadeHoras);
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        DuoDTO other = (DuoDTO) obj;
-        if (stream == null) {
-            if (other.stream != null)
-                return false;
-        } else if (!stream.equals(other.stream))
-            return false;
-        if (listaGame == null) {
-            if (other.listaGame != null)
-                return false;
-        } else if (!listaGame.equals(other.listaGame))
-            return false;
-        return true;
-    }
-
-    
-
-
-    
 }

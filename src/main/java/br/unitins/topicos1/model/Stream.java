@@ -17,10 +17,19 @@ public class Stream{
     @JoinColumn(name = "id_usuario")
     private Usuario nomeUsuario;
 
-    /*@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JoinTable(name = "stream_game", joinColumns = @JoinColumn(name = "id_stream"), inverseJoinColumns = @JoinColumn(name = "id_game"))
-    private List<Game> listaGame;
-    */
+    @OneToMany(mappedBy = "stream", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Duo> duos;
+
+    @Column
+    private Float precoStream;
+
+    public Float getPrecoStream() {
+        return precoStream;
+    }
+
+    public void setPrecoStream(Float precoStream) {
+        this.precoStream = precoStream;
+    }
 
     public Long getId() {
         return id;

@@ -6,13 +6,17 @@ import java.util.Objects;
 
 public class StreamDTO {
     @NotNull
-    private final String nome;
+    private String nome;
     @NotNull
-    private final Long idUsuario;
+    private Long idUsuario;
 
     public StreamDTO(String nome, Long idUsuario) {
         this.nome = nome;
         this.idUsuario = idUsuario;
+    }
+
+    public StreamDTO() {
+
     }
 
     public String getNome() {

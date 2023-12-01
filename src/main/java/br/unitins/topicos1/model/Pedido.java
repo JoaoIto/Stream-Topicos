@@ -20,8 +20,9 @@ public class Pedido extends DefaultEntity {
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
-    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private List<Duo> duo;
+    @ManyToOne
+    @JoinColumn(name = "id_duo")
+    private Duo duo;
 
     @Column(length = 10)
     private Integer horasJogadas;
@@ -48,11 +49,11 @@ public class Pedido extends DefaultEntity {
         this.usuario = usuario;
     }
 
-    public List<Duo> getDuo() {
+    public Duo getDuo() {
         return duo;
     }
 
-    public void setDuo(List<Duo> duo) {
+    public void setDuo(Duo duo) {
         this.duo = duo;
     }
 

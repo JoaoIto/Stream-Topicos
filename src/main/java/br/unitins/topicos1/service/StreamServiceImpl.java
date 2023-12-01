@@ -5,6 +5,7 @@ import br.unitins.topicos1.dto.StreamResponseDTO;
 import br.unitins.topicos1.model.Stream;
 import br.unitins.topicos1.model.Usuario;
 import br.unitins.topicos1.repository.StreamRepository;
+import io.quarkus.security.identity.SecurityIdentity;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -16,6 +17,8 @@ import java.util.stream.Collectors;
 public class StreamServiceImpl implements StreamService {
 
     @Inject
+    SecurityIdentity securityIdentity;
+    @Inject
     StreamRepository repository;
 
     @Override
@@ -25,10 +28,8 @@ public class StreamServiceImpl implements StreamService {
         stream.setNome(dto.getNome());
         // Verifique se o id do usuário foi fornecido
         if (dto.getIdUsuario() != null) {
-            // Crie uma instância parcial de Usuario com apenas o id
-            Usuario usuario = new Usuario();
-            usuario.setId(dto.getIdUsuario());
-            stream.setNomeUsuario(usuario);
+            Usuario usuarioAutenticado = (Usuario) securityIdentity.getPrincipal();
+            stream.setNomeUsuario(usuarioAutenticado);
         }
         repository.persist(stream);
         return StreamResponseDTO.valueOf(stream);
