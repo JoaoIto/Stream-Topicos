@@ -36,9 +36,6 @@ public class DuoServiceImpl implements DuoService{
     @Inject
     UsuarioRepository usuarioRepository;
 
-    @Inject
-    SecurityIdentity securityIdentity;
-
     @Override
     @Transactional
     public DuoResponseDTO insert(DuoDTO dto) {
