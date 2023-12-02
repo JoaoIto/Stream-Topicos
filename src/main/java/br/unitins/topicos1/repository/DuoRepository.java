@@ -1,15 +1,14 @@
 package br.unitins.topicos1.repository;
 
 import br.unitins.topicos1.model.Duo;
-import br.unitins.topicos1.model.Game;
-import br.unitins.topicos1.model.Solicitacao;
-import br.unitins.topicos1.model.StatusSolicitacao;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 
-import java.util.List;
+import java.util.Optional;
 
 @ApplicationScoped
 public class DuoRepository implements PanacheRepository<Duo> {
-
+    public Optional<Duo> findByUserId(Long idUsuario) {
+        return  find("stream.nomeUsuario.id = ?1", idUsuario).stream().findFirst();
+    }
 }

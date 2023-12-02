@@ -12,7 +12,8 @@ public class Solicitacao extends DefaultEntity {
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
-    @OneToOne(mappedBy = "solicitacao", cascade = CascadeType.PERSIST, orphanRemoval = false)
+    @ManyToOne
+    @JoinColumn(name = "id_duo")
     private Duo duo;
 
     @Column(length = 10)

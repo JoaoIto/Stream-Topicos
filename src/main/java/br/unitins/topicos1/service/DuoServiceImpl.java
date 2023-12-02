@@ -13,6 +13,7 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
@@ -33,18 +34,21 @@ public class DuoServiceImpl implements DuoService{
     GameRepository gameRepository;
 
     @Inject
+    UsuarioRepository usuarioRepository;
+
+    @Inject
     SecurityIdentity securityIdentity;
 
     @Override
     @Transactional
-    public DuoResponseDTO insert(DuoDTO dto)  {
+    public DuoResponseDTO insert(DuoDTO dto) {
         Duo novoDuo = new Duo();
 
         novoDuo.setQuantidadeHoras(dto.getQuantidadeHoras());
         List<Game> listGames = gameRepository.findByIdIfExists(dto.getIdGames());
-        if(listGames.size() ==  dto.getIdGames().size()){
+        if (listGames.size() == dto.getIdGames().size()) {
             novoDuo.setListaGame(listGames);
-        }else{
+        } else {
             throw new ValidationException("Game", "O game não foi encontrado");
         }
 
@@ -55,14 +59,16 @@ public class DuoServiceImpl implements DuoService{
                 novoDuo.setStream(stream);
             } else {
                 // Lide com a situação em que o Stream não foi encontrado
-                throw new ValidationException( "Stream","Stream não encontrado com ID: " + dto.getIdStream());
+                throw new ValidationException("Stream", "Stream não encontrado com ID: " + dto.getIdStream());
             }
         }
+
+        // Persiste o Duo no banco de dados
         repository.persist(novoDuo);
-        solicitacaoService.insert(DuoResponseDTO.valueOf(novoDuo), novoDuo.getId());
+        Usuario usuarioAutenticado = usuarioRepository.findById(dto.getIdUsuario());
+        solicitacaoService.criarSolicitacao(novoDuo, usuarioAutenticado);
         return DuoResponseDTO.valueOf(novoDuo);
     }
-
 
     @Override
     public DuoResponseDTO update(DuoDTO dto, Long id) {
@@ -98,7 +104,6 @@ public class DuoServiceImpl implements DuoService{
 
         // Salve as alterações no repositório
         repository.persist(duo);
-
         return DuoResponseDTO.valueOf(duo);
     }
 
@@ -127,6 +132,11 @@ public class DuoServiceImpl implements DuoService{
     @Override
     public Duo findById(Long id) {
         return null;
+    }
+
+    @Override
+    public Optional<Duo> findByUserId(Long id) {
+        return repository.findByUserId(id);
     }
 
 //    public Solicitacao criarSolicitacao(Long idDuo) {
