@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-public class Duo{
+public class Duo {
     @Id
     @GeneratedValue(strategy =
             GenerationType.IDENTITY)
@@ -19,7 +19,7 @@ public class Duo{
     private Stream stream;
 
     @OneToOne
-    @JoinColumn(name = "id_solicitacao")
+    @JoinColumn(name = "id_solicitacao", unique = true)
     private Solicitacao solicitacao;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -54,27 +54,21 @@ public class Duo{
         return quantidadeHoras;
     }
 
-    public Solicitacao getPedido() {
-        return solicitacao;
-    }
-
     public void setQuantidadeHoras(Integer quantidadeHoras) {
         this.quantidadeHoras = quantidadeHoras;
     }
 
-    public Float calcularPrecoStream() {
-        // Implemente o cálculo conforme necessário
-        return quantidadeHoras * stream.getPrecoStream();
-    }
-
-    public void setPedido(Solicitacao pedido) {
-        this.solicitacao = pedido;
-    }
-
-    public Float calcularCustoTotal() {
+    public Float calcularCustoTotal () {
         if (quantidadeHoras != null && stream != null && stream.getPrecoStream() != null) {
             return quantidadeHoras * stream.getPrecoStream();
         }
         return null;
+    }
+    public Solicitacao getSolicitacao() {
+        return solicitacao;
+    }
+
+    public void setSolicitacao(Solicitacao solicitacao) {
+        this.solicitacao = solicitacao;
     }
 }
