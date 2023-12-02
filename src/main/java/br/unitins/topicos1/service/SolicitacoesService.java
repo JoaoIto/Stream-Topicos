@@ -12,7 +12,10 @@ import java.util.List;
 public interface SolicitacoesService {
 
     public SolicitacaoResponseDTO insert(DuoResponseDTO duo);
+
     public List<SolicitacaoResponseDTO> findAll();
 
     public Solicitacao findById(@PathParam("id") Long id);
+
+    public void insert(DuoResponseDTO valueOf, Long id);
 }

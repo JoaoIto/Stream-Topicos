@@ -50,7 +50,7 @@ public class UsuarioLogadoResource {
 
     @PATCH
     @Path("/upload/imagem")
-    @RolesAllowed({ "User", "Admin" })
+    @RolesAllowed({ "User", "Admin", "streamer"})
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response salvarImagem(@MultipartForm UsuarioImageForm form){
         String nomeImagem;
@@ -72,7 +72,7 @@ public class UsuarioLogadoResource {
 
     @GET
     @Path("/download/imagem/{nomeImagem}")
-    @RolesAllowed({ "User", "Admin" })
+    @RolesAllowed({ "User", "Admin", "streamer" })
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
     public Response download(@PathParam("nomeImagem") String nomeImagem) {
         ResponseBuilder response = Response.ok(fileService.obter(nomeImagem));

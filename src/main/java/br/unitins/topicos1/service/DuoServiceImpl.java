@@ -59,6 +59,7 @@ public class DuoServiceImpl implements DuoService{
             }
         }
         repository.persist(novoDuo);
+        
         solicitacaoService.insert(DuoResponseDTO.valueOf(novoDuo), novoDuo.getId());
         return DuoResponseDTO.valueOf(novoDuo);
     }
