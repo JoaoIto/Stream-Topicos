@@ -34,7 +34,7 @@ public class UsuarioResourceTest {
             .when()
             .post("/usuarios")
             .then()
-            .statusCode(Status.CREATED.getStatusCode());
+            .statusCode(201);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class UsuarioResourceTest {
             .when()
             .put("/usuarios/1")
             .then()
-            .statusCode(Status.NO_CONTENT.getStatusCode());
+            .statusCode(200);
     }
 
     @Test
@@ -58,7 +58,7 @@ public class UsuarioResourceTest {
             .when()
             .delete("/usuarios/1")
             .then()
-            .statusCode(Status.NO_CONTENT.getStatusCode());
+            .statusCode(204);
     }
 
     @Test
@@ -67,7 +67,7 @@ public class UsuarioResourceTest {
             .when()
             .get("/usuarios")
             .then()
-            .statusCode(Status.OK.getStatusCode());
+            .statusCode(200);
     }
 
     @Test
@@ -77,7 +77,7 @@ public class UsuarioResourceTest {
             .when()
             .get("/usuarios/1")
             .then()
-            .statusCode(Status.OK.getStatusCode());
+            .statusCode(200);
     }
 
     @Test
@@ -87,6 +87,6 @@ public class UsuarioResourceTest {
             .when()
             .get("/usuarios/search/nome/John")
             .then()
-            .statusCode(Status.OK.getStatusCode());
+            .statusCode(200);
     }
 }
