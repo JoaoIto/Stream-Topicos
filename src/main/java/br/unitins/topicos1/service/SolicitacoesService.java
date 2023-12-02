@@ -12,10 +12,8 @@ import java.util.List;
 public interface SolicitacoesService {
 
     public SolicitacaoResponseDTO criarSolicitacao(Duo duo, Usuario usuario);
-    
+
     public List<SolicitacaoResponseDTO> findAll();
 
     public Solicitacao findById(@PathParam("id") Long id);
-
-    public void insert(DuoResponseDTO valueOf, Long id);
 }
