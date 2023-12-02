@@ -64,6 +64,7 @@ public class DuoServiceImpl implements DuoService{
         repository.persist(novoDuo);
         Usuario usuarioAutenticado = usuarioRepository.findById(dto.getIdUsuario());
         solicitacaoService.criarSolicitacao(novoDuo, usuarioAutenticado);
+
         return DuoResponseDTO.valueOf(novoDuo);
     }
 
@@ -135,15 +136,5 @@ public class DuoServiceImpl implements DuoService{
     public Optional<Duo> findByUserId(Long id) {
         return repository.findByUserId(id);
     }
-
-//    public Solicitacao criarSolicitacao(Long idDuo) {
-//        Solicitacao solicitacao = new Solicitacao();
-//        solicitacao.setDuo(repository.findById(idDuo));
-//        Usuario usuarioAutenticado = (Usuario) securityIdentity.getPrincipal();
-//        solicitacao.setUsuario(usuarioAutenticado);
-//        solicitacao.setStatus(StatusSolicitacao.AGUARDANDO);
-//
-//        return solicitacao;
-//    }
 
 }

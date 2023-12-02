@@ -10,7 +10,9 @@ import jakarta.ws.rs.PathParam;
 import java.util.List;
 
 public interface SolicitacoesService {
+
     public SolicitacaoResponseDTO criarSolicitacao(Duo duo, Usuario usuario);
+
     public List<SolicitacaoResponseDTO> findAll();
 
     public Solicitacao findById(@PathParam("id") Long id);
