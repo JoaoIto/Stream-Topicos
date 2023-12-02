@@ -4,11 +4,8 @@ import jakarta.persistence.*;
 
 import java.util.List;
 
-import org.hibernate.annotations.Check;
-
 @Entity
 public class Duo{
-
     @Id
     @GeneratedValue(strategy =
             GenerationType.IDENTITY)
@@ -20,6 +17,10 @@ public class Duo{
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_stream")
     private Stream stream;
+
+    @OneToOne
+    @JoinColumn(name = "id_solicitacao")
+    private Solicitacao solicitacao;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinTable(name = "duo_game", joinColumns = @JoinColumn(name = "id_duo"), inverseJoinColumns = @JoinColumn(name = "id_game"))
@@ -53,6 +54,10 @@ public class Duo{
         return quantidadeHoras;
     }
 
+    public Solicitacao getPedido() {
+        return solicitacao;
+    }
+
     public void setQuantidadeHoras(Integer quantidadeHoras) {
         this.quantidadeHoras = quantidadeHoras;
     }
@@ -60,5 +65,16 @@ public class Duo{
     public Float calcularPrecoStream() {
         // Implemente o cálculo conforme necessário
         return quantidadeHoras * stream.getPrecoStream();
+    }
+
+    public void setPedido(Solicitacao pedido) {
+        this.solicitacao = pedido;
+    }
+
+    public Float calcularCustoTotal() {
+        if (quantidadeHoras != null && stream != null && stream.getPrecoStream() != null) {
+            return quantidadeHoras * stream.getPrecoStream();
+        }
+        return null;
     }
 }

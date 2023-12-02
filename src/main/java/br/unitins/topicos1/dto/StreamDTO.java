@@ -9,6 +9,9 @@ public class StreamDTO {
     private String nome;
     @NotNull
     private Long idUsuario;
+    @NotNull
+    private Float custoStream;
+
 
     public StreamDTO(String nome, Long idUsuario) {
         this.nome = nome;
@@ -27,6 +30,13 @@ public class StreamDTO {
         return idUsuario;
     }
 
+    public Float getCustoStream() {
+        return custoStream;
+    }
+
+    public void setCustoStream(Float custoStream) {
+        this.custoStream = custoStream;
+    }
 
     @Override
     public boolean equals(Object o) {

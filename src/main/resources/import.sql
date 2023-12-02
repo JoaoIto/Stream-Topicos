@@ -33,8 +33,8 @@ insert into usuario_telefone (id_usuario, id_telefone) values(2, 3);
 insert into usuario_telefone (id_usuario, id_telefone) values(2, 4);
 insert into usuario_telefone (id_usuario, id_telefone) values(3, 5);
 
-insert into stream (nome, id_usuario) values ('Stream 1', 1);
-insert into stream (nome, id_usuario) values ('Stream 2', 2);
+insert into stream (nome, id_usuario, precoStream) values ('Stream 1', 1, 200);
+insert into stream (nome, id_usuario, precoStream) values ('Stream 2', 2, 200);
 
 insert into game (nome, categoria) values ('Fortnite', 'Battle Royale');
 insert into game (nome, categoria) values ('Valorant', 'FPS');

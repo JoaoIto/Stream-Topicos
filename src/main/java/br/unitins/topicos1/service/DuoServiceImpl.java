@@ -2,16 +2,11 @@ package br.unitins.topicos1.service;
 
 import br.unitins.topicos1.dto.DuoDTO;
 import br.unitins.topicos1.dto.DuoResponseDTO;
-import br.unitins.topicos1.dto.StreamDTO;
-import br.unitins.topicos1.model.Duo;
-import br.unitins.topicos1.model.Game;
-import br.unitins.topicos1.model.Stream;
-import br.unitins.topicos1.model.Usuario;
-import br.unitins.topicos1.repository.DuoRepository;
-import br.unitins.topicos1.repository.GameRepository;
-import br.unitins.topicos1.repository.StreamRepository;
-import br.unitins.topicos1.repository.UsuarioRepository;
+import br.unitins.topicos1.dto.SolicitacaoResponseDTO;
+import br.unitins.topicos1.model.*;
+import br.unitins.topicos1.repository.*;
 import br.unitins.topicos1.validation.ValidationException;
+import io.quarkus.security.identity.SecurityIdentity;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityNotFoundException;
@@ -22,14 +17,23 @@ import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class DuoServiceImpl implements DuoService{
+
+    @Inject
+    SolicitacoesService solicitacaoService;
     @Inject
     DuoRepository repository;
+
+    @Inject
+    SolicitacaoRepository solicitacaoRepository;
 
     @Inject
     StreamRepository streamRepository;
 
     @Inject
     GameRepository gameRepository;
+
+    @Inject
+    SecurityIdentity securityIdentity;
 
     @Override
     @Transactional
@@ -55,8 +59,10 @@ public class DuoServiceImpl implements DuoService{
             }
         }
         repository.persist(novoDuo);
+        solicitacaoService.insert(DuoResponseDTO.valueOf(novoDuo), novoDuo.getId());
         return DuoResponseDTO.valueOf(novoDuo);
     }
+
 
     @Override
     public DuoResponseDTO update(DuoDTO dto, Long id) {
@@ -122,4 +128,15 @@ public class DuoServiceImpl implements DuoService{
     public Duo findById(Long id) {
         return null;
     }
+
+//    public Solicitacao criarSolicitacao(Long idDuo) {
+//        Solicitacao solicitacao = new Solicitacao();
+//        solicitacao.setDuo(repository.findById(idDuo));
+//        Usuario usuarioAutenticado = (Usuario) securityIdentity.getPrincipal();
+//        solicitacao.setUsuario(usuarioAutenticado);
+//        solicitacao.setStatus(StatusSolicitacao.AGUARDANDO);
+//
+//        return solicitacao;
+//    }
+
 }
