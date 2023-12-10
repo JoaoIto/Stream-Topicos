@@ -32,8 +32,6 @@ public class AuthResource {
     JwtService jwtService;
 
     private static final Logger LOG = Logger.getLogger(AuthResource.class);
-
-    @RolesAllowed({ "User", "Admin", "streamer"})
     @POST
     public Response login(@Valid LoginDTO dto) {
         LOG.infof("Iniciando a autenticacao do %s", dto.login());
