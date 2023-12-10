@@ -38,7 +38,7 @@ public class DuoServiceImpl implements DuoService{
 
     @Override
     @Transactional
-    public DuoResponseDTO insert(DuoDTO dto) {
+    public DuoResponseDTO insert(DuoDTO dto, String login) {
         Duo novoDuo = new Duo();
 
         novoDuo.setQuantidadeHoras(dto.getQuantidadeHoras());
@@ -62,7 +62,7 @@ public class DuoServiceImpl implements DuoService{
 
         // Persiste o Duo no banco de dados
         repository.persist(novoDuo);
-        Usuario usuarioAutenticado = usuarioRepository.findById(dto.getIdUsuario());
+        Usuario usuarioAutenticado = usuarioRepository.findByLogin(login);
         solicitacaoService.criarSolicitacao(novoDuo, usuarioAutenticado);
 
         return DuoResponseDTO.valueOf(novoDuo);

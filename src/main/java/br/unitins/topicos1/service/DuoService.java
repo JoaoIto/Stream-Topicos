@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DuoService {
-    public DuoResponseDTO insert(DuoDTO dto) ;
+    public DuoResponseDTO insert(DuoDTO dto, String login) ;
 
     public DuoResponseDTO update(DuoDTO dto, Long id);
 

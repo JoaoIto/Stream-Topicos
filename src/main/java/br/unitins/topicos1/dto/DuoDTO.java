@@ -9,9 +9,6 @@ import jakarta.validation.constraints.NotBlank;
 public class DuoDTO {
     @NotBlank
     private final Long idStream;
-
-    @NotBlank
-    private final Long idUsuario;
     @NotBlank
     private List<Long> idGames;
 
@@ -19,10 +16,9 @@ public class DuoDTO {
     private Integer quantidadeHoras;
 
     
-    public DuoDTO(@NotBlank Long idStream, @NotBlank Long idUsuario, @NotBlank List<Long> idGames) {
+    public DuoDTO(@NotBlank Long idStream, @NotBlank List<Long> idGames) {
         this.idStream = idStream;
         this.idGames = idGames;
-        this.idUsuario = idUsuario;
     }
 
     public Long getIdStream() {
@@ -39,10 +35,6 @@ public class DuoDTO {
 
     public List<Long> getIdGames() {
         return idGames;
-    }
-
-    public Long getIdUsuario() {
-        return idUsuario;
     }
 
     public void setQuantidadeHoras(Integer quantidadeHoras) {

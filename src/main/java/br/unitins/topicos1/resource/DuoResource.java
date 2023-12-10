@@ -8,6 +8,7 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.logging.Logger;
 
 @Path("/duos")
@@ -16,6 +17,9 @@ import org.jboss.logging.Logger;
 public class DuoResource {
     @Inject
     DuoService duoService;
+
+    @Inject
+    JsonWebToken jwt;
 
     private static final Logger LOG = Logger.getLogger(DuoResource.class);
 
@@ -30,7 +34,8 @@ public class DuoResource {
     @POST
     public Response insert(DuoDTO dto){
         LOG.info("Fazendo post de um duo.");
-        DuoResponseDTO responseDTO = duoService.insert(dto);
+        String login = jwt.getSubject();
+        DuoResponseDTO responseDTO = duoService.insert(dto, login);
         return Response.status(Response.Status.CREATED).entity(responseDTO).build();
     }
 
