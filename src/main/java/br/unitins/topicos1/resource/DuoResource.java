@@ -8,6 +8,7 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.jboss.logging.Logger;
 
 @Path("/duos")
 @Produces(MediaType.APPLICATION_JSON)
@@ -16,15 +17,19 @@ public class DuoResource {
     @Inject
     DuoService duoService;
 
+    private static final Logger LOG = Logger.getLogger(DuoResource.class);
+
     @RolesAllowed({ "streamer", "Admin"})
     @GET
     public Response findAll() {
+        LOG.info("Fazendo get de todos os duo.");
         return Response.ok(duoService.findAll()).build();
     }
 
     @RolesAllowed({ "User", "streamer", "Admin"})
     @POST
     public Response insert(DuoDTO dto){
+        LOG.info("Fazendo post de um duo.");
         DuoResponseDTO responseDTO = duoService.insert(dto);
         return Response.status(Response.Status.CREATED).entity(responseDTO).build();
     }
@@ -33,6 +38,7 @@ public class DuoResource {
     @PUT
     @Path("/{id}")
     public Response update(@PathParam("id") Long id, DuoDTO dto) {
+        LOG.info("Fazendo update de um duo pelo id.");
         DuoResponseDTO responseDTO = duoService.update(dto, id);
         return Response.ok(responseDTO).build();
     }
@@ -41,6 +47,7 @@ public class DuoResource {
     @DELETE
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id) {
+        LOG.info("Fazendo delete de um duo pelo id.");
         duoService.delete(id);
         return Response.noContent().build();
     }
@@ -49,6 +56,7 @@ public class DuoResource {
     @GET
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id) {
+        LOG.info("Fazendo busca de um duo pelo id.");
         DuoResponseDTO responseDTO = DuoResponseDTO.valueOf(duoService.findById(id));
         return Response.ok(responseDTO).build();
     }

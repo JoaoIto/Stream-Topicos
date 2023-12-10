@@ -18,6 +18,7 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.jboss.logging.Logger;
 
 @Path("/games")
 @Produces(MediaType.APPLICATION_JSON)
@@ -26,11 +27,13 @@ public class GameResource {
 
     @Inject
     GameService service;
+    private static final Logger LOG = Logger.getLogger(GameResource.class);
 
     @RolesAllowed({"streamer", "Admin"})
     @POST
     @Transactional
     public Response insert(@Valid GameDTO dto) {
+        LOG.info("Cadastrando um game.");
         GameResponseDTO responseDTO = service.insert(dto);
         return Response.status(Response.Status.CREATED).entity(responseDTO).build();
     }
@@ -38,6 +41,7 @@ public class GameResource {
     @RolesAllowed({ "User", "streamer", "Admin"})
     @GET
     public Response findAll(){
+        LOG.info("Fazendo get de todos os games.");
         return Response.ok(service.findAll()).build();
     }
 
@@ -45,6 +49,7 @@ public class GameResource {
     @GET
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id){
+        LOG.info("Fazendo get de game pelo id");
         return Response.ok(service.findById(id)).build();
     }
 
@@ -52,6 +57,7 @@ public class GameResource {
     @GET
     @Path("/search/nome/{nome}")
     public Response findByNome(@PathParam("nome") String nome) {
+        LOG.info("Fazendo get de game pelo nome");
         return Response.ok(service.findByNome(nome)).build();
     }
 
@@ -63,6 +69,7 @@ public class GameResource {
     //    return service.update(dto, id);
     //}
      public Response update(@PathParam("id") Long id, @Valid GameDTO dto) {
+        LOG.info("Fazendo update de game pelo id");
         GameResponseDTO responseDTO = service.update(dto, id);
         return Response.ok(responseDTO).build();
     }
@@ -72,6 +79,7 @@ public class GameResource {
     @Path("/{id}")
     @Transactional
     public Response delete(@PathParam("id") Long id) {
+        LOG.info("Fazendo delete de game pelo id");
         service.delete(id);
         return Response.status(Response.Status.NO_CONTENT).build();
     }

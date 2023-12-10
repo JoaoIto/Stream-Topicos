@@ -1,6 +1,7 @@
 package br.unitins.topicos1.resource;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
@@ -37,6 +38,7 @@ public class UsuarioLogadoResource {
     @Inject
     UsuarioFileService fileService;
 
+    private static final Logger LOG = Logger.getLogger(String.valueOf(UsuarioLogadoResource.class));
     @GET
     @RolesAllowed({ "User", "Admin" })
     public Response getUsuario() {
