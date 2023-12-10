@@ -4,6 +4,8 @@ import jakarta.validation.constraints.NotBlank;
 
 import java.util.Objects;
 
+import br.unitins.topicos1.model.Pagamento.Pagamento;
+
 public class SolicitacaoDTO {
     @NotBlank
     private Long idDuo;
@@ -13,6 +15,9 @@ public class SolicitacaoDTO {
 
     @NotBlank
     private Boolean status;
+
+    private Pagamento pagamento;
+
 
     public SolicitacaoDTO(Long idDuo, Boolean status) {
         this.idDuo = idDuo;
@@ -41,6 +46,14 @@ public class SolicitacaoDTO {
 
     public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public Pagamento getPagamento() {
+        return pagamento;
+    }
+
+    public void setPagamento(Pagamento pagamento) {
+        this.pagamento = pagamento;
     }
 
     @Override

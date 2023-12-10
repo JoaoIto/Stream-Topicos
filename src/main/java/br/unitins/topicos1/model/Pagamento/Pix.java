@@ -13,24 +13,14 @@ public class Pix extends Pagamento{
     @Column(nullable = false)
     private String chave;
 
-    private LocalDate dataExpiracaoTokenPix;
+    private LocalDate dataExpiracaoChavePix;
 
-    public Pix(Usuario usuario, String chave, LocalDate dataExpiracaoTokenPix) {
+    public Pix(Usuario usuario, String chave, LocalDate dataExpiracaoChavePix) {
         this.usuario = usuario;
         this.chave = chave;
-        this.dataExpiracaoTokenPix = LocalDate.now().plusDays(1);
+        this.dataExpiracaoChavePix = LocalDate.now().plusDays(1);
     }
 
-    /*
-    public Pix(Double valor, String nome, String cpf) {
-
-        super(valor);
-
-        this.nome = nome;
-        this.cpf = cpf;
-        this.dataExpiracaoTokenPix = LocalDate.now().plusDays(1);
-    }
-     */
 
     public Usuario getUsuario() {
         return usuario;
@@ -48,12 +38,12 @@ public class Pix extends Pagamento{
         this.chave = chave;
     }
 
-    public LocalDate getDataExpiracaoTokenPix() {
-        return dataExpiracaoTokenPix;
+    public LocalDate getDataExpiracaoChavePix() {
+        return dataExpiracaoChavePix;
     }
 
-    public void setDataExpiracaoTokenPix(LocalDate dataExpiracaoTokenPix) {
-        this.dataExpiracaoTokenPix = dataExpiracaoTokenPix;
+    public void setDataExpiracaoChavePix(LocalDate dataExpiracaoChavePix) {
+        this.dataExpiracaoChavePix = dataExpiracaoChavePix;
     }
     
 
