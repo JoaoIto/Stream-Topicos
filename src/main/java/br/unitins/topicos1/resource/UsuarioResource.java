@@ -17,6 +17,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
 
+import java.util.logging.Logger;
 
 
 @Path("/usuarios")
@@ -27,9 +28,12 @@ public class UsuarioResource {
     @Inject
     UsuarioService service;
 
+    private static final Logger LOG = Logger.getLogger(String.valueOf(UsuarioResource.class));
+
     @RolesAllowed({ "User", "Admin" })
     @POST
     public Response insert(UsuarioDTO dto) {
+        LOG.info("Cadastrando um usuario.");
         return Response.status(Status.CREATED).entity(service.insert(dto)).build();
     }
 
@@ -38,6 +42,7 @@ public class UsuarioResource {
     @Transactional
     @Path("/{id}")
     public Response update(UsuarioDTO dto, @PathParam("id") Long id) {
+        LOG.info("Fazendo update de um usuario.");
         service.update(dto, id);
         return Response.noContent().build();
     }
@@ -47,6 +52,7 @@ public class UsuarioResource {
     @Transactional
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id) {
+        LOG.info("Deletando um usuario.");
         service.delete(id);
         return Response.noContent().build();
     }
@@ -61,6 +67,7 @@ public class UsuarioResource {
     @RolesAllowed({ "User", "Admin" })
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id) {
+        LOG.info("Busca de um usuario especificado pelo id.");
         return Response.ok(service.findById(id)).build();
     }
 
@@ -68,6 +75,7 @@ public class UsuarioResource {
     @RolesAllowed({ "streamer", "User", "Admin" })
     @Path("/search/nome/{nome}")
     public Response findByNome(@PathParam("nome") String nome) {
+        LOG.info("Busca de um usuario especificado pelo nome.");
         return Response.ok(service.findByNome(nome)).build();
     }
 }
