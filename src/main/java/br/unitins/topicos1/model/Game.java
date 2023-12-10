@@ -15,6 +15,8 @@ public class Game {
     @Column()
     private String categoria;
 
+    private String nomeImagem;
+
     public Long getId() {
         return id;
     }
@@ -39,6 +41,12 @@ public class Game {
         this.categoria = categoria;
     }
 
-    
+    public String getNomeImagem() {
+        return nomeImagem;
+    }
+
+    public void setNomeImagem(String nomeImagem) {
+        this.nomeImagem = nomeImagem;
+    }
     
 }

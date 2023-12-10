@@ -13,7 +13,7 @@ import java.util.UUID;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class UsuarioFileService implements FileService {
+public class GameFileService implements FileService {
     // /Users/janio/quarkus/images/usuario/
     private final String PATH_USER = System.getProperty("user.home") +
         File.separator + "quarkus" +
