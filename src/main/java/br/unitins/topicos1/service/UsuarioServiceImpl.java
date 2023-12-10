@@ -62,9 +62,6 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario usuario = repository.findById(id);
         usuario.setNome(dto.nome());
         usuario.setSenha(dto.senha());
-
-        // falta a implementacao dos telefones
-        // vcs (ALUNOS) devem implementar!!!!!
         
         return UsuarioResponseDTO.valueOf(usuario);
     }
