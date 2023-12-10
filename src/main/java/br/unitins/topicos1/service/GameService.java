@@ -15,14 +15,14 @@ public interface GameService {
 
     public GameResponseDTO update(GameDTO dto, Long id);
 
-    public UsuarioResponseDTO updateNomeImagem(Long id, String nomeImagem) ;
-
-
     public void delete(Long id);
 
-    public List<GameResponseDTO> findAll();
+    public GameResponseDTO updateNomeImagem(Long id, String nomeImagem) ;
 
-    public Game findById(@PathParam("id") Long id);
+    public GameResponseDTO findById(Long id);
+
+
+    public List<GameResponseDTO> findAll();
 
     public List<GameResponseDTO> findByNome(@PathParam("nome") String nome);
 

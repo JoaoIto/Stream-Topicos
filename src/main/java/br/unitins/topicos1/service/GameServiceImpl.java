@@ -46,16 +46,16 @@ public class GameServiceImpl implements GameService {
 
         repository.persist(game);
 
-        GameResponseDTO responseDTO = new GameResponseDTO(game.getId(), game.getNome(), game.getCategoria());
+        GameResponseDTO responseDTO = new GameResponseDTO(game.getId(), game.getNome(), game.getCategoria(), game.getNomeImagem());
         return responseDTO;
     }
 
         @Override
     @Transactional
-    public UsuarioResponseDTO updateNomeImagem(Long id, String nomeImagem) {
+    public GameResponseDTO updateNomeImagem(Long id, String nomeImagem) {
         Game game = repository.findById(id);
         game.setNomeImagem(nomeImagem);
-        return UsuarioResponseDTO.valueOf(game);
+        return GameResponseDTO.valueOf(game);
     }
 
     @Override
@@ -70,8 +70,8 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Game findById(Long id) {
-        return repository.findById(id);
+    public GameResponseDTO findById(Long id) {
+        return GameResponseDTO.valueOf(repository.findById(id));
     }
 
     @Override

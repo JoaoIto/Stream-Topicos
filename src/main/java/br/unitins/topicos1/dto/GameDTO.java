@@ -10,10 +10,13 @@ public class GameDTO {
     @NotNull
     private final String categoria;
 
+    private final String nomeImagem;
 
-    public GameDTO( String nome, String categoria) {
+
+    public GameDTO( String nome, String categoria, String nomeImagem) {
         this.nome = nome;
         this.categoria = categoria;
+        this.nomeImagem = nomeImagem;
     }
 
     public String getNome() {
@@ -24,9 +27,13 @@ public class GameDTO {
         return categoria;
     }
 
+    public String getNomeImagem() {
+        return nomeImagem;
+    }
+
     @Override
     public int hashCode() {     
-        return Objects.hash(nome, categoria);
+        return Objects.hash(nome, categoria, nomeImagem);
     }
 
     @Override
@@ -44,6 +51,11 @@ public class GameDTO {
             if (other.categoria != null)
                 return false;
         } else if (!categoria.equals(other.categoria))
+            return false;
+        if (nomeImagem == null) {
+            if (other.nomeImagem != null)
+                return false;
+        } else if (!nomeImagem.equals(other.nomeImagem))
             return false;
         return true;
     }

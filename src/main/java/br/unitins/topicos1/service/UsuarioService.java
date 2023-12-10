@@ -13,7 +13,7 @@ public interface UsuarioService {
     public UsuarioResponseDTO update(UsuarioDTO dto, Long id);
 
     public void delete(Long id);
-
+    
     public UsuarioResponseDTO findById(Long id);
 
     public List<UsuarioResponseDTO> findByNome(String nome);
