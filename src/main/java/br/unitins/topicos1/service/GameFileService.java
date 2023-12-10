@@ -71,5 +71,17 @@ public class GameFileService implements FileService {
             throw new IOException("Tipo de imagem não suportada.");
   
     }
+
+    public void deletar(String nomeImagem) {
+        // Obtém o caminho do arquivo da imagem
+        String caminhoImagem = "/path/para/imagens/" + nomeImagem;
+
+        // Tenta excluir o arquivo
+        File arquivoImagem = new File(caminhoImagem);
+        if (!arquivoImagem.delete()) {
+            // Lança uma exceção se o arquivo não puder ser excluído
+            throw new Error("Não foi possível excluir a imagem");
+        }
+    }
     
 }

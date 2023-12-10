@@ -104,21 +104,13 @@ public class GameResource {
     }
 
     @PATCH
-    @Path("/upload/imagem")
+    @Path("/upload/imagem/{id}")
     @RolesAllowed({ "User", "Admin", "streamer"})
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public Response salvarImagem(@MultipartForm GameImageForm form){
+    public Response salvarImagem(@MultipartForm GameImageForm form, @PathParam("id") Long id) throws IOException {
         String nomeImagem;
-        try {
-            nomeImagem = fileService.salvar(form.getNomeImagem(), form.getImagem());
-        } catch (IOException e) {
-            e.printStackTrace();
-            Error error = new Error("409", e.getMessage());
-            return Response.status(Status.CONFLICT).entity(error).build();
-        }
-
-        String login = jwt.getSubject();
-        GameResponseDTO gameDTO = gameService.findById(login);
+        nomeImagem = fileService.salvar(form.getNomeImagem(), form.getImagem());
+        GameResponseDTO gameDTO = gameService.findById(id);
         gameDTO = gameService.updateNomeImagem(gameDTO.id(), nomeImagem);
 
         return Response.ok(gameDTO).build();
@@ -134,5 +126,4 @@ public class GameResource {
         response.header("Content-Disposition", "attachment;filename="+nomeImagem);
         return response.build();
     }
-    
 }
