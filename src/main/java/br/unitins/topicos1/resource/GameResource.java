@@ -4,6 +4,7 @@ package br.unitins.topicos1.resource;
 import br.unitins.topicos1.dto.GameDTO;
 import br.unitins.topicos1.dto.GameResponseDTO;
 import br.unitins.topicos1.service.GameService;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -26,6 +27,7 @@ public class GameResource {
     @Inject
     GameService service;
 
+    @RolesAllowed({"streamer", "Admin"})
     @POST
     @Transactional
     public Response insert(@Valid GameDTO dto) {
@@ -33,24 +35,27 @@ public class GameResource {
         return Response.status(Response.Status.CREATED).entity(responseDTO).build();
     }
 
+    @RolesAllowed({ "User", "streamer", "Admin"})
     @GET
     public Response findAll(){
         return Response.ok(service.findAll()).build();
     }
 
-    // cadastro
+    @RolesAllowed({ "User", "streamer", "Admin"})
     @GET
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id){
         return Response.ok(service.findById(id)).build();
     }
 
+    @RolesAllowed({ "User", "streamer", "Admin"})
     @GET
     @Path("/search/nome/{nome}")
     public Response findByNome(@PathParam("nome") String nome) {
         return Response.ok(service.findByNome(nome)).build();
     }
 
+    @RolesAllowed({"streamer", "Admin"})
     @PUT
     @Path("/{id}")
     @Transactional
@@ -62,6 +67,7 @@ public class GameResource {
         return Response.ok(responseDTO).build();
     }
 
+    @RolesAllowed({"Admin"})
     @DELETE
     @Path("/{id}")
     @Transactional

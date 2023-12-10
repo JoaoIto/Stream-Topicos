@@ -1,5 +1,6 @@
 package br.unitins.topicos1.resource;
 
+import jakarta.annotation.security.RolesAllowed;
 import org.jboss.logging.Logger;
 
 import br.unitins.topicos1.dto.LoginDTO;
@@ -32,6 +33,7 @@ public class AuthResource {
 
     private static final Logger LOG = Logger.getLogger(AuthResource.class);
 
+    @RolesAllowed({ "User", "Admin", "streamer"})
     @POST
     public Response login(@Valid LoginDTO dto) {
         LOG.infof("Iniciando a autenticacao do %s", dto.login());

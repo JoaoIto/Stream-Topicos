@@ -2,6 +2,7 @@ package br.unitins.topicos1.resource;
 
 import br.unitins.topicos1.dto.UsuarioDTO;
 import br.unitins.topicos1.service.UsuarioService;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
@@ -26,11 +27,13 @@ public class UsuarioResource {
     @Inject
     UsuarioService service;
 
+    @RolesAllowed({ "User", "Admin" })
     @POST
     public Response insert(UsuarioDTO dto) {
         return Response.status(Status.CREATED).entity(service.insert(dto)).build();
     }
 
+    @RolesAllowed({ "User", "Admin" })
     @PUT
     @Transactional
     @Path("/{id}")
@@ -39,6 +42,7 @@ public class UsuarioResource {
         return Response.noContent().build();
     }
 
+    @RolesAllowed({ "Admin" })
     @DELETE
     @Transactional
     @Path("/{id}")
@@ -47,18 +51,21 @@ public class UsuarioResource {
         return Response.noContent().build();
     }
 
+    @RolesAllowed({ "User", "Admin" })
     @GET
     public Response findAll() {
         return Response.ok(service.findByAll()).build();
     }
 
     @GET
+    @RolesAllowed({ "User", "Admin" })
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id) {
         return Response.ok(service.findById(id)).build();
     }
 
     @GET
+    @RolesAllowed({ "streamer", "User", "Admin" })
     @Path("/search/nome/{nome}")
     public Response findByNome(@PathParam("nome") String nome) {
         return Response.ok(service.findByNome(nome)).build();

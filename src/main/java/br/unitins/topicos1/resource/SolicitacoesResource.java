@@ -1,5 +1,6 @@
 package br.unitins.topicos1.resource;
 
+import jakarta.annotation.security.RolesAllowed;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import br.unitins.topicos1.service.SolicitacoesService;
 import br.unitins.topicos1.service.UsuarioService;
@@ -25,6 +26,7 @@ public class SolicitacoesResource {
     @Inject
     JsonWebToken jwt;
 
+    @RolesAllowed({"streamer", "Admin"})
     @GET
     public Response findAll() {
         return Response.ok(service.findAll()).build();
