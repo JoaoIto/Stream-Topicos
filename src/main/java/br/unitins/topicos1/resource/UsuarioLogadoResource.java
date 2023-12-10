@@ -7,7 +7,6 @@ import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 
 import br.unitins.topicos1.form.GameImageForm;
-import br.unitins.topicos1.service.GameFileService;
 import br.unitins.topicos1.service.UsuarioService;
 import br.unitins.topicos1.application.Error;
 import br.unitins.topicos1.dto.UsuarioResponseDTO;
