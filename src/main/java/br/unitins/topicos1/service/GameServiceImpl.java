@@ -11,7 +11,9 @@ import java.util.stream.Collectors;
 
 import br.unitins.topicos1.dto.GameDTO;
 import br.unitins.topicos1.dto.GameResponseDTO;
+import br.unitins.topicos1.dto.UsuarioResponseDTO;
 import br.unitins.topicos1.model.Game;
+import br.unitins.topicos1.model.Usuario;
 import br.unitins.topicos1.repository.GameRepository;
 
 
@@ -46,6 +48,14 @@ public class GameServiceImpl implements GameService {
 
         GameResponseDTO responseDTO = new GameResponseDTO(game.getId(), game.getNome(), game.getCategoria());
         return responseDTO;
+    }
+
+        @Override
+    @Transactional
+    public UsuarioResponseDTO updateNomeImagem(Long id, String nomeImagem) {
+        Game game = repository.findById(id);
+        game.setNomeImagem(nomeImagem);
+        return UsuarioResponseDTO.valueOf(game);
     }
 
     @Override

@@ -6,8 +6,7 @@ import java.util.logging.Logger;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 
-import br.unitins.topicos1.form.UsuarioImageForm;
-import br.unitins.topicos1.service.UsuarioFileService;
+import br.unitins.topicos1.form.GameImageForm;
 import br.unitins.topicos1.service.UsuarioService;
 import br.unitins.topicos1.application.Error;
 import br.unitins.topicos1.dto.UsuarioResponseDTO;
@@ -36,7 +35,7 @@ public class UsuarioLogadoResource {
     UsuarioService usuarioService;
 
     @Inject
-    UsuarioFileService fileService;
+    GameFileService fileService;
 
     private static final Logger LOG = Logger.getLogger(String.valueOf(UsuarioLogadoResource.class));
     @GET
