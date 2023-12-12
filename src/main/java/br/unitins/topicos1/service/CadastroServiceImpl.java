@@ -13,13 +13,16 @@ import jakarta.transaction.Transactional;
 public class CadastroServiceImpl implements CadastroService{
     @Inject
     UsuarioRepository repository;
+    @Inject
+    HashService hashService;
+
     @Override
     @Transactional
     public CadastroResponseDTO insert(CadastroDTO dto) {
         Usuario usuario = new Usuario();
         usuario.setNome(dto.nome());
         usuario.setLogin(dto.login());
-        usuario.setSenha(dto.senha());
+        usuario.setSenha(hashService.getHashSenha(dto.senha()));
         usuario.setCpf(dto.cpf());
         usuario.setPerfil(Perfil.USER);
 
