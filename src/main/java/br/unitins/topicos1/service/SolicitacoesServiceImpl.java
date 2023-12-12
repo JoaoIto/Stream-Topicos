@@ -60,7 +60,8 @@ public class SolicitacoesServiceImpl implements SolicitacoesService {
 
     @Override
     public List<SolicitacaoResponseDTO> findAll() {
-        List<Solicitacao> solicitacaos = repository.listAll();
+        String login = securityIdentity.getPrincipal().getName();
+        List<Solicitacao> solicitacaos = repository.findAll(login);
         return solicitacaos.stream()
                 .map(SolicitacaoResponseDTO::valueOf)
                 .collect(Collectors.toList());
