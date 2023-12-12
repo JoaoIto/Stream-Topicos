@@ -60,6 +60,7 @@ public class UsuarioResource {
     @RolesAllowed({ "User", "Admin" })
     @GET
     public Response findAll() {
+        LOG.info("Busca de todos os usuarios");
         return Response.ok(service.findByAll()).build();
     }
 
