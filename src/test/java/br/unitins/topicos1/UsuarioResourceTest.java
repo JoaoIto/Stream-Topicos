@@ -1,6 +1,7 @@
 package br.unitins.topicos1;
 
 import br.unitins.topicos1.dto.UsuarioResponseDTO;
+import br.unitins.topicos1.model.Perfil;
 import br.unitins.topicos1.model.Usuario;
 import br.unitins.topicos1.service.JwtService;
 import io.quarkus.test.junit.QuarkusTest;
@@ -23,7 +24,7 @@ public class UsuarioResourceTest {
     @Test
     public void testInsert() {
         // Crie um usuário fictício para o teste
-        UsuarioDTO usuarioDTO = new UsuarioDTO("John Doe", "john.doe", "senha123", 1, null);
+        UsuarioDTO usuarioDTO = new UsuarioDTO("John Doe", "john.doe", "12312312312" ,"senha123", 1, null);
 
         // Gere um token JWT para o usuário fictício (use sua lógica real para obter o token)
         String tokenJWT = obterTokenJWT(usuarioDTO);
