@@ -3,19 +3,14 @@ package br.unitins.topicos1.model.Pagamento;
 import java.time.LocalDate;
 
 import br.unitins.topicos1.model.DefaultEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
+import jakarta.persistence.*;
 
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Pagamento extends DefaultEntity {
-
-    @Column(nullable = false)
+@Embeddable
+public class Pagamento{
+    @Column()
     private Double valor;
 
-    @Column(nullable = false)
+    @Column()
     private Boolean confirmacaoPagamento;
 
     private LocalDate dataConfirmacaoPagamento;
