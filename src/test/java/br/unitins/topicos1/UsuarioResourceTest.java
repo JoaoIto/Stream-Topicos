@@ -1,40 +1,47 @@
 package br.unitins.topicos1;
 
-
+import br.unitins.topicos1.dto.UsuarioResponseDTO;
+import br.unitins.topicos1.model.Usuario;
+import br.unitins.topicos1.service.JwtService;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
-import io.restassured.mapper.ObjectMapper;
-import io.restassured.mapper.ObjectMapperDeserializationContext;
-import io.restassured.mapper.ObjectMapperSerializationContext;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.engine.TestExecutionResult.Status;
-
 import br.unitins.topicos1.dto.UsuarioDTO;
 import br.unitins.topicos1.service.UsuarioService;
-
-
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
-
 @QuarkusTest
 public class UsuarioResourceTest {
 
     @Inject
     UsuarioService usuarioService;
 
+    @Inject
+    JwtService jwtService;
+
 
     @Test
     public void testInsert() {
+        // Crie um usuário fictício para o teste
         UsuarioDTO usuarioDTO = new UsuarioDTO("John Doe", "john.doe", "senha123", 1, null);
 
+        // Gere um token JWT para o usuário fictício (use sua lógica real para obter o token)
+        String tokenJWT = obterTokenJWT(usuarioDTO);
+
+        // Adicione o token JWT aos cabeçalhos da solicitação
         given()
-            .contentType(ContentType.JSON)
-            .body(usuarioDTO)
-            .when()
-            .post("/usuarios")
-            .then()
-            .statusCode(201);
+                .auth().oauth2(tokenJWT)
+                .contentType(ContentType.JSON)
+                .body(usuarioDTO)
+                .when().post("/usuarios")
+                .then()
+                .statusCode(201);
+    }
+
+    // Método fictício para obter um token JWT (substitua pela lógica real)
+    private String obterTokenJWT(UsuarioDTO usuarioDTO) {
+        UsuarioResponseDTO usuarioResponseDTO = UsuarioResponseDTO.valueOf(usuarioDTO);
+        return jwtService.generateJwt(usuarioResponseDTO);
     }
 
     @Test

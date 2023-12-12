@@ -12,7 +12,8 @@ public record UsuarioResponseDTO(
     String login,
     Perfil perfil,
     List<TelefoneDTO> listaTelefone
-) { 
+) {
+
     public static UsuarioResponseDTO valueOf(Usuario usuario){
 
         return new UsuarioResponseDTO(
