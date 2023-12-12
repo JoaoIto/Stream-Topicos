@@ -15,9 +15,6 @@ public class Boleto extends Pagamento {
     @Column(nullable = false)
     private LocalDate dataVencimento;
 
-    
-
-
     public Boleto(Usuario usuario, LocalDate dataGeracaoBoleto, LocalDate dataVencimento) {
 
 
@@ -25,17 +22,6 @@ public class Boleto extends Pagamento {
         this.dataGeracaoBoleto = dataGeracaoBoleto;
         this.dataVencimento = dataVencimento;
     }
-
-    /* 
-    public BoletoBancario (Double valor, Usuario usuario) {
-
-        super(valor);
-
-        this.usuario = usuario;
-        this.dataGeracaoBoleto = LocalDate.now();
-        this.dataVencimento = LocalDate.now().plusDays(10);
-    }
-    */
 
     public Usuario getUsuario() {
         return usuario;

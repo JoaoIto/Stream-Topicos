@@ -3,6 +3,8 @@ package br.unitins.topicos1.model;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
+import br.unitins.topicos1.model.Pagamento.Pagamento;
+
 @Entity
 public class Solicitacao extends DefaultEntity {
 
@@ -21,6 +23,8 @@ public class Solicitacao extends DefaultEntity {
 
     @Column
     private StatusSolicitacao status;
+
+    private Pagamento pagamento;
 
     public LocalDateTime getDataHora() {
         return dataHora;
@@ -60,5 +64,13 @@ public class Solicitacao extends DefaultEntity {
 
     public void setStatus(StatusSolicitacao status) {
         this.status = status;
+    }
+
+        public Pagamento getPagamento() {
+        return pagamento;
+    }
+
+    public void setPagamento(Pagamento pagamento) {
+        this.pagamento = pagamento;
     }
 }
