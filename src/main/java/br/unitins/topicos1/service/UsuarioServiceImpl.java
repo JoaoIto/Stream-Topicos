@@ -36,6 +36,10 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario novoUsuario = new Usuario();
         novoUsuario.setNome(dto.nome());
 
+        novoUsuario.setCpf(dto.cpf());
+
+        novoUsuario.setLogin(dto.login());
+
         novoUsuario.setSenha(hashService.getHashSenha(dto.senha()));
 
         novoUsuario.setPerfil(Perfil.valueOf(dto.idPerfil()));

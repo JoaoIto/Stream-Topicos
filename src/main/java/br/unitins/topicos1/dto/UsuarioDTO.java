@@ -8,6 +8,7 @@ public record UsuarioDTO (
     @NotBlank(message = "O campo nome não pode ser nulo.")
     String nome,
     String login,
+    String cpf,
     String senha,
     Integer idPerfil,
     List<TelefoneDTO> listaTelefone

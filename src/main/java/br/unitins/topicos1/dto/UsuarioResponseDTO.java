@@ -10,6 +10,8 @@ public record UsuarioResponseDTO(
     Long id,
     String nome,
     String login,
+
+    String cpf,
     Perfil perfil,
     List<TelefoneDTO> listaTelefone
 ) {
@@ -20,6 +22,7 @@ public record UsuarioResponseDTO(
             usuario.getId(), 
             usuario.getNome(),
             usuario.getLogin(),
+                usuario.getCpf(),
             usuario.getPerfil(),
                 Optional.ofNullable(usuario.getListaTelefone())
                         .map(telefones -> telefones.stream().map(TelefoneDTO::valueOf).toList())

@@ -17,6 +17,8 @@ public class Usuario extends DefaultEntity {
 
     private String nome;
     private String login;
+
+    private String cpf;
     private String senha;
     //@Enumerated(EnumType.ORDINAL)
     private Perfil perfil;
@@ -35,6 +37,14 @@ public class Usuario extends DefaultEntity {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getLogin() {
