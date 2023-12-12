@@ -6,7 +6,12 @@ import br.unitins.topicos1.model.Duo;
 import br.unitins.topicos1.model.Solicitacao;
 import br.unitins.topicos1.model.StatusSolicitacao;
 import br.unitins.topicos1.model.Usuario;
+import br.unitins.topicos1.model.Pagamento.Boleto;
+import br.unitins.topicos1.repository.BoletoRepository;
+import br.unitins.topicos1.repository.CartaoCreditoRepository;
+import br.unitins.topicos1.repository.PixRepository;
 import br.unitins.topicos1.repository.SolicitacaoRepository;
+import br.unitins.topicos1.repository.UsuarioRepository;
 import io.quarkus.security.identity.SecurityIdentity;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -31,6 +36,18 @@ public class SolicitacoesServiceImpl implements SolicitacoesService {
     @Inject
     SecurityIdentity securityIdentity;
 
+    @Inject
+    UsuarioRepository usuarioRepository;
+    /*
+    @Inject
+    BoletoRepository boletoRepository;
+    
+    @Inject
+    PixRepository pixRepository;
+
+    @Inject
+    CartaoCreditoRepository cartaoCreditoRepository;
+    */
 
     @Transactional
     public SolicitacaoResponseDTO criarSolicitacao(Duo duo, Usuario usuario) {
@@ -71,4 +88,72 @@ public class SolicitacoesServiceImpl implements SolicitacoesService {
     public Solicitacao findById(Long id) {
         return null;
     }
+
+    
+    /*
+    @Override
+    @Transactional
+    public void efetuarPagamentoBoleto(Long idUsuario) throws NullPointerException {
+        
+        Usuario usuario = usuarioRepository.findById(idUsuario);
+        
+        Solicitacao solicitacao = validar(usuario);
+
+        Boleto pagamento = new Boleto(solicitacao.getValorTotal(), solicitacao.getUsuario());
+
+        boletoRepository.persist(pagamento);
+
+        solicitacao.setPagamento(pagamento);
+
+        if (solicitacao.getPagamento() == null)
+            throw new NullPointerException("Não foi efetuado nenhum pagamento");
+
+        finishCompra(solicitacao.getId());
+    }
+
+    @Override
+    @Transactional
+    public void efetuarPagamentoPix(Long idUsuario) {
+        
+        Usuario usuario = usuarioRepository.findById(idUsuario);
+        
+        Solicitacao solicitacao = validar(usuario);
+
+        Pix pagamento = new Pix(compra.getValorTotal(), compra.getUsuario().getNome(), compra.getUsuario().getPessoaFisica().getCpf());
+
+        pixRepository.persist(pagamento);
+
+        compra.setPagamento(pagamento);
+
+        if (compra.getPagamento() == null)
+            throw new NullPointerException("Não foi efetuado nenhum pagamento");
+
+        finishCompra(compra.getId());
+    }
+
+    @Override
+    @Transactional
+    public void efetuarPagamentoCartaoCredito(Long idUsuario, CartaoCreditoDTO cartaoCreditoDTO) {
+        
+        Usuario usuario = usuarioRepository.findById(idUsuario);
+
+        Solicitacao solicitacao = validar(usuario);
+
+        CartaoCredito pagamento = new CartaoCredito(compra.getValorTotal(),
+                                            cartaoCreditoDTO.numeroCartao(),
+                                            cartaoCreditoDTO.nomeImpressoCartao(),
+                                            usuario.getCpf(),
+                                            BandeiraCartao.valueOf(cartaoCreditoDTO.bandeiraCartao()));
+        
+        cartaoCreditoRepository.persist(pagamento);
+
+        compra.setPagamento(pagamento);
+
+        if (compra.getPagamento() == null)
+            throw new NullPointerException("Não foi efetuado nenhum pagamento");
+
+        finishCompra(compra.getId());
+    }
+
+    */
 }

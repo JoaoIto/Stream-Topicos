@@ -16,4 +16,15 @@ public interface SolicitacoesService {
     public List<SolicitacaoResponseDTO> findAll();
 
     public Solicitacao findById(@PathParam("id") Long id);
+
+    /*
+    
+    void efetuarPagamentoBoleto(Long idUsuario);
+
+    void efetuarPagamentoPix(Long idUsuario);
+
+    void efetuarPagamentoCartaoCredito(Long idUsuario, CartaoCreditoDTO cartaoCreditoDTO);
+
+     */
+
 }

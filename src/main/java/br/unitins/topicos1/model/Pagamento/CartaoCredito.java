@@ -15,7 +15,8 @@ public class CartaoCredito extends Pagamento{
 
     private BandeiraCartao bandeiraCartao;
 
-    public CartaoCredito(String numeroCartao, String nomeImpressoCartao, String cpfTitular, BandeiraCartao bandeiraCartao) {
+    public CartaoCredito(String numeroCartao, String nomeImpressoCartao, 
+    String cpfTitular, BandeiraCartao bandeiraCartao) {
         this.numeroCartao = numeroCartao;
         this.nomeImpressoCartao = nomeImpressoCartao;
         this.cpfTitular = cpfTitular;

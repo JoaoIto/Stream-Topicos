@@ -15,15 +15,14 @@ public class Boleto extends Pagamento {
     @Column(nullable = false)
     private LocalDate dataVencimento;
 
-    public Boleto(Usuario usuario, LocalDate dataGeracaoBoleto, LocalDate dataVencimento) {
+    public Boleto(Float valorTotal, Usuario usuario) {
 
-
+        super(valorTotal);
         this.usuario = usuario;
-        this.dataGeracaoBoleto = dataGeracaoBoleto;
-        this.dataVencimento = dataVencimento;
     }
 
-    public Usuario getUsuario() {
+
+	public Usuario getUsuario() {
         return usuario;
     }
 

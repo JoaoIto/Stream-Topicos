@@ -8,16 +8,16 @@ import jakarta.persistence.*;
 @Embeddable
 public class Pagamento{
     @Column()
-    private Double valor;
+    private Float valor;
 
     @Column()
     private Boolean confirmacaoPagamento;
 
     private LocalDate dataConfirmacaoPagamento;
 
-    public Pagamento(Double valor) {
+    public Pagamento(Float valorTotal) {
 
-        this.valor = valor;
+        this.valor = valorTotal;
         this.confirmacaoPagamento = true;
         this.dataConfirmacaoPagamento = LocalDate.now();
     }
@@ -27,11 +27,11 @@ public class Pagamento{
         this.confirmacaoPagamento = false;
     }
 
-    public Double getValor() {
+    public Float getValor() {
         return valor;
     }
 
-    public void setValor(Double valor) {
+    public void setValor(Float valor) {
         this.valor = valor;
     }
 

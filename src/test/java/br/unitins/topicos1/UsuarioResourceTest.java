@@ -48,7 +48,7 @@ public class UsuarioResourceTest {
     @Test
     public void testUpdate() {
         // Assumindo que o ID 1 existe no banco de dados
-        UsuarioDTO usuarioDTO = new UsuarioDTO("John Updated", "john.updated", "updatedPassword", 1, null);
+        UsuarioDTO usuarioDTO = new UsuarioDTO("John Updated", "john.updated","12312312312", "updatedPassword", 1, null);
 
         given()
             .contentType(ContentType.JSON)
