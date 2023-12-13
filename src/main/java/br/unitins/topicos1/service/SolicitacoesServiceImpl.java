@@ -1,5 +1,6 @@
 package br.unitins.topicos1.service;
 
+import br.unitins.topicos1.dto.GameResponseDTO;
 import br.unitins.topicos1.dto.SolicitacaoResponseDTO;
 import br.unitins.topicos1.model.Duo;
 import br.unitins.topicos1.model.Solicitacao;
@@ -76,8 +77,8 @@ public class SolicitacoesServiceImpl implements SolicitacoesService {
     }
 
     @Override
-    public Solicitacao findById(Long id) {
-        return null;
+    public SolicitacaoResponseDTO findById(Long id) {
+        return SolicitacaoResponseDTO.valueOf(repository.findById(id));
     }
 
     

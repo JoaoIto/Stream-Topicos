@@ -15,7 +15,7 @@ public interface SolicitacoesService {
 
     public List<SolicitacaoResponseDTO> findAll();
 
-    public Solicitacao findById(@PathParam("id") Long id);
+    public SolicitacaoResponseDTO findById(@PathParam("id") Long id);
 
     /*
     

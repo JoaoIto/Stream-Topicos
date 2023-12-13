@@ -3,17 +3,31 @@ package br.unitins.topicos1.model.Pagamento;
 import java.time.LocalDate;
 
 import br.unitins.topicos1.model.DefaultEntity;
+import br.unitins.topicos1.model.Solicitacao;
+import br.unitins.topicos1.model.TipoPagamento;
 import jakarta.persistence.*;
 
-@Embeddable
+@Entity
 public class Pagamento{
+    @Id
+    @GeneratedValue(strategy =
+            GenerationType.IDENTITY)
+    private Long id;
+
     @Column()
     private Float valor;
 
     @Column()
     private Boolean confirmacaoPagamento;
 
+    @Column
+    private TipoPagamento tipoPagamento;
+
     private LocalDate dataConfirmacaoPagamento;
+
+    @ManyToOne
+    @JoinColumn(name = "id_solicitacao")
+    private Solicitacao solicitacao;
 
     public Pagamento(Float valorTotal) {
 
@@ -23,7 +37,6 @@ public class Pagamento{
     }
 
     public Pagamento() {
-
         this.confirmacaoPagamento = false;
     }
 
@@ -39,6 +52,14 @@ public class Pagamento{
         return confirmacaoPagamento;
     }
 
+    public TipoPagamento getTipoPagamento() {
+        return tipoPagamento;
+    }
+
+    public void setTipoPagamento(TipoPagamento tipoPagamento) {
+        this.tipoPagamento = tipoPagamento;
+    }
+
     public void setConfirmacaoPagamento(Boolean confirmacaoPagamento) {
         this.confirmacaoPagamento = confirmacaoPagamento;
     }
@@ -51,4 +72,11 @@ public class Pagamento{
         this.dataConfirmacaoPagamento = dataConfirmacaoPagamento;
     }
 
+    public Solicitacao getSolicitacao() {
+        return solicitacao;
+    }
+
+    public void setSolicitacao(Solicitacao solicitacao) {
+        this.solicitacao = solicitacao;
+    }
 }

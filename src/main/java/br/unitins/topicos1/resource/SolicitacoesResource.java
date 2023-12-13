@@ -1,5 +1,7 @@
 package br.unitins.topicos1.resource;
 
+import br.unitins.topicos1.dto.DuoResponseDTO;
+import br.unitins.topicos1.dto.SolicitacaoResponseDTO;
 import br.unitins.topicos1.model.Pagamento.Pagamento;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.*;
@@ -33,11 +35,19 @@ public class SolicitacoesResource {
 
     private static final Logger LOG = Logger.getLogger(SolicitacoesResource.class);
 
-    @RolesAllowed({"streamer", "Admin"})
+    @RolesAllowed({"User", "Admin"})
     @GET
     public Response findAll() {
         LOG.info("Fazendo busca de todos os duo.");
         return Response.ok(service.findAll()).build();
+    }
+
+    @RolesAllowed({"User", "Admin"})
+    @GET
+    @Path("/{id}")
+    public Response findById(@PathParam("id") Long id) {
+        LOG.info("Fazendo busca de uma solicitacao pelo id.");
+        return Response.ok(service.findById(id)).build();
     }
 
     

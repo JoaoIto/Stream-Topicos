@@ -24,7 +24,7 @@ public class Solicitacao extends DefaultEntity {
     @Column
     private StatusSolicitacao status;
 
-    @Embedded
+    @OneToOne
     private Pagamento pagamento;
 
     public LocalDateTime getDataHora() {
