@@ -1,27 +1,18 @@
 package br.unitins.topicos1.service;
 
-import br.unitins.topicos1.dto.DuoResponseDTO;
 import br.unitins.topicos1.dto.SolicitacaoResponseDTO;
 import br.unitins.topicos1.model.Duo;
 import br.unitins.topicos1.model.Solicitacao;
 import br.unitins.topicos1.model.StatusSolicitacao;
 import br.unitins.topicos1.model.Usuario;
-import br.unitins.topicos1.model.Pagamento.Boleto;
-import br.unitins.topicos1.repository.BoletoRepository;
-import br.unitins.topicos1.repository.CartaoCreditoRepository;
-import br.unitins.topicos1.repository.PixRepository;
 import br.unitins.topicos1.repository.SolicitacaoRepository;
 import br.unitins.topicos1.repository.UsuarioRepository;
 import io.quarkus.security.identity.SecurityIdentity;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import jakarta.validation.ValidationException;
 
-import javax.naming.AuthenticationException;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @ApplicationScoped

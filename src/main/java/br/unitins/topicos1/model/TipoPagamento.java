@@ -7,9 +7,7 @@ public enum TipoPagamento {
 
     DEBITO(1, "Débito"),
     CREDITO(2, "Crédito"),
-    PIX(3, "Pix"),
-    BOLETO(4, "Boleto");
-
+    PIX(3, "Pix");
     private final Integer id;
     private final String label;
 
