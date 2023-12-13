@@ -2,6 +2,7 @@ package br.unitins.topicos1.model;
 
 import java.util.List;
 
+import br.unitins.topicos1.model.Usuario.Usuario;
 import jakarta.persistence.*;
 
 @Entity

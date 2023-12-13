@@ -1,13 +1,12 @@
 package br.unitins.topicos1.resource;
 
-import jakarta.annotation.security.RolesAllowed;
 import org.jboss.logging.Logger;
 
-import br.unitins.topicos1.dto.LoginDTO;
-import br.unitins.topicos1.dto.UsuarioResponseDTO;
-import br.unitins.topicos1.service.HashService;
-import br.unitins.topicos1.service.JwtService;
-import br.unitins.topicos1.service.UsuarioService;
+import br.unitins.topicos1.dto.Login.LoginDTO;
+import br.unitins.topicos1.dto.Usuario.UsuarioResponseDTO;
+import br.unitins.topicos1.service.Hash.HashService;
+import br.unitins.topicos1.service.Jwt.JwtService;
+import br.unitins.topicos1.service.Usuario.UsuarioService;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;

@@ -1,5 +1,6 @@
 package br.unitins.topicos1.model;
 
+import br.unitins.topicos1.model.Solicitacao.Solicitacao;
 import jakarta.persistence.*;
 
 import java.util.List;

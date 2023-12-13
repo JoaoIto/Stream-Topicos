@@ -4,9 +4,9 @@ import static io.restassured.RestAssured.given;
 
 import org.junit.jupiter.api.Test;
 
-import br.unitins.topicos1.dto.GameDTO;
-import br.unitins.topicos1.service.GameService;
-import br.unitins.topicos1.service.JwtService;
+import br.unitins.topicos1.dto.Game.GameDTO;
+import br.unitins.topicos1.service.Game.GameService;
+import br.unitins.topicos1.service.Jwt.JwtService;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
 import jakarta.inject.Inject;

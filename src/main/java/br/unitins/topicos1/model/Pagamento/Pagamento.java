@@ -2,9 +2,7 @@ package br.unitins.topicos1.model.Pagamento;
 
 import java.time.LocalDate;
 
-import br.unitins.topicos1.model.DefaultEntity;
-import br.unitins.topicos1.model.Solicitacao;
-import br.unitins.topicos1.model.TipoPagamento;
+import br.unitins.topicos1.model.Solicitacao.Solicitacao;
 import jakarta.persistence.*;
 
 @Entity

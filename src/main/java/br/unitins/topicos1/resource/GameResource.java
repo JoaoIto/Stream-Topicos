@@ -1,12 +1,11 @@
 package br.unitins.topicos1.resource;
 
 
-import br.unitins.topicos1.dto.GameDTO;
-import br.unitins.topicos1.dto.GameResponseDTO;
+import br.unitins.topicos1.dto.Game.GameDTO;
+import br.unitins.topicos1.dto.Game.GameResponseDTO;
 import br.unitins.topicos1.form.GameImageForm;
-import br.unitins.topicos1.service.GameFileService;
-import br.unitins.topicos1.service.GameService;
-import br.unitins.topicos1.service.UsuarioService;
+import br.unitins.topicos1.service.Game.GameFileService;
+import br.unitins.topicos1.service.Game.GameService;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -23,7 +22,6 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
-import jakarta.ws.rs.core.Response.Status;
 
 import java.io.IOException;
 

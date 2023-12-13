@@ -1,8 +1,8 @@
 package br.unitins.topicos1.resource;
 
-import br.unitins.topicos1.dto.StreamDTO;
-import br.unitins.topicos1.dto.StreamResponseDTO;
-import br.unitins.topicos1.service.StreamService;
+import br.unitins.topicos1.dto.Stream.StreamDTO;
+import br.unitins.topicos1.dto.Stream.StreamResponseDTO;
+import br.unitins.topicos1.service.Stream.StreamService;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;

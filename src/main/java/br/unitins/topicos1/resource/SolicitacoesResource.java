@@ -1,16 +1,12 @@
 package br.unitins.topicos1.resource;
 
-import br.unitins.topicos1.dto.DuoResponseDTO;
-import br.unitins.topicos1.dto.SolicitacaoResponseDTO;
-import br.unitins.topicos1.model.Pagamento.Pagamento;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.*;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
-import br.unitins.topicos1.model.Usuario;
-import br.unitins.topicos1.service.SolicitacoesService;
-import br.unitins.topicos1.service.UsuarioService;
-import br.unitins.topicos1.service.UsuarioServiceImpl;
+import br.unitins.topicos1.service.Solicitacoes.SolicitacoesService;
+import br.unitins.topicos1.service.Usuario.UsuarioService;
+import br.unitins.topicos1.service.Usuario.UsuarioServiceImpl;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;

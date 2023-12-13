@@ -1,17 +1,13 @@
 package br.unitins.topicos1;
 
-import br.unitins.topicos1.dto.UsuarioResponseDTO;
-import br.unitins.topicos1.model.Perfil;
-import br.unitins.topicos1.model.Usuario;
-import br.unitins.topicos1.service.JwtService;
+import br.unitins.topicos1.service.Jwt.JwtService;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 import static org.hamcrest.CoreMatchers.is;
 
-import br.unitins.topicos1.dto.TelefoneDTO;
-import br.unitins.topicos1.dto.UsuarioDTO;
-import br.unitins.topicos1.service.UsuarioService;
+import br.unitins.topicos1.dto.Usuario.UsuarioDTO;
+import br.unitins.topicos1.service.Usuario.UsuarioService;
 import jakarta.inject.Inject;
 import static io.restassured.RestAssured.given;
 @QuarkusTest

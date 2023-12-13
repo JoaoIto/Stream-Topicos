@@ -4,20 +4,16 @@ import static io.restassured.RestAssured.given;
 
 import org.junit.jupiter.api.Test;
 
-import br.unitins.topicos1.dto.CadastroDTO;
-import br.unitins.topicos1.service.CadastroService;
-import br.unitins.topicos1.service.JwtService;
-import br.unitins.topicos1.service.UsuarioService;
+import br.unitins.topicos1.dto.Cadastro.CadastroDTO;
+import br.unitins.topicos1.service.Cadastro.CadastroService;
+import br.unitins.topicos1.service.Jwt.JwtService;
 import io.restassured.http.ContentType;
 import jakarta.inject.Inject;
 
-import br.unitins.topicos1.service.JwtService;
 import io.quarkus.test.junit.QuarkusTest;
-import io.restassured.http.ContentType;
-import org.junit.jupiter.api.Test;
+
 import static org.hamcrest.CoreMatchers.is;
 
-import jakarta.inject.Inject;
 import static io.restassured.RestAssured.given;
 
 @QuarkusTest
