@@ -5,6 +5,7 @@ import br.unitins.topicos1.dto.PagamentoResponseDTO;
 import br.unitins.topicos1.dto.PixDTO;
 import br.unitins.topicos1.model.Pagamento.Pagamento;
 import br.unitins.topicos1.model.Solicitacao;
+import br.unitins.topicos1.model.StatusSolicitacao;
 import br.unitins.topicos1.model.TipoPagamento;
 import br.unitins.topicos1.repository.PagamentoRepository;
 import br.unitins.topicos1.repository.SolicitacaoRepository;
@@ -35,6 +36,7 @@ public class PagamentoServiceImpl implements PagamentoService{
         pagamento.setDataConfirmacaoPagamento(LocalDate.now());
         pagamento.setSolicitacao(solicitacao);
 
+        solicitacao.setStatus(StatusSolicitacao.ACEITA);
         repository.persist(pagamento);
         return PagamentoResponseDTO.valueOf(pagamento);
     }
@@ -51,7 +53,7 @@ public class PagamentoServiceImpl implements PagamentoService{
         pagamento.setValor(solicitacao.getValorTotal());
         pagamento.setDataConfirmacaoPagamento(LocalDate.now());
         pagamento.setSolicitacao(solicitacao);
-
+        solicitacao.setStatus(StatusSolicitacao.ACEITA);
         repository.persist(pagamento);
         return PagamentoResponseDTO.valueOf(pagamento);
     }
