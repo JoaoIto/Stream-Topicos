@@ -1,6 +1,8 @@
 package br.unitins.topicos1.resource;
 
+import br.unitins.topicos1.model.Pagamento.Pagamento;
 import jakarta.annotation.security.RolesAllowed;
+import jakarta.ws.rs.*;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
 import br.unitins.topicos1.model.Usuario;
@@ -8,11 +10,6 @@ import br.unitins.topicos1.service.SolicitacoesService;
 import br.unitins.topicos1.service.UsuarioService;
 import br.unitins.topicos1.service.UsuarioServiceImpl;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.PATCH;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.jboss.logging.Logger;
