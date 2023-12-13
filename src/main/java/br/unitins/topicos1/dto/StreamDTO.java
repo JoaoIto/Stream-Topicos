@@ -13,9 +13,10 @@ public class StreamDTO {
     private Float custoStream;
 
 
-    public StreamDTO(String nome, Long idUsuario) {
+    public StreamDTO(String nome, Long idUsuario, Float custoStream) {
         this.nome = nome;
         this.idUsuario = idUsuario;
+        this.custoStream = custoStream;
     }
 
     public StreamDTO() {

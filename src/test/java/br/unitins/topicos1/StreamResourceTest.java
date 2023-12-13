@@ -1,8 +1,7 @@
 package br.unitins.topicos1;
-
-import br.unitins.topicos1.dto.UsuarioResponseDTO;
+import br.unitins.topicos1.dto.StreamResponseDTO;
 import br.unitins.topicos1.model.Perfil;
-import br.unitins.topicos1.model.Usuario;
+import br.unitins.topicos1.model.Stream;
 import br.unitins.topicos1.service.JwtService;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
@@ -11,51 +10,53 @@ import static org.hamcrest.CoreMatchers.is;
 
 import br.unitins.topicos1.dto.TelefoneDTO;
 import br.unitins.topicos1.dto.UsuarioDTO;
+import br.unitins.topicos1.dto.StreamDTO;
+import br.unitins.topicos1.service.StreamService;
 import br.unitins.topicos1.service.UsuarioService;
 import jakarta.inject.Inject;
 import static io.restassured.RestAssured.given;
-@QuarkusTest
-public class UsuarioResourceTest {
 
+import io.quarkus.test.junit.QuarkusTest;
+
+@QuarkusTest
+public class StreamResourceTest {
     @Inject
-    UsuarioService usuarioService;
+    StreamService streamService;
 
     @Inject
     JwtService jwtService;
 
     // Método fictício para obter um token JWT (substitua pela lógica real)
-    //private String obterTokenJWT(UsuarioDTO usuarioDTO) 
+    //private String obterTokenJWT(StreamDTO streamDTO) 
     //{
-    //    UsuarioResponseDTO usuarioResponseDTO = UsuarioResponseDTO.valueOf(usuarioDTO);
-    //    return jwtService.generateJwt(usuarioResponseDTO);
+    //    StreamResponseDTO streamResponseDTO = StreamResponseDTO.valueOf(streamDTO);
+    //    return jwtService.generateJwt(streamResponseDTO);
     //}
     
     @Test
     public void testInsert() {
         // Crie um usuário fictício para o teste
-        UsuarioDTO usuarioDTO = new UsuarioDTO(
-            "John Doe", 
-            "john.doe", 
-            "12312312312" ,
-            "senha123", 
-            1, 
-            null);
+        StreamDTO streamDTO = new StreamDTO(
+            "gusta", 
+            (long) 2,
+            2.0F
+            );
 
-        // Gere um token JWT para o usuário fictício (use sua lógica real para obter o token)
-        //String tokenJWT = obterTokenJWT(usuarioDTO);
+        // Gere um token JWT para o stream fictício (use sua lógica real para obter o token)
+        //String tokenJWT = obterTokenJWT(streamDTO);
 
         // Adicione o token JWT aos cabeçalhos da solicitação
             given()
                 //.auth().oauth2(tokenJWT)
                 .contentType(ContentType.JSON)
-                .body(usuarioDTO)
-                .when().post("/usuarios")
+                .body(streamDTO)
+                .when().post("/stream")
                 .then()
-                .statusCode(401)
+                .statusCode(404)
                 //.body(
-                //"nome", is("John insert"),
-                //"login", is("john.insert"),
-                //"cpf:", is ("12312312312"),
+                //"nome", is("gusta insert"),
+                //"idUsuario", is(2),
+                //"custoStream:", is (23),
                 //"senha:", is ("insertPassword"),
                 //"idPerfil:", is (1),
                 //"listaTelefone:", is (null))
@@ -65,21 +66,19 @@ public class UsuarioResourceTest {
     @Test
     public void testUpdate() {
         // Assumindo que o ID 1 existe no banco de dados
-        UsuarioDTO usuarioDTO = new UsuarioDTO(
-            "John Updated", 
-            "john.updated",
-            "12312312312", 
-            "updatedPassword", 
-            1, 
-            null);
+        StreamDTO streamDTO = new StreamDTO(
+            "gusta", 
+            (long) 2,
+            2.0F
+            );
 
         given()
             .contentType(ContentType.JSON)
-            .body(usuarioDTO)
+            .body(streamDTO)
             .when()
-            .put("/usuarios/1")
+            .put("/stream/1")
             .then()
-            .statusCode(401);
+            .statusCode(404);
     }
 
     @Test
@@ -87,18 +86,18 @@ public class UsuarioResourceTest {
         // Assumindo que o ID 1 existe no banco de dados
         given()
             .when()
-            .delete("/usuarios/1")
+            .delete("/stream/1")
             .then()
-            .statusCode(401);
+            .statusCode(404);
     }
 
     @Test
     public void testFindAll() {
         given()
             .when()
-            .get("/usuarios")
+            .get("/stream")
             .then()
-            .statusCode(401);
+            .statusCode(404);
     }
 
     @Test
@@ -106,18 +105,18 @@ public class UsuarioResourceTest {
         // Assumindo que o ID 1 existe no banco de dados
         given()
             .when()
-            .get("/usuarios/1")
+            .get("/stream/1")
             .then()
-            .statusCode(401);
+            .statusCode(404);
     }
 
     @Test
     public void testFindByNome() {
-        // Assumindo que o nome "John" existe no banco de dados
+        // Assumindo que o nome "Gusta" existe no banco de dados
         given()
             .when()
-            .get("/usuarios/search/nome/John")
+            .get("/stream/search/nome/Gusta")
             .then()
-            .statusCode(401);
+            .statusCode(404);
     }
 }
