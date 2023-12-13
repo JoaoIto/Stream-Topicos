@@ -21,7 +21,7 @@ public class PagamentoResouce {
     @Inject
     PagamentoService service;
 
-    private static final Logger LOG = Logger.getLogger(GameResource.class);
+    private static final Logger LOG = Logger.getLogger(PagamentoResouce.class);
 
     @Path("/pix")
     @RolesAllowed({"User"})
@@ -39,6 +39,7 @@ public class PagamentoResouce {
     @Transactional
     public Response postCartaoPagamento(@Valid CartaoCreditoDTO dto) {
         LOG.info("Fazendo pagamento via cartao");
+        LOG.info("A partir da solicitacao de id: " + dto.idSolicitacao());
         PagamentoResponseDTO responseDTO = service.pagarCartaoCredito(dto);
         return Response.status(Response.Status.CREATED).entity(responseDTO).build();
     }

@@ -24,11 +24,11 @@ public class Usuario extends DefaultEntity {
     private Perfil perfil;
 
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinTable(name = "usuario_telefone", joinColumns = @JoinColumn(name = "id_usuario"), inverseJoinColumns = @JoinColumn(name = "id_telefone"))
     private List<Telefone> listaTelefone;
 
-    @OneToMany(mappedBy = "nomeUsuario", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "nomeUsuario")
     private List<Stream> streams;
 
     public String getNome() {

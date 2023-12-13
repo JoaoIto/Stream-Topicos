@@ -6,7 +6,11 @@ import java.time.LocalDateTime;
 import br.unitins.topicos1.model.Pagamento.Pagamento;
 
 @Entity
-public class Solicitacao extends DefaultEntity {
+public class Solicitacao {
+    @Id
+    @GeneratedValue(strategy =
+            GenerationType.IDENTITY)
+    private Long id;
 
     private LocalDateTime dataHora;
 
@@ -25,7 +29,12 @@ public class Solicitacao extends DefaultEntity {
     private StatusSolicitacao status;
 
     @OneToOne
+    @JoinColumn(name = "id_pagamento", unique = true)
     private Pagamento pagamento;
+
+    public Long getId() {
+        return id;
+    }
 
     public LocalDateTime getDataHora() {
         return dataHora;

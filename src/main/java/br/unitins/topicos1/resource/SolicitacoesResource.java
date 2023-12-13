@@ -38,7 +38,7 @@ public class SolicitacoesResource {
     @RolesAllowed({"User", "Admin"})
     @GET
     public Response findAll() {
-        LOG.info("Fazendo busca de todos os duo.");
+        LOG.info("Fazendo busca de todos as solicitacoes.");
         return Response.ok(service.findAll()).build();
     }
 

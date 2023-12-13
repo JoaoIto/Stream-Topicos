@@ -25,7 +25,7 @@ public class Pagamento{
 
     private LocalDate dataConfirmacaoPagamento;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "id_solicitacao")
     private Solicitacao solicitacao;
 

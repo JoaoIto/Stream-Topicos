@@ -40,3 +40,23 @@ insert into game (nome, categoria) values ('Fortnite', 'Battle Royale');
 insert into game (nome, categoria) values ('Valorant', 'FPS');
 insert into game (nome, categoria) values ('Free Fire', 'Muito ruim');
 insert into game (nome, categoria) values ('Minecraft', 'Exploração e sobrevivência');
+
+-- -- Duo 1: Stream 1, 2 horas, Fortnite + Free Fire
+-- INSERT INTO duo(quantidadeHoras, id_stream) VALUES (2, 1);
+--
+-- -- Duo 2: Stream 2, 3 horas, Valorant + Minecraft
+-- INSERT INTO duo(quantidadeHoras, id_stream) VALUES (3, 2);
+--
+-- -- Duo 3: Stream 1, 1 hora, Fortnite + Minecraft
+-- INSERT INTO duo(quantidadeHoras, id_stream) VALUES (1, 1);
+--
+-- -- Solicitação 1: Usuário 1, Duo 1, Aguardando pagamento
+-- INSERT INTO solicitacao(dataHora, id_usuario, id_duo, valorTotal, status) VALUES (NOW(), 1, 1, 400, 1);
+--
+-- -- Solicitação 2: Usuário 2, Duo 2, Pago
+-- INSERT INTO solicitacao(dataHora, id_usuario, id_duo, valorTotal, status) VALUES (NOW(), 2, 2, 600, 1);
+--
+-- -- Solicitação 3: Usuário 3, Duo 3, Aguardando confirmação
+-- INSERT INTO solicitacao(dataHora, id_usuario, id_duo, valorTotal, status) VALUES (NOW(), 3, 3, 200, 1);
+
+

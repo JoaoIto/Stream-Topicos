@@ -14,7 +14,7 @@ public class Duo {
     @Column
     private Integer quantidadeHoras;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn(name = "id_stream")
     private Stream stream;
 
@@ -22,8 +22,7 @@ public class Duo {
     @JoinColumn(name = "id_solicitacao", unique = true)
     private Solicitacao solicitacao;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(name = "duo_game", joinColumns = @JoinColumn(name = "id_duo"), inverseJoinColumns = @JoinColumn(name = "id_game"))
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Game> listaGame;
 
     public Long getId() {
