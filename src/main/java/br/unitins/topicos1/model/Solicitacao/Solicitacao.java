@@ -2,6 +2,7 @@ package br.unitins.topicos1.model.Solicitacao;
 
 import br.unitins.topicos1.model.Duo;
 import br.unitins.topicos1.model.Usuario.Usuario;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -20,7 +21,7 @@ public class Solicitacao {
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_duo")
     private Duo duo;
 
@@ -32,6 +33,7 @@ public class Solicitacao {
 
     @OneToOne
     @JoinColumn(name = "id_pagamento", unique = true)
+    @JsonIgnore
     private Pagamento pagamento;
 
     public Long getId() {

@@ -10,6 +10,8 @@ import br.unitins.topicos1.model.Solicitacao.StatusSolicitacao;
 import br.unitins.topicos1.repository.PagamentoRepository;
 import br.unitins.topicos1.repository.SolicitacaoRepository;
 import br.unitins.topicos1.service.Pagamento.PagamentoService;
+import br.unitins.topicos1.service.Solicitacoes.SolicitacoesService;
+import io.quarkus.logging.Log;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
@@ -23,6 +25,9 @@ public class PagamentoServiceImpl implements PagamentoService {
 
     @Inject
     SolicitacaoRepository solicitacaoRepository;
+    @Inject
+    SolicitacoesService solicitacoesService;
+
 
     @Override
     public PagamentoResponseDTO pagarPix(PixDTO dto) {
@@ -39,6 +44,7 @@ public class PagamentoServiceImpl implements PagamentoService {
 
         solicitacao.setStatus(StatusSolicitacao.ACEITA);
         repository.persist(pagamento);
+        solicitacoesService.atualizarSolicitacao(dto.idSolicitacao(), pagamento.getId());
         return PagamentoResponseDTO.valueOf(pagamento);
     }
 

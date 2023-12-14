@@ -4,11 +4,7 @@ import java.util.List;
 
 import br.unitins.topicos1.model.DefaultEntity;
 import br.unitins.topicos1.model.Stream;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 @Entity
 public class Usuario extends DefaultEntity {
@@ -26,7 +22,7 @@ public class Usuario extends DefaultEntity {
     @JoinTable(name = "usuario_telefone", joinColumns = @JoinColumn(name = "id_usuario"), inverseJoinColumns = @JoinColumn(name = "id_telefone"))
     private List<Telefone> listaTelefone;
 
-    @OneToMany(mappedBy = "nomeUsuario")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Stream> streams;
 
     public String getNome() {

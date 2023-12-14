@@ -28,10 +28,17 @@ public class Pagamento{
     private Solicitacao solicitacao;
 
     public Pagamento(Float valorTotal) {
-
         this.valor = valorTotal;
         this.confirmacaoPagamento = true;
         this.dataConfirmacaoPagamento = LocalDate.now();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Pagamento() {
