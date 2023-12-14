@@ -26,7 +26,7 @@ public class PagamentoResouce {
     private static final Logger LOG = Logger.getLogger(PagamentoResouce.class);
 
     @Path("/pix")
-    @RolesAllowed({"User"})
+    @RolesAllowed({"Admin", "User"})
     @POST
     @Transactional
     public Response postPixPagamento(@Valid PixDTO dto) {
@@ -36,7 +36,7 @@ public class PagamentoResouce {
     }
 
     @Path("/cartao")
-    @RolesAllowed({"User"})
+    @RolesAllowed({"Admin","User"})
     @POST
     @Transactional
     public Response postCartaoPagamento(@Valid CartaoCreditoDTO dto) {
