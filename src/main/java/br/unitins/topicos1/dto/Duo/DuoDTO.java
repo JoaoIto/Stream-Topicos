@@ -15,9 +15,10 @@ public class DuoDTO {
     private Integer quantidadeHoras;
 
     
-    public DuoDTO(@NotBlank Long idStream, @NotBlank List<Long> idGames) {
+    public DuoDTO(@NotBlank Long idStream, @NotBlank List<Long> idGames, @NotBlank Integer quantidadeHoras) {
         this.idStream = idStream;
         this.idGames = idGames;
+        this.quantidadeHoras = quantidadeHoras;
     }
 
     public Long getIdStream() {
