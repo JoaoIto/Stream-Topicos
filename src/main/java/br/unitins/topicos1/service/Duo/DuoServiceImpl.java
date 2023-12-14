@@ -129,7 +129,7 @@ public class DuoServiceImpl implements DuoService {
 
     @Override
     public Duo findById(Long id) {
-        return null;
+        return repository.findById(id);
     }
 
     @Override

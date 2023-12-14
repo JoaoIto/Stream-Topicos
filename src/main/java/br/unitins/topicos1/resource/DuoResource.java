@@ -47,8 +47,8 @@ public class DuoResource {
         DuoResponseDTO responseDTO = duoService.update(dto, id);
         return Response.ok(responseDTO).build();
     }
-    @RolesAllowed({"Admin"})
 
+    @RolesAllowed({"streamer", "Admin"})
     @DELETE
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id) {
