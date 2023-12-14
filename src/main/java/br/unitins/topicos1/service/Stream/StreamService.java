@@ -7,8 +7,8 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 public interface StreamService {
-    StreamResponseDTO insert(@Valid StreamDTO dto);
-    StreamResponseDTO update(StreamDTO dto, Long id);
+    StreamResponseDTO insert(String login, @Valid StreamDTO dto);
+    StreamResponseDTO update(String login, StreamDTO dto, Long id);
     void delete(Long id);
     StreamResponseDTO findById(Long id);
     List<StreamResponseDTO> findByNome(String nome);

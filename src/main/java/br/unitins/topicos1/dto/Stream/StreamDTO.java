@@ -8,14 +8,11 @@ public class StreamDTO {
     @NotNull
     private String nome;
     @NotNull
-    private Long idUsuario;
-    @NotNull
     private Float custoStream;
 
 
     public StreamDTO(String nome, Long idUsuario, Float custoStream) {
         this.nome = nome;
-        this.idUsuario = idUsuario;
         this.custoStream = custoStream;
     }
 
@@ -25,10 +22,6 @@ public class StreamDTO {
 
     public String getNome() {
         return nome;
-    }
-
-    public Long getIdUsuario() {
-        return idUsuario;
     }
 
     public Float getCustoStream() {
@@ -44,11 +37,11 @@ public class StreamDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StreamDTO streamDTO = (StreamDTO) o;
-        return Objects.equals(nome, streamDTO.nome) && Objects.equals(idUsuario, streamDTO.idUsuario);
+        return Objects.equals(nome, streamDTO.nome) && Objects.equals(custoStream, streamDTO.custoStream);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nome, idUsuario);
+        return Objects.hash(nome, custoStream);
     }
 }

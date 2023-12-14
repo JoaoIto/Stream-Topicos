@@ -8,6 +8,7 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 
 import java.util.logging.Logger;
 
@@ -19,13 +20,17 @@ public class StreamResource {
     @Inject
     StreamService streamService;
 
+    @Inject
+    JsonWebToken jwt;
+
     private static final Logger LOG = Logger.getLogger(String.valueOf(StreamResource.class));
 
-    @RolesAllowed({"streamer"})
+    @RolesAllowed({"Admin", "streamer"})
     @POST
     public Response insert(StreamDTO dto) {
         LOG.info("Fazendo post de um stream.");
-        StreamResponseDTO responseDTO = streamService.insert(dto);
+        String login = jwt.getSubject();
+        StreamResponseDTO responseDTO = streamService.insert(login, dto);
         return Response.status(Response.Status.CREATED).entity(responseDTO).build();
     }
     @RolesAllowed({"streamer", "Admin"})
@@ -34,7 +39,8 @@ public class StreamResource {
     @Path("/{id}")
     public Response update(@PathParam("id") Long id, StreamDTO dto) {
         LOG.info("Fazendo update de um stream pelo id.");
-        StreamResponseDTO responseDTO = streamService.update(dto, id);
+        String login = jwt.getSubject();
+        StreamResponseDTO responseDTO = streamService.update(login, dto, id);
         if (responseDTO != null) {
             return Response.ok(responseDTO).build();
         } else {

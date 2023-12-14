@@ -5,6 +5,7 @@ import br.unitins.topicos1.dto.Stream.StreamResponseDTO;
 import br.unitins.topicos1.model.Stream;
 import br.unitins.topicos1.model.Usuario.Usuario;
 import br.unitins.topicos1.repository.StreamRepository;
+import br.unitins.topicos1.repository.UsuarioRepository;
 import br.unitins.topicos1.service.Stream.StreamService;
 import io.quarkus.security.identity.SecurityIdentity;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -22,23 +23,23 @@ public class StreamServiceImpl implements StreamService {
     @Inject
     StreamRepository repository;
 
+    @Inject
+    UsuarioRepository usuarioRepository;
+
     @Override
     @Transactional
-    public StreamResponseDTO insert(StreamDTO dto) {
+    public StreamResponseDTO insert(String login, StreamDTO dto) {
         Stream stream = new Stream();
         stream.setNome(dto.getNome());
-        // Verifique se o id do usuário foi fornecido
-        if (dto.getIdUsuario() != null) {
-            Usuario usuarioAutenticado = (Usuario) securityIdentity.getPrincipal();
-            stream.setNomeUsuario(usuarioAutenticado);
-        }
+        Usuario usuarioAutenticado = usuarioRepository.findByLogin(login);
+        stream.setNomeUsuario(usuarioAutenticado);
         repository.persist(stream);
         return StreamResponseDTO.valueOf(stream);
     }
 
     @Override
     @Transactional
-    public StreamResponseDTO update(StreamDTO dto, Long id) {
+    public StreamResponseDTO update(String login, StreamDTO dto, Long id) {
         Stream stream = repository.findById(id);
         if (stream == null) {
             // Lidar com o caso em que o Stream não foi encontrado, por exemplo, lançar uma exceção
@@ -47,12 +48,9 @@ public class StreamServiceImpl implements StreamService {
 
         // Atualize os campos do Stream com base nos dados do DTO
         stream.setNome(dto.getNome());
-        if (dto.getIdUsuario() != null) {
-            // Crie uma instância parcial de Usuario com apenas o id
-            Usuario usuario = new Usuario();
-            usuario.setId(dto.getIdUsuario());
-            stream.setNomeUsuario(usuario);
-        }
+        Usuario usuarioAutenticado = usuarioRepository.findByLogin(login);
+        stream.setNomeUsuario(usuarioAutenticado);
+
         // Outros campos a serem atualizados
 
         // Salve as alterações no repositório
