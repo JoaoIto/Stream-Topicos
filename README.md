@@ -11,6 +11,87 @@ E dessa forma temos a venda de um serviço dessa plataforma de stream!
 
 ---
 
+## UML:
+
+````plantuml
+@startuml
+class Usuario {
+  +id: Long
+  +nome: String
+  +login: String
+  +cpf: String
+  +senha: String
+  +perfil: Perfil
+  +listaTelefone: List<Telefone>
+  +streams: List<Stream>
+}
+
+class Stream {
+  +id: Long
+  +nome: String
+  +nomeUsuario: Usuario
+  +duos: List<Duo>
+  +precoStream: Float
+}
+
+class Game {
+  +id: Long
+  +nome: String
+  +categoria: String
+  +nomeImagem: String
+}
+
+class Duo {
+  +id: Long
+  +quantidadeHoras: Integer
+  +stream: Stream
+  +solicitacao: Solicitacao
+  +listaGame: List<Game>
+  +calcularCustoTotal(): Float
+}
+
+class Solicitacao {
+  +id: Long
+  +dataHora: LocalDateTime
+  +usuario: Usuario
+  +duo: Duo
+  +valorTotal: Float
+  +status: StatusSolicitacao
+  +pagamento: Pagamento
+}
+
+class Pagamento {
+  +id: Long
+  +valor: Float
+  +confirmacaoPagamento: Boolean
+  +tipoPagamento: TipoPagamento
+  +dataConfirmacaoPagamento: LocalDate
+  +solicitacao: Solicitacao
+}
+
+enum Perfil {
+  ADMIN, USUARIO
+}
+
+enum StatusSolicitacao {
+  AGUARDANDO, PAGO, REJEITADO
+}
+
+enum TipoPagamento {
+  CARTAO_CREDITO, BOLETO
+}
+
+Usuario "1" --o "n" Stream
+Stream "1" --o "n" Duo
+Duo "1" --o "1" Solicitacao
+Solicitacao "1" --o "1" Pagamento
+
+@enduml
+
+````
+
+---
+
 ## Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:
