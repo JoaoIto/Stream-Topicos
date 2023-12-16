@@ -14,6 +14,7 @@ public record PagamentoResponseDTO(
         TipoPagamento tipoPagamento,
         SolicitacaoResponseDTO solicitacaoResponseDTO
 ) {
+
     public static PagamentoResponseDTO valueOf(Pagamento pagamento){
         return new PagamentoResponseDTO(
                 pagamento.getValor(),

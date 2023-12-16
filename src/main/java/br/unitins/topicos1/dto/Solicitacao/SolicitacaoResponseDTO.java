@@ -1,6 +1,8 @@
 package br.unitins.topicos1.dto.Solicitacao;
 
 import br.unitins.topicos1.dto.Duo.DuoResponseDTO;
+import br.unitins.topicos1.dto.Pagamento.PagamentoResponseDTO;
+import br.unitins.topicos1.dto.Pagamento.PagamentoToSolicitacaoResponseDTO;
 import br.unitins.topicos1.model.Solicitacao.Solicitacao;
 import br.unitins.topicos1.model.Pagamento.Pagamento;
 import br.unitins.topicos1.model.Solicitacao.StatusSolicitacao;
@@ -10,7 +12,7 @@ public record SolicitacaoResponseDTO(
         DuoResponseDTO duo,
         Float valorTotal,
         StatusSolicitacao status,
-        Pagamento pagamento
+        PagamentoToSolicitacaoResponseDTO pagamento
 ) {
     public static SolicitacaoResponseDTO valueOf(Solicitacao solicitacao) {
         return new SolicitacaoResponseDTO(
@@ -18,7 +20,7 @@ public record SolicitacaoResponseDTO(
                 DuoResponseDTO.valueOf(solicitacao.getDuo()),
                 solicitacao.getDuo().calcularCustoTotal(),
                 solicitacao.getStatus(),
-                solicitacao.getPagamento()
+                solicitacao.getPagamento() != null ? PagamentoToSolicitacaoResponseDTO.valueOf(solicitacao) : null
         );
     }
 }
