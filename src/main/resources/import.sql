@@ -1,21 +1,5 @@
 -- This file allow to write SQL commands that will be emitted in test and dev.
 -- The commands are commented as their support depends of the database
--- insert into myentity (id, field) values(1, 'field-1');
--- insert into myentity (id, field) values(2, 'field-2');
--- insert into myentity (id, field) values(3, 'field-3');
--- alter sequence myentity_seq restart with 4;
---
---insert into estado (nome, sigla, version) values('Tocantins', 'TO', 0);
---insert into estado (nome, sigla, version) values('Goiás', 'GO', 0);
---insert into estado (nome, sigla, version) values('Rio de Janeiro', 'RJ', 0);
---insert into estado (nome, sigla, version) values('São Paulo', 'SP', 0);
-
---insert into cidade (nome, id_estado) values('Palmas', 1);
---insert into cidade (nome, id_estado) values('Paraiso', 1);
---insert into cidade (nome, id_estado) values('Porto Nacional', 1);
---insert into cidade (nome, id_estado) values('Goiania', 2);
---insert into cidade (nome, id_estado) values('Rio de Janeiro', 3);
---insert into cidade (nome, id_estado) values('São Paulo', 4);
 
 insert into usuario (nome, login, senha, perfil) values('Elon Musk', 'musk', '8NYXRw9jrvRsObmz99SXDxMWeMXiBZx0vLYuc2yRU/gQAtSYbZJRKx2fNdXkaeJ7dIv3mGQLpH2qUgTK0QfDSg==', 1);
 insert into usuario (nome, login, senha, perfil) values('Bill Gates', 'gates', '7lz1xGG9KoOuSAENChquqUOTGeSlX4N7r0lp0ZjMulXXUl58jp76n1QOZOhUnEUdbXZeo95sgE9Hz7penJz1FQ==', 2);
