@@ -33,6 +33,7 @@ public class StreamServiceImpl implements StreamService {
         stream.setNome(dto.getNome());
         Usuario usuarioAutenticado = usuarioRepository.findByLogin(login);
         stream.setNomeUsuario(usuarioAutenticado);
+        stream.setPrecoStream(dto.getCustoStream());
         repository.persist(stream);
         return StreamResponseDTO.valueOf(stream);
     }
@@ -50,7 +51,7 @@ public class StreamServiceImpl implements StreamService {
         stream.setNome(dto.getNome());
         Usuario usuarioAutenticado = usuarioRepository.findByLogin(login);
         stream.setNomeUsuario(usuarioAutenticado);
-
+        stream.setPrecoStream(dto.getCustoStream());
         // Outros campos a serem atualizados
 
         // Salve as alterações no repositório
