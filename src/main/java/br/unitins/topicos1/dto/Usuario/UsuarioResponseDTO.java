@@ -11,6 +11,8 @@ public record UsuarioResponseDTO(
     String nome,
     String login,
 
+    String senha,
+
     String cpf,
     Perfil perfil,
     List<TelefoneDTO> listaTelefone
@@ -22,6 +24,7 @@ public record UsuarioResponseDTO(
             usuario.getId(), 
             usuario.getNome(),
             usuario.getLogin(),
+                usuario.getSenha(),
                 usuario.getCpf(),
             usuario.getPerfil(),
                 Optional.ofNullable(usuario.getListaTelefone())

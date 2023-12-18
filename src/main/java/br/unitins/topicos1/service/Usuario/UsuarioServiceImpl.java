@@ -6,6 +6,7 @@ import java.util.List;
 import br.unitins.topicos1.dto.Usuario.TelefoneDTO;
 import br.unitins.topicos1.dto.Usuario.UsuarioDTO;
 import br.unitins.topicos1.dto.Usuario.UsuarioResponseDTO;
+import br.unitins.topicos1.dto.Usuario.alterarSenhaUsuarioDTO;
 import br.unitins.topicos1.model.Usuario.Perfil;
 import br.unitins.topicos1.model.Usuario.Telefone;
 import br.unitins.topicos1.model.Usuario.Usuario;
@@ -13,10 +14,12 @@ import br.unitins.topicos1.repository.UsuarioRepository;
 import br.unitins.topicos1.service.Hash.HashService;
 import br.unitins.topicos1.service.Usuario.UsuarioService;
 import br.unitins.topicos1.validation.ValidationException;
+import io.quarkus.logging.Log;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import jakarta.ws.rs.NotFoundException;
 
 @ApplicationScoped
 public class UsuarioServiceImpl implements UsuarioService {
@@ -67,14 +70,36 @@ public class UsuarioServiceImpl implements UsuarioService {
     public UsuarioResponseDTO update(UsuarioDTO dto, Long id) {
         Usuario usuario = repository.findById(id);
         usuario.setNome(dto.nome());
-        usuario.setSenha(dto.senha());
+        usuario.setSenha(hashService.getHashSenha(dto.senha()));
+
+        repository.persist(usuario);
         
         return UsuarioResponseDTO.valueOf(usuario);
     }
 
     @Override
     @Transactional
+    public UsuarioResponseDTO alterarSenha(alterarSenhaUsuarioDTO alterarSenhaUsuarioDTO, String login) {
+        Usuario usuario = repository.findByLogin(login);
+        Log.info("Senha antiga: "+ usuario.getSenha());
+        usuario.setSenha(hashService.getHashSenha(alterarSenhaUsuarioDTO.senha()));
+        Log.info("Senha nova: "+ usuario.getSenha());
+        Log.info("Senha alterada com sucesso!");
+        repository.persist(usuario);
+
+        return UsuarioResponseDTO.valueOf(usuario);
+    }
+
+    @Override
+    @Transactional
     public void delete(Long id) {
+        Usuario usuario = repository.findById(id);
+
+        if(usuario != null){
+            repository.delete(usuario);
+        }else {
+            throw new NotFoundException("Usuário não encontrado!");
+        }
     }
 
     @Override
