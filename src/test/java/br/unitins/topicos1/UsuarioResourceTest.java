@@ -2,15 +2,15 @@ package br.unitins.topicos1;
 
 import br.unitins.topicos1.dto.Login.LoginDTO;
 import br.unitins.topicos1.dto.Usuario.UsuarioResponseDTO;
-import br.unitins.topicos1.service.Hash.HashService;
-import br.unitins.topicos1.service.Jwt.JwtService;
+import br.unitins.topicos1.services.Hash.HashService;
+import br.unitins.topicos1.services.Jwt.JwtService;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 import static org.hamcrest.CoreMatchers.is;
 
 import br.unitins.topicos1.dto.Usuario.UsuarioDTO;
-import br.unitins.topicos1.service.Usuario.UsuarioService;
+import br.unitins.topicos1.services.Usuario.UsuarioService;
 import jakarta.inject.Inject;
 import static io.restassured.RestAssured.given;
 @QuarkusTest

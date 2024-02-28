@@ -5,8 +5,8 @@ import static io.restassured.RestAssured.given;
 import org.junit.jupiter.api.Test;
 
 import br.unitins.topicos1.dto.Cadastro.CadastroDTO;
-import br.unitins.topicos1.service.Cadastro.CadastroService;
-import br.unitins.topicos1.service.Jwt.JwtService;
+import br.unitins.topicos1.services.Cadastro.CadastroService;
+import br.unitins.topicos1.services.Jwt.JwtService;
 import io.restassured.http.ContentType;
 import jakarta.inject.Inject;
 

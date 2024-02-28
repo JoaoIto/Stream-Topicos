@@ -4,9 +4,9 @@ import org.jboss.logging.Logger;
 
 import br.unitins.topicos1.dto.Login.LoginDTO;
 import br.unitins.topicos1.dto.Usuario.UsuarioResponseDTO;
-import br.unitins.topicos1.service.Hash.HashService;
-import br.unitins.topicos1.service.Jwt.JwtService;
-import br.unitins.topicos1.service.Usuario.UsuarioService;
+import br.unitins.topicos1.services.Hash.HashService;
+import br.unitins.topicos1.services.Jwt.JwtService;
+import br.unitins.topicos1.services.Usuario.UsuarioService;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;

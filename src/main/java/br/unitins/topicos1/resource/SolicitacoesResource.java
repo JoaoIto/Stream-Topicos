@@ -4,9 +4,9 @@ import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.*;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
-import br.unitins.topicos1.service.Solicitacoes.SolicitacoesService;
-import br.unitins.topicos1.service.Usuario.UsuarioService;
-import br.unitins.topicos1.service.Usuario.UsuarioServiceImpl;
+import br.unitins.topicos1.services.Solicitacoes.SolicitacoesService;
+import br.unitins.topicos1.services.Usuario.UsuarioService;
+import br.unitins.topicos1.services.Usuario.UsuarioServiceImpl;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;

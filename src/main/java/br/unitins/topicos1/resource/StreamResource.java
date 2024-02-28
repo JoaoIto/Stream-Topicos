@@ -2,7 +2,7 @@ package br.unitins.topicos1.resource;
 
 import br.unitins.topicos1.dto.Stream.StreamDTO;
 import br.unitins.topicos1.dto.Stream.StreamResponseDTO;
-import br.unitins.topicos1.service.Stream.StreamService;
+import br.unitins.topicos1.services.Stream.StreamService;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -77,7 +77,7 @@ public class StreamResource {
         return Response.ok(streamService.findByNome(nome)).build();
     }
 
-    @RolesAllowed({ "User", "streamer", "Admin"})
+
     @GET
     public Response findAll() {
         LOG.info("Fazendo a busca de todos os stream.");

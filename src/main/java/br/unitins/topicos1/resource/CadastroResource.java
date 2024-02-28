@@ -1,7 +1,7 @@
 package br.unitins.topicos1.resource;
 
 import br.unitins.topicos1.dto.Cadastro.CadastroDTO;
-import br.unitins.topicos1.service.Cadastro.CadastroService;
+import br.unitins.topicos1.services.Cadastro.CadastroService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;

@@ -2,7 +2,7 @@ package br.unitins.topicos1.resource;
 
 import br.unitins.topicos1.dto.Duo.DuoDTO;
 import br.unitins.topicos1.dto.Duo.DuoResponseDTO;
-import br.unitins.topicos1.service.Duo.DuoService;
+import br.unitins.topicos1.services.Duo.DuoService;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;

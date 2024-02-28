@@ -1,7 +1,7 @@
 package br.unitins.topicos1.resource;
 
 import br.unitins.topicos1.dto.Usuario.UsuarioDTO;
-import br.unitins.topicos1.service.Usuario.UsuarioService;
+import br.unitins.topicos1.services.Usuario.UsuarioService;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;

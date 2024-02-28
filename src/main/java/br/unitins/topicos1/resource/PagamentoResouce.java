@@ -3,7 +3,7 @@ package br.unitins.topicos1.resource;
 import br.unitins.topicos1.dto.Pagamento.CartaoCredito.CartaoCreditoDTO;
 import br.unitins.topicos1.dto.Pagamento.PagamentoResponseDTO;
 import br.unitins.topicos1.dto.Pagamento.Pix.PixDTO;
-import br.unitins.topicos1.service.Pagamento.PagamentoService;
+import br.unitins.topicos1.services.Pagamento.PagamentoService;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;

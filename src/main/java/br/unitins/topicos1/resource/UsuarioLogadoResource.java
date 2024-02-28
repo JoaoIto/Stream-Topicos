@@ -7,7 +7,7 @@ import io.quarkus.logging.Log;
 import jakarta.ws.rs.*;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
-import br.unitins.topicos1.service.Usuario.UsuarioService;
+import br.unitins.topicos1.services.Usuario.UsuarioService;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.core.MediaType;
